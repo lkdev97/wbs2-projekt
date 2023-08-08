@@ -1,0 +1,15 @@
+
+
+h1{
+
+  font-size: medium;
+}
+
+#beigeBackground{
+  background-color: #cfc3b4;
+  margin: 0 -0.5rem;
+  padding: 0.625rem 0.5rem;
+  box-shadow: 0rem 0rem 0.313rem 0.313rem dimgrey  inset ;
+}
+
+
