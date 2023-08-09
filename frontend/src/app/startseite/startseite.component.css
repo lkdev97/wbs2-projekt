@@ -1,5 +1,5 @@
-.test{
-  padding-bottom: 0.74rem;
+.container{
+  padding: 0.74rem;
 }
 .arrow {
   position: absolute;
@@ -26,16 +26,26 @@
 
 
 .whiteColorLinks{
-  padding-left: 0px;
+  font-size: x-large;
+  padding-left: 2%;
   color: whitesmoke;
   border-left: #de5612 solid 0.125rem;
 
 }
 .whiteColorRechts{
-  padding-right: 0.3125rem;
+  font-size: x-large;
+  padding-right: 2%;
   text-align: right;
   color: whitesmoke;
   border-right: #de5612 solid 0.125rem;
+
+}
+
+.blackColorLeft{
+  font-size: x-large;
+  padding-left: 1%;
+  color: #272727;
+  border-left: #de5612 solid 0.125rem;
 
 }
 
@@ -47,7 +57,15 @@
   border-right: #de5612 solid 0.125rem;
 
 
+
 }
+
+.left{
+  padding-left: 0;
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
 .leftDown{
   padding-left: 0;
   border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
