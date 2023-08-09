@@ -6,9 +6,12 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', '..', 'frontend', 'dist', 'frontend'),
-    }),
+    // eslint-disable-next-line
+   // ServeStaticModule.forRoot({
+    // eslint-disable-next-line
+     // rootPath: join(__dirname, '..', '..', 'frontend', 'dist', 'frontend'),
+    // eslint-disable-next-line
+ //   }),
   ],
   controllers: [AppController],
   providers: [AppService],
