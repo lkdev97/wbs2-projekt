@@ -36,14 +36,14 @@
 }
 
 
-.whiteColorLinks{
+.whiteColorLeft{
   font-size: x-large;
   padding-left: 2%;
   color: whitesmoke;
   border-left: #de5612 solid 0.125rem;
 
 }
-.whiteColorRechts{
+.whiteColorRight{
   font-size: x-large;
   padding-right: 2%;
   text-align: right;
