@@ -1,6 +1,17 @@
 .container{
   padding: 0.74rem;
 }
+.main {
+  color: whitesmoke;
+  font-size: xx-large;
+}
+
+.button{
+  background-color: rgba(255,255,255, 0.5);
+  color: whitesmoke;
+  border: none;
+
+}
 .arrow {
   position: absolute;
   text-align: center;
@@ -96,6 +107,7 @@
 }
 
 .linksRechts{
+  text-align: center;
   border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
   border-right: solid 0.125rem rgba(105,105,105, 0.5) ;
 
