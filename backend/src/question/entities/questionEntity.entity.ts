@@ -8,7 +8,7 @@ export class QuestionEntity {
   @Column()
   text: string;
 
-  @Column('jsonb')
+  @Column('text')
   options: string[]; 
 
   @Column()
