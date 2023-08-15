@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +82,7 @@
       <workItem from="1691489876542" duration="6290000" />
       <workItem from="1691565222432" duration="10183000" />
       <workItem from="1692119605966" duration="6000" />
-      <workItem from="1692119724115" duration="321000" />
+      <workItem from="1692119724115" duration="859000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
