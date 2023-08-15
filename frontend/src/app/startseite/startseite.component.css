@@ -1,0 +1,122 @@
+.container{
+  padding: 0.74rem;
+}
+.main {
+  color: whitesmoke;
+  font-size: xx-large;
+}
+
+.button{
+  background-color: rgba(255,255,255, 0.5);
+  color: whitesmoke;
+  border: none;
+
+}
+.arrow {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -50%);
+  transform: rotate(0deg);
+  cursor: pointer;
+  padding-top: 20%;
+}
+
+.arrow span {
+  display: block;
+  width: 1.5vw;
+  height: 1.5vw;
+  border-bottom: 5px solid #de5612;
+  border-right: 5px solid #de5612;
+  transform: rotate(45deg);
+  margin: -10px;
+
+}
+
+
+.whiteColorLeft{
+  font-size: x-large;
+  padding-left: 2%;
+  color: whitesmoke;
+  border-left: #de5612 solid 0.125rem;
+
+}
+.whiteColorRight{
+  font-size: x-large;
+  padding-right: 2%;
+  text-align: right;
+  color: whitesmoke;
+  border-right: #de5612 solid 0.125rem;
+
+}
+
+.blackColorLeft{
+  font-size: x-large;
+  padding-left: 1%;
+  color: #272727;
+  border-left: #de5612 solid 0.125rem;
+
+}
+
+.leftUp{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-bottom: 15%;
+  padding-top: 5%;
+  border-right: #de5612 solid 0.125rem;
+
+
+
+}
+
+.left{
+  padding-left: 0;
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
+.leftDown{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-top: 15%;
+  padding-bottom: 5%;
+  border-right: #de5612 solid 0.125rem;
+
+
+
+}
+.rightDown{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-top: 15%;
+  padding-bottom: 5%;
+  border-left: #de5612 solid 0.125rem;
+
+
+}
+.rightUp{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-bottom: 15%;
+  padding-top: 5%;
+  border-left: #de5612 solid 0.125rem;
+
+
+}
+
+.linksRechts{
+  text-align: center;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  border-right: solid 0.125rem rgba(105,105,105, 0.5) ;
+
+}
+
+#beigeBackground{
+  background-color: #cfc3b4;
+  margin: 0 ;
+  padding: 0.625rem 0.5rem;
+}
+
+
