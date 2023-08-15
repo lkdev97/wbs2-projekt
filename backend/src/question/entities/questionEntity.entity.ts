@@ -14,11 +14,4 @@ export class QuestionEntity {
   @Column()
   correctAnswer: string;
 
-  @BeforeInsert()
-  @BeforeUpdate()
-  validateOptions() {
-    if (this.options.length !== 4) {
-      throw new Error('The options array must contain exactly 4 elements.');
-    }
-  }
 }
