@@ -16,3 +16,5 @@ export class StatisticsEntity {
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 }
+
+
