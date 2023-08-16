@@ -5,6 +5,13 @@ import { AppComponent } from './app.component';
 import { StartseiteComponent } from './startseite/startseite.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
+
+const appRoutes: Routes = [
+  {path: '', component: StartseiteComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent}
+]
 
 @NgModule({
   declarations: [
@@ -14,7 +21,11 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterLink,
+    RouterOutlet,
+    RouterModule.forRoot(appRoutes)
+
   ],
   providers: [],
   bootstrap: [AppComponent]

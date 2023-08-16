@@ -14,16 +14,6 @@
         <div class="glass">
           <div class="field">
             <label class="label is-medium">Login</label>
-            <label class="label">Firstname</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Firstname">
-            </div>
-          </div>
-          <div class="field">
-            <label class="label">Lastname</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Lastname">
-            </div>
           </div>
           <div class="field">
             <label class="label">Email</label>
@@ -38,12 +28,12 @@
             <div class="control">
               <input class="input" type="password" placeholder="Password">
             </div>
-            <button class="button">JOIN</button>
-            <button class="button">ABORT</button>
+            <button class="button" (click)="buttonClickedAccept()">JOIN</button> <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
+            <button class="button" (click)="buttonClickedAbort()">ABORT</button>
           </div>
           <div class="field">
             <p>Noch kein Konto?</p>
-            <p>HIER LANG!</p>
+            <p><a class="linkText" [routerLink]="['/register']">HIER LANG!</a></p>
           </div>
         </div>
 

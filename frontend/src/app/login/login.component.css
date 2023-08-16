@@ -15,7 +15,6 @@
 .rightUp{
   padding-right: 0;
   border-right:  solid 0.125rem rgba(105,105,105, 0.5);
-  padding-bottom: 15%;
   padding-top: 5%;
   border-left: #de5612 solid 0.125rem;
 
@@ -54,7 +53,6 @@ text-align: center;
   margin: 5%;
 }
 .glass{
-
   height: 150%;
   width: 30%;
   background: rgba(255, 255, 255, 0);
@@ -67,5 +65,9 @@ text-align: center;
 }
 
 p{
+  color: white;
+}
+
+.linkText{
   color: white;
 }

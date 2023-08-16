@@ -7,4 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  constructor() {}
+  buttonClickedAccept(): void {
+    console.log("buttonClickedAccept")
+  }
+  buttonClickedAbort(): void {
+    console.log("buttonClickedAbort")
+  }
 }
