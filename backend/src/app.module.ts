@@ -11,13 +11,6 @@ import { DuelModule } from './duel/duel.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// Entites
-import { UserEntity } from './user/entities/userEntity.entity';
-import { DuelEntity } from './duel/entities/duelEntity.entity';
-import { QuestionEntity } from './question/entities/questionEntity.entity';
-import { FriendshipEntity } from './friendship/entities/friendshipEntity.entity';
-import { AdminEntity } from './admin/entities/adminEntity.entity';
-import { StatisticsEntity } from './statistics/entities/statisticsEntity.entity';
 
 @Module({
   imports: [

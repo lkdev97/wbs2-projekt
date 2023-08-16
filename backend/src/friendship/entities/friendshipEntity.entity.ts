@@ -2,7 +2,10 @@ import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, ManyToOne, JoinC
 import { UserEntity } from '../../user/entities/userEntity.entity'
 
 export enum FriendStatus {
-
+    PENDING,
+    BLOCKED,
+    ACCEPTED,
+    
 }
 
 @Entity()
