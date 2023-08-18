@@ -1,12 +1,12 @@
 // auth.service.ts
 import { Injectable } from '@nestjs/common';
 import { UserService } from 'src/user/user.service';
-import { UserEntity } from 'src/user/entities/userEntity.entity';// Pfade anpassen entsprechend Ihrer Projektstruktur
+import { UserEntity } from 'src/user/entities/userEntity.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private readonly userService: UserService, // Dienstnamen anpassen
+    private readonly userService: UserService, 
   ) {}
 
   async validateUser(username: string, password: string): Promise<UserEntity | null> {
