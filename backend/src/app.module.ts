@@ -10,6 +10,7 @@ import { QuestionModule } from './question/question.module';
 import { DuelModule } from './duel/duel.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthService } from './auth/auth.service';
 
 
 @Module({
@@ -35,6 +36,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     StatisticsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, AuthService],
 })
 export class AppModule {}
