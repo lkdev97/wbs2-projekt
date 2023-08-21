@@ -5,7 +5,7 @@ export enum FriendStatus {
     PENDING,
     BLOCKED,
     ACCEPTED,
-    
+
 }
 
 @Entity()
