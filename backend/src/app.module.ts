@@ -11,6 +11,8 @@ import { DuelModule } from './duel/duel.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth/auth.service';
+import { UserService } from './user/user.service';
+import { UserEntity } from './user/entities/userEntity.entity';
 
 
 @Module({
@@ -28,6 +30,7 @@ import { AuthService } from './auth/auth.service';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([UserEntity]),
     UserModule,
     AdminModule,
     FriendshipModule,
@@ -36,6 +39,6 @@ import { AuthService } from './auth/auth.service';
     StatisticsModule,
   ],
   controllers: [AppController],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService, UserService],
 })
 export class AppModule {}
