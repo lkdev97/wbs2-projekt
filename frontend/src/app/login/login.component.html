@@ -22,14 +22,17 @@
             </div>
           </div>
 
-
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input" type="password" [(ngModel)]="userPassword" name="userPassword" placeholder="Password">
+              <input class="input" type="password" [(ngModel)]="userPassword" name="userPassword"
+                     placeholder="Password">
             </div>
-            <button class="button" (click)="buttonClickedAccept()">JOIN</button> <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
-            <button class="button" (click)="buttonClickedAbort()">ABORT</button>
+            <p [ngClass]="out" class="out">{{out}}</p>
+
+            <button class="button" (click)="buttonClickedAccept()">JOIN</button>
+            <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
+            <button class="button" [routerLink]="[''] ">ABORT</button>
           </div>
           <div class="field">
             <p>Noch kein Konto?</p>

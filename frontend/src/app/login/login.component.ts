@@ -7,12 +7,15 @@ import {Component} from '@angular/core';
 })
 export class LoginComponent {
 
+
   constructor() {
   }
 
 
   userEmail: string = "";
   userPassword: string = "";
+  out: string="";
+  error: string = "Es gibt einen Fehler mit der Eingabe. Achten Sie auf sonderzeichen und darauf das alle Felder ausgefült sind"
 
 
   /**
@@ -47,14 +50,17 @@ export class LoginComponent {
   }
 
   buttonClickedAccept() {
+    console.error("buttonClickedAccept")
     if (!this.whitespace(this.userEmail) && !this.whitespace(this.userPassword)) {
-      alert(this.userEmail + this.userPassword)
+      console.log("IF-ABFRAGE")
+      this.out= "Wilkommen" +" "+ this.userEmail;
+    }else{
+      this.out= this.error;
+
+
     }
 
-    console.log("buttonClickedAccept")
+
   }
 
-  buttonClickedAbort(): void {
-    console.log("buttonClickedAbort")
-  }
 }
