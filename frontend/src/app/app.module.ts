@@ -6,6 +6,7 @@ import { StartseiteComponent } from './startseite/startseite.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
+import {FormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   {path: '', component: StartseiteComponent},
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterLink,
     RouterOutlet,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
 
   ],
   providers: [],
