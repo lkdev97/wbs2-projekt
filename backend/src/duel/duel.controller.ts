@@ -1,4 +1,12 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import {AuthGuard} from "../auth/auth.guard";
 
 @Controller('duel')
-export class DuelController {}
+@UseGuards(AuthGuard) //
+export class DuelController {
+
+    @Get()
+    duelPage() {
+        return "Duel Page";
+    }
+}

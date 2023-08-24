@@ -12,6 +12,10 @@ export class UserService {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const existingUser = await this.findByUsername(createUserDto.username);
+    if (existingUser) {
+      return null;
+    }
     const newUser = this.userRepository.create(createUserDto);
     return await this.userRepository.save(newUser);
   }

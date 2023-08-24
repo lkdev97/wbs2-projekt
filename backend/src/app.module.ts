@@ -13,6 +13,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/userEntity.entity';
+import { LoginController } from './login/login.controller';
+import { RegisterController } from './register/register.controller';
 
 
 @Module({
@@ -38,7 +40,7 @@ import { UserEntity } from './user/entities/userEntity.entity';
     DuelModule,
     StatisticsModule,
   ],
-  controllers: [AppController],
+  controllers: [AppController, LoginController, RegisterController],
   providers: [AppService, AuthService, UserService],
 })
 export class AppModule {}
