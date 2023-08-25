@@ -1,11 +1,31 @@
-import {Controller, Get, UseGuards} from '@nestjs/common';
+import {Controller, Get, UseGuards, Param, Body, Post} from '@nestjs/common';
+import { AdminService } from "./admin.service";
+import { CreateQuestionDto } from "./dto/create-question";
 
 @Controller('admin')
 export class AdminController {
+    constructor(
+        private readonly adminSerivce: AdminService,
+    ) {
+    }
+
 
     @Get('editor')
     editorPage() {
-        return "editor Page";
+        return this.adminSerivce.getAllQuestions();
+    }
+
+    /**
+     *
+     * @param createQuestionDto
+     *
+     * Test with Curl
+     *
+     * curl -X POST -H "Content-Type: application/json" -d "{\"text\": \"Was ist die Hauptstadt von Frankreich?\", \"options\": [\"Berlin\", \"Madrid\", \"Paris\", \"Rom\"], \"correctAnswer\": \"Paris\"}" http://localhost:3000/admin/editor/create
+     */
+    @Post('editor/create')
+    async createQuestionById(@Body() createQuestionDto: CreateQuestionDto){
+        return this.adminSerivce.createQuestion(createQuestionDto);
     }
     @Get()
     adminPage() {

@@ -13,6 +13,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/userEntity.entity';
+import { AdminService } from "./admin/admin.service";
+import { QuestionEntity } from "./question/entities/questionEntity.entity";
 import { LoginController } from './login/login.controller';
 import { RegisterController } from './register/register.controller';
 
@@ -32,7 +34,7 @@ import { RegisterController } from './register/register.controller';
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([UserEntity]),
+    TypeOrmModule.forFeature([UserEntity, QuestionEntity]),
     UserModule,
     AdminModule,
     FriendshipModule,
@@ -41,6 +43,6 @@ import { RegisterController } from './register/register.controller';
     StatisticsModule,
   ],
   controllers: [AppController, LoginController, RegisterController],
-  providers: [AppService, AuthService, UserService],
+  providers: [AppService, AuthService, UserService, AdminService],
 })
 export class AppModule {}
