@@ -40,7 +40,8 @@ export class LoginController {
         //this.login({ username: 'admin', password: 'passwort' } as any, {} as Request);
 
         //rm
-        const user = await this.userService.findByUsername('admin');
+        //const user = await this.userService.findByUsername('admin');
+        const user = await this.userService.findByUsername('neuer_benutzer');
 
         if (user && user.password === 'passwort') {
             request.session.userId = user.id;

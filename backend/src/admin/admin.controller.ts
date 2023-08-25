@@ -1,8 +1,10 @@
 import {Controller, Get, UseGuards, Param, Body, Post} from '@nestjs/common';
 import { AdminService } from "./admin.service";
 import { CreateQuestionDto } from "./dto/create-question";
+import { AdminGuard } from "./admin.guard";
 
 @Controller('admin')
+@UseGuards(AdminGuard)
 export class AdminController {
     constructor(
         private readonly adminSerivce: AdminService,
