@@ -27,9 +27,28 @@ export class LoginController {
             return 'failed';
         }
     }
+    //move this later to another controller
+    @Get('logout')
+    async logout(@Req() request) {
+        if(request.session.userId) {
+            request.session.userId = null;
+            return "logged out!";
+        }
+    }
     @Get()
-    loginPage() {
+    async loginPage(@Req() request) {
         //this.login({ username: 'admin', password: 'passwort' } as any, {} as Request);
-        return "This is the login page";
+
+        //rm
+        const user = await this.userService.findByUsername('admin');
+
+        if (user && user.password === 'passwort') {
+            request.session.userId = user.id;
+            return 'success';
+        } else {
+            return 'failed';
+        }
+        //rm
+        //return "This is the login page";
     }
 }
