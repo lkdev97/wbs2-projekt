@@ -54,4 +54,18 @@ export class UserService {
     const user = await this.userRepository.findOne({ where: { username: username } });
     return user || null;
   }
+
+  async getUserRoleById(id: string) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    return user.role;
+  }
+
+  async setUserOnlineById(id: string) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    user.online = true;
+  }
+  async setUserOfflineById(id: string) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    user.online = false;
+  }
 }

@@ -21,7 +21,11 @@ export class LoginController {
         const user = await this.userService.findByUsername(loginDto.username);
 
         if (user && user.password === loginDto.password) {
-            request.session.userId = user.id;
+            request.session.userId = user.id; //@TODO user in der Session speichern
+            request.session.user = user; //
+            request.session.user.online = true; //
+            request.session.user.save(); //
+            await this.userService.setUserOnlineById(user.id);
             return 'success';
         } else {
             return 'failed';
@@ -31,10 +35,22 @@ export class LoginController {
     @Get('logout')
     async logout(@Req() request) {
         if(request.session.userId) {
+            const user = request.session.user.online
+            await this.userService.setUserOfflineById(request.session.userId);
+            user.online = false;
+            user.save();
+
             request.session.userId = null;
             return "logged out!";
         }
+
+        request.session.destroy((err) => {
+            if (err) {
+                console.error('Fehler beim Löschen der Session:', err);
+            }
+        });
     }
+
     @Get()
     async loginPage(@Req() request) {
         //this.login({ username: 'admin', password: 'passwort' } as any, {} as Request);
