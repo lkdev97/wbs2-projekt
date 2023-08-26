@@ -19,7 +19,7 @@ export class AuthController implements OnModuleInit {
             const sessionData = (session as any).Session;
 
             const onlineUsers = await this.userService.getOnlineUsers();
-            console.log(sessionData);
+            console.log(sessionData.user.id);
             await Promise.all(
                 onlineUsers.map(async (user) => {
                     /*const hasSession = await this.sessionCheckerService.hasSession(user.id);
