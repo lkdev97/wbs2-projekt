@@ -19,10 +19,10 @@ export class UserController {
 
   @Get('role')
   getUserRoleBySessionId(@Req() request) {
-    if(!request.session.userId) {
+    if(!request.session.user.id) {
       return null;
     }
 
-    return this.userService.getUserRoleById(request.session.userId);
+    return this.userService.getUserRoleById(request.session.user.id);
   }
 }

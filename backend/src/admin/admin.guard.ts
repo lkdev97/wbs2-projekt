@@ -9,13 +9,13 @@ export class AdminGuard implements CanActivate {
       context: ExecutionContext,
   ): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-    const userId = request.session.userId;
+    const sessionData = request.session.user;
 
-    if (!userId) {
+    if (!sessionData) {
       return false;
     }
 
-    const user = await this.userService.getUserById(userId);
+    const user = await this.userService.getUserById(sessionData.id);
 
     if (!user) {
       return false;

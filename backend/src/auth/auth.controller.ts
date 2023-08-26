@@ -1,12 +1,37 @@
-import { Controller, Post, Get, Body, Req } from '@nestjs/common';
+import {Controller, Post, Get, Body, Req, OnModuleInit} from '@nestjs/common';
 import { LoginDto } from "./dto/login.dto";
 import { UserService } from "../user/user.service";
 import { CreateUserDto } from "../user/dto/createUserDto";
+import * as session from 'express-session';
 
 @Controller('auth')
-export class AuthController {
+export class AuthController implements OnModuleInit {
 
-    constructor(private readonly userService: UserService) {
+    constructor(private readonly userService: UserService) {}
+
+    onModuleInit() {
+        this.startSessionChecker();
+    }
+
+    //@TODO: Check if session.user is still activ and set offline
+    startSessionChecker() {
+        setInterval(async () => {
+            const sessionData = (session as any).Session;
+
+            const onlineUsers = await this.userService.getOnlineUsers();
+            console.log(sessionData);
+            await Promise.all(
+                onlineUsers.map(async (user) => {
+                    /*const hasSession = await this.sessionCheckerService.hasSession(user.id);
+                    if (!hasSession) {
+                        await this.userService.updateUserOnlineStatus(user.id, false);
+                    }*/
+                })
+            );
+            if(!sessionData) {
+                //await this.userService.updateUserOnlineStatus()
+            }
+        }, 0.1 * 60 * 1000); // change timeout
     }
 
     /**
@@ -24,7 +49,6 @@ export class AuthController {
         const user = await this.userService.findByUsername(loginDto.username);
 
         if (user && user.password === loginDto.password) {
-            request.session.userId = user.id; //@TODO user in der Session speichern
             request.session.user = user; //
             request.session.user.online = true; //
             //request.session.user.save(); //
@@ -37,10 +61,10 @@ export class AuthController {
 
     @Get('logout')
     async logout(@Req() request) {
-        if(request.session.userId) {
+        if(request.session.user) {
             //const user = request.session.user.online
-            await this.userService.updateUserOnlineStatus(request.session.userId, false);
-            request.session.userId = null;
+            await this.userService.updateUserOnlineStatus(request.session.user.id, false);
+            request.session.user = null;
             return "logged out!";
         }
 
@@ -79,7 +103,6 @@ export class AuthController {
         const user = await this.userService.findByUsername('neuer_benutzer');
 
         if (user && user.password === 'passwort') {
-            request.session.userId = user.id;
             request.session.user = user; //
             request.session.user.online = true; //
             await this.userService.updateUserOnlineStatus(user.id, true);

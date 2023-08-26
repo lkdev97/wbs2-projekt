@@ -11,8 +11,8 @@ export class StatisticsController {
         ) {}
     @Get()
     showStatistics(@Req() request) {
-        if(request.session.userId) {
-            return this.statisticService.getUserStatisticById(request.session.id);
+        if(request.session.user.id) {
+            return this.statisticService.getUserStatisticById(request.session.user.id);
         }
     }
 }

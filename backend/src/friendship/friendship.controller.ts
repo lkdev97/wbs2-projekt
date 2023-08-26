@@ -10,6 +10,6 @@ export class FriendshipController {
     ) {}
     @Get()
     friendshipPage(@Req() request) {
-        return this.friendshipService.showAllFriendsById(request.session.userId);
+        return this.friendshipService.showAllFriendsById(request.session.user.id);
     }
 }
