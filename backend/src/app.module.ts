@@ -15,8 +15,7 @@ import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/userEntity.entity';
 import { AdminService } from "./admin/admin.service";
 import { QuestionEntity } from "./question/entities/questionEntity.entity";
-import { LoginController } from './login/login.controller';
-import { RegisterController } from './register/register.controller';
+import { AuthController } from './auth/auth.controller';
 
 
 @Module({
@@ -42,7 +41,7 @@ import { RegisterController } from './register/register.controller';
     DuelModule,
     StatisticsModule,
   ],
-  controllers: [AppController, LoginController, RegisterController],
+  controllers: [AppController, AuthController],
   providers: [AppService, AuthService, UserService, AdminService],
 })
 export class AppModule {}

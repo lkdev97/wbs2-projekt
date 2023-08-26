@@ -1,37 +1,14 @@
-import { Controller, Get, Post, Body, Req, OnModuleInit  } from '@nestjs/common';
-import { UserService } from '../user/user.service'
+import { Controller, Post, Get, Body, Req } from '@nestjs/common';
 import { LoginDto } from "./dto/login.dto";
-import * as session from 'express-session';
+import { UserService } from "../user/user.service";
+import { CreateUserDto } from "../user/dto/createUserDto";
 
-@Controller('login')
-export class LoginController implements OnModuleInit{
-    constructor(private readonly userService: UserService) {}
+@Controller('auth')
+export class AuthController {
 
-    onModuleInit() {
-        this.startSessionChecker();
+    constructor(private readonly userService: UserService) {
     }
 
-
-    startSessionChecker() {
-        setInterval(async () => {
-            const sessionData = (session as any).Session;
-
-            const onlineUsers = await this.userService.getOnlineUsers();
-            console.log(sessionData);
-            await Promise.all(
-                onlineUsers.map(async (user) => {
-                    /*const hasSession = await this.sessionCheckerService.hasSession(user.id);
-                    if (!hasSession) {
-                        await this.userService.updateUserOnlineStatus(user.id, false);
-                    }*/
-                })
-            );
-            if(!sessionData) {
-                //await this.userService.updateUserOnlineStatus()
-            }
-        //@TODO: Check if session.user is still activ and set offline if
-        }, 0.1 * 60 * 1000);
-    }
     /**
      *
      * @param loginDto
@@ -39,9 +16,9 @@ export class LoginController implements OnModuleInit{
      * Test with CURL in CLI
      *
      * replace "neuer_benutzer" and "passwort" with other valid or unvalid strings to test success and failed case
-     * curl -X POST "http://localhost:3000/login" -H "Content-Type: application/json" -d "{\"username\": \"neuer_benutzer\", \"password\": \"passwort\"}"
+     * curl -X POST "http://localhost:3000/auth/login" -H "Content-Type: application/json" -d "{\"username\": \"neuer_benutzer\", \"password\": \"passwort\"}"
      */
-    @Post()
+    @Post('login')
     async login(@Body() loginDto: LoginDto, @Req() request) {
         //const { username, password } = loginDto;
         const user = await this.userService.findByUsername(loginDto.username);
@@ -57,15 +34,12 @@ export class LoginController implements OnModuleInit{
             return 'failed';
         }
     }
-    //move this later to another controller
+
     @Get('logout')
     async logout(@Req() request) {
         if(request.session.userId) {
-            const user = request.session.user.online
+            //const user = request.session.user.online
             await this.userService.updateUserOnlineStatus(request.session.userId, false);
-            user.online = false;
-            user.save();
-
             request.session.userId = null;
             return "logged out!";
         }
@@ -75,6 +49,25 @@ export class LoginController implements OnModuleInit{
                 console.error('Fehler beim Löschen der Session:', err);
             }
         });
+    }
+
+    /**
+     *
+     * @param registerDto
+     *
+     * Test with CURL in CLI
+     *
+     * curl -X POST "http://localhost:3000/auth/register" -H "Content-Type: application/json" -d "{\"username\": \"test\", \"password\": \"passwort\"}"
+     */
+    @Post('register')
+    async register(@Body() registerDto: CreateUserDto) {
+        const user = await this.userService.createUser(registerDto);
+
+        if (user) {
+            return 'success';
+        } else {
+            return 'failed';
+        }
     }
 
     @Get()
