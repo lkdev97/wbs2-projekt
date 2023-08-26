@@ -1,11 +1,37 @@
-import { Controller, Get, Post, Body, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, OnModuleInit  } from '@nestjs/common';
 import { UserService } from '../user/user.service'
 import { LoginDto } from "./dto/login.dto";
+import * as session from 'express-session';
 
 @Controller('login')
-export class LoginController {
+export class LoginController implements OnModuleInit{
     constructor(private readonly userService: UserService) {}
 
+    onModuleInit() {
+        this.startSessionChecker();
+    }
+
+
+    startSessionChecker() {
+        setInterval(async () => {
+            const sessionData = (session as any).Session;
+
+            const onlineUsers = await this.userService.getOnlineUsers();
+            console.log(sessionData);
+            await Promise.all(
+                onlineUsers.map(async (user) => {
+                    /*const hasSession = await this.sessionCheckerService.hasSession(user.id);
+                    if (!hasSession) {
+                        await this.userService.updateUserOnlineStatus(user.id, false);
+                    }*/
+                })
+            );
+            if(!sessionData) {
+                //await this.userService.updateUserOnlineStatus()
+            }
+        //@TODO: Check if session.user is still activ and set offline if
+        }, 0.1 * 60 * 1000);
+    }
     /**
      *
      * @param loginDto
@@ -24,8 +50,8 @@ export class LoginController {
             request.session.userId = user.id; //@TODO user in der Session speichern
             request.session.user = user; //
             request.session.user.online = true; //
-            request.session.user.save(); //
-            await this.userService.setUserOnlineById(user.id);
+            //request.session.user.save(); //
+            await this.userService.updateUserOnlineStatus(user.id, true);
             return 'success';
         } else {
             return 'failed';
@@ -36,7 +62,7 @@ export class LoginController {
     async logout(@Req() request) {
         if(request.session.userId) {
             const user = request.session.user.online
-            await this.userService.setUserOfflineById(request.session.userId);
+            await this.userService.updateUserOnlineStatus(request.session.userId, false);
             user.online = false;
             user.save();
 
@@ -61,6 +87,9 @@ export class LoginController {
 
         if (user && user.password === 'passwort') {
             request.session.userId = user.id;
+            request.session.user = user; //
+            request.session.user.online = true; //
+            await this.userService.updateUserOnlineStatus(user.id, true);
             return 'success';
         } else {
             return 'failed';

@@ -60,12 +60,26 @@ export class UserService {
     return user.role;
   }
 
+  //@deprecated: rm
   async setUserOnlineById(id: string) {
     const user = await this.userRepository.findOne({ where: { id: id } });
     user.online = true;
+    await this.userRepository.save(user);
   }
+  //@deprecated: rm
   async setUserOfflineById(id: string) {
     const user = await this.userRepository.findOne({ where: { id: id } });
     user.online = false;
+    await this.userRepository.save(user);
+  }
+
+  async updateUserOnlineStatus(id: string, status: boolean) {
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    user.online = status;
+    await this.userRepository.save(user);
+  }
+
+  async getOnlineUsers(): Promise<UserEntity[]> {
+    return this.userRepository.find({ where: { online: true } });
   }
 }
