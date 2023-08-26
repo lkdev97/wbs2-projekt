@@ -17,6 +17,7 @@ export class AuthController implements OnModuleInit {
     startSessionChecker() {
         setInterval(async () => {
             const sessionData = (session as any).Session;
+            if(!sessionData.user) return;
 
             const onlineUsers = await this.userService.getOnlineUsers();
             console.log(sessionData.user.id);
