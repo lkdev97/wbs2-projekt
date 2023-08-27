@@ -1,25 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateQuestionDto } from './dto/create-question';
-import { UpdateQuestionDto } from './dto/update-question';
-// Sie müssen ein entsprechendes ORM-Modell für die Question-Entität hinzufügen.
-// import { Question } from './entities/question.entity';
+import { QuestionEntity } from '../question/entities/questionEntity.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import {UpdateQuestionDto} from "./dto/update-question";
 
 @Injectable()
 export class AdminService {
-  // Hier sollten Sie Dependency Injection für die Datenbank verwenden.
+  constructor(
+    @InjectRepository(QuestionEntity)
+    private questionsRepository: Repository<QuestionEntity>,
+  ) {}
 
-  createQuestion(createQuestionDto: CreateQuestionDto) {
-    // Logik zum Erstellen einer Frage.
+  async createQuestion(dto: CreateQuestionDto): Promise<QuestionEntity> {
+    const question = this.questionsRepository.create(dto);
+    return await this.questionsRepository.save(question);
   }
 
-  updateQuestion(id: string, updateQuestionDto: UpdateQuestionDto) {
-    // Logik zum Aktualisieren einer Frage.
+  async updateQuestion(
+    id: string,
+    dto: UpdateQuestionDto,
+  ): Promise<QuestionEntity> {
+    await this.questionsRepository.update(id, dto);
+    return this.questionsRepository.findOne({ where: { id: id } });
   }
 
-  deleteQuestion(id: string) {
-    // Logik zum Löschen einer Frage.
+  async getAllQuestions(): Promise<QuestionEntity[]> {
+    return await this.questionsRepository.find();
   }
-  getAllQuestions() {
-    // Logik zum Abrufen aller Fragen.
+
+  async deleteQuestion(id: string): Promise<void> {
+    await this.questionsRepository.delete(id);
   }
 }

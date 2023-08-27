@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import * as session from 'express-session';
 
@@ -12,6 +13,16 @@ async function bootstrap() {
       saveUninitialized: false,
     }),
   );
+
+  const config = new DocumentBuilder()
+    .setTitle('QUIZ API')
+    .setDescription('Ein QUIZ Game API')
+    .setVersion('1.0')
+    .addTag('Revolutionäre Game')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document);
 
   await app.listen(3000);
 }

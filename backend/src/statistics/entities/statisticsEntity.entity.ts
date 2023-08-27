@@ -12,7 +12,7 @@ export class StatisticsEntity {
   @Column()
   totalGames: number;
 
-  @ManyToOne(() => UserEntity, user => user.statistics)
+  @ManyToOne(() => UserEntity, (user) => user.statistics)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 }

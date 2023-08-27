@@ -1,9 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { StatisticsEntity } from "../../statistics/entities/statisticsEntity.entity";
-import { FriendshipEntity } from "../../friendship/entities/friendshipEntity.entity";
-import { AdminEntity } from "../../admin/entities/adminEntity.entity";
-import { DuelEntity } from "../../duel/entities/duelEntity.entity";
-import { QuestionEntity } from "../../question/entities/questionEntity.entity";
+import { StatisticsEntity } from '../../statistics/entities/statisticsEntity.entity';
+import { FriendshipEntity } from '../../friendship/entities/friendshipEntity.entity';
+import { DuelEntity } from '../../duel/entities/duelEntity.entity';
 
 export enum UserRole {
   ADMIN = 'ADMIN',
@@ -31,16 +29,15 @@ export class UserEntity {
   })
   role: UserRole;
 
-  @OneToMany(() => FriendshipEntity, friendship => friendship.user)
-  friendships: FriendshipEntity[];
+  @OneToMany(() => FriendshipEntity, (friendship) => friendship.user)
+  userFriend: FriendshipEntity[];
 
-  @OneToMany(() => StatisticsEntity, statistics => statistics.user)
+  @OneToMany(() => FriendshipEntity, (friendship) => friendship.friend)
+  friend: FriendshipEntity[];
+
+  @OneToMany(() => StatisticsEntity, (statistics) => statistics.user)
   statistics: StatisticsEntity[];
 
-  @OneToMany(() => DuelEntity, duel => duel.id)
+  @OneToMany(() => DuelEntity, (duel) => duel.id)
   duelsAsPlayer1: DuelEntity[];
-
-  @OneToMany(() => AdminEntity, admin => admin.user)
-  admin: AdminEntity[];
-
 }
