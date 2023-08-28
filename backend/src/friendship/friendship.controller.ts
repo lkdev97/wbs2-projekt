@@ -10,7 +10,6 @@ export class FriendshipController {
     ) {}
     @Get()
     async friendshipPage(@Req() request) {
-        //return this.friendshipService.showAllFriendsById(request.session.user.id);
         return await this.friendshipService.showAllOnlineFriends(request.session.user.id);
     }
 }

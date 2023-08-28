@@ -14,7 +14,7 @@ export class FriendshipService {
     ) {
     }
     async showAllFriendsById(userId: string) {
-        //@TODO
+
         const friendshipEntries = await this.friendshipRepository.find({
             where: { userId },
         });
@@ -26,7 +26,7 @@ export class FriendshipService {
     }
 
     async showAllOnlineFriends(userId: string) {
-        //@TODO
+
         const friendshipEntries = await this.friendshipRepository.find({
             where: { userId },
           });
