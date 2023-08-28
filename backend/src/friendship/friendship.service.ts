@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {InjectRepository} from "@nestjs/typeorm";
 import {FriendshipEntity} from "./entities/friendshipEntity.entity";
-import {Repository} from "typeorm";
+import {Repository, In} from "typeorm";
 import {UserEntity} from "../user/entities/userEntity.entity";
 
 @Injectable()
@@ -13,18 +13,33 @@ export class FriendshipService {
         private userRepository: Repository<UserEntity>,
     ) {
     }
-    async showAllFriendsById(id: string) {
+    async showAllFriendsById(userId: string) {
         //@TODO
-
-        return null;
+        const friendshipEntries = await this.friendshipRepository.find({
+            where: { userId },
+        });
+      
+        const friendIds = friendshipEntries.map(
+            (friendshipEntry) => friendshipEntry.friendId
+        );
+        return friendshipEntries;
     }
 
-    async showAllOnlineFriends(id: string) {
+    async showAllOnlineFriends(userId: string) {
         //@TODO
-        const friendships = await this.friendshipRepository.find({where: { friendId: id },});
-        const userIds = friendships.map(friendship => friendship.userId);
-        //const onlineFriends = null;
-        return null;
+        const friendshipEntries = await this.friendshipRepository.find({
+            where: { userId },
+          });
+      
+          const friendIds = friendshipEntries.map(
+            (friendshipEntry) => friendshipEntry.friendId
+          );
+
+          const onlineFriends = await this.userRepository.find({
+            where: { id: In(friendIds), online: true },
+          });
+      
+          return onlineFriends;
     }
 
 }

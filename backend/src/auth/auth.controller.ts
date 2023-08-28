@@ -101,7 +101,7 @@ export class AuthController implements OnModuleInit {
 
         //rm
         //const user = await this.userService.findByUsername('admin');
-        const user = await this.userService.findByUsername('neuer_benutzer');
+        const user = await this.userService.findByUsername('user');
 
         if (user && user.password === 'passwort') {
             request.session.user = user; //

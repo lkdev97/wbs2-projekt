@@ -5,7 +5,6 @@ export enum FriendStatus {
     PENDING,
     BLOCKED,
     ACCEPTED,
-
 }
 
 @Entity()
@@ -23,6 +22,13 @@ export class FriendshipEntity {
     @ManyToOne(() => UserEntity, user => user.friendships)
     @JoinColumn({ name: 'friendId' })
     friend: UserEntity;
+
+    @Column({
+        type: 'text',
+        enum: FriendStatus,
+        default: FriendStatus.PENDING,
+    })
+    friendStatus: FriendStatus;
 }
 
 
