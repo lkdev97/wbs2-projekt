@@ -1,0 +1,59 @@
+.duell-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  padding: 50px;
+}
+
+.duel {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px solid #de5612;
+  width: 85%;
+  max-width: 1000px;
+  height: 100%;
+  overflow: auto;
+}
+
+.contentView {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.div1 { grid-area: 1 / 1 / 4 / 5; }
+.div2 { grid-area: 4 / 1 / 5 / 3; }
+.div3 { grid-area: 4 / 3 / 5 / 5; }
+.div4 { grid-area: 5 / 1 / 6 / 3; }
+.div5 { grid-area: 5 / 3 / 6 / 5; }
+
+.question, .answer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+  border: 2px solid #de5612;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+  color: white;
+}
+
+.answer:hover {
+  border-color: white;
+}
+
+.question.clicked, .answer.clicked {
+  border-color: #de5612;
+  background-color: #de5612;
+  color: white;
+}
