@@ -7,11 +7,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { DuellComponent } from './duell/duell.component';
+import { AdminViewComponent } from './admin-view/admin-view.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartseiteComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
+  {path: 'admin-view', component: AdminViewComponent},
   {path: 'duell', component: DuellComponent }
 
 ]
@@ -22,7 +24,8 @@ const appRoutes: Routes = [
     StartseiteComponent,
     LoginComponent,
     RegisterComponent,
-    DuellComponent
+    DuellComponent,
+    AdminViewComponent
   ],
   imports: [
     BrowserModule,

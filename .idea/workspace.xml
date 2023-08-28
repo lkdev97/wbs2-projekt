@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="Verlinkungen auf Stefans seiten ( login.component.html, startseite.component.html, register.component.html ) fertig. TODO: If abfrage für die Inputfelder schreiben die vor dem Buttonklick ausgeführt wird bzw. der Button soll erst enabled werden wenn alle felder valide ausgefüllt sind. Sollange ein Input nicht richtig ist soll eine Fehlermeldung vorhanden sein.">
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="Duell Komponente hinzugefügt">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +25,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
   <component name="ProjectId" id="2SSoUOOviMcqTjVE07DAKl6ILEV" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -33,22 +36,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "ts.external.directory.path": "C:\\Users\\dimas\\WebstormProjects\\wbs2-projekt\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\dimas\\WebstormProjects\\wbs2-projekt\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -92,6 +95,7 @@
       <workItem from="1691565222432" duration="10381000" />
       <workItem from="1692003629335" duration="492000" />
       <workItem from="1692162603401" duration="5377000" />
+      <workItem from="1693234029708" duration="7080000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -142,7 +146,23 @@
       <option name="project" value="LOCAL" />
       <updated>1692164296386</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Duell Komponente hinzugefügt">
+      <option name="closed" value="true" />
+      <created>1693191556476</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1693191556476</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Duell Komponente hinzugefügt">
+      <option name="closed" value="true" />
+      <created>1693191611484</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1693191611484</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +177,7 @@
     <MESSAGE value="Login started. TODO: Glas effect on Login form and Register finish" />
     <MESSAGE value="Glasseffekt auf register.component.html und login.component.html fertig gemacht. TODO: verlinkungen auf die einzelenen seiten per Router Link" />
     <MESSAGE value="Verlinkungen auf Stefans seiten ( login.component.html, startseite.component.html, register.component.html ) fertig. TODO: If abfrage für die Inputfelder schreiben die vor dem Buttonklick ausgeführt wird bzw. der Button soll erst enabled werden wenn alle felder valide ausgefüllt sind. Sollange ein Input nicht richtig ist soll eine Fehlermeldung vorhanden sein." />
-    <option name="LAST_COMMIT_MESSAGE" value="Verlinkungen auf Stefans seiten ( login.component.html, startseite.component.html, register.component.html ) fertig. TODO: If abfrage für die Inputfelder schreiben die vor dem Buttonklick ausgeführt wird bzw. der Button soll erst enabled werden wenn alle felder valide ausgefüllt sind. Sollange ein Input nicht richtig ist soll eine Fehlermeldung vorhanden sein." />
+    <MESSAGE value="Duell Komponente hinzugefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Duell Komponente hinzugefügt" />
   </component>
 </project>
