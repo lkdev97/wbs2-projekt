@@ -3,11 +3,15 @@ import { LoginDto } from "./dto/login.dto";
 import { UserService } from "../user/user.service";
 import { CreateUserDto } from "../user/dto/createUserDto";
 import * as session from 'express-session';
+import { SocketGateway } from 'src/socket/socket.gateway';
 
 @Controller('auth')
 export class AuthController implements OnModuleInit {
 
-    constructor(private readonly userService: UserService) {}
+    constructor(
+        private readonly userService: UserService,
+        private readonly socketGateway: SocketGateway
+        ) {}
 
     onModuleInit() {
         this.startSessionChecker();
@@ -42,7 +46,7 @@ export class AuthController implements OnModuleInit {
      * Test with CURL in CLI
      *
      * replace "neuer_benutzer" and "passwort" with other valid or unvalid strings to test success and failed case
-     * curl -X POST "http://localhost:3000/auth/login" -H "Content-Type: application/json" -d "{\"username\": \"neuer_benutzer\", \"password\": \"passwort\"}"
+     * curl -X POST "http://localhost:3000/auth/login" -H "Content-Type: application/json" -d "{\"username\": \"admin\", \"password\": \"passwort\"}"
      */
     @Post('login')
     async login(@Body() loginDto: LoginDto, @Req() request) {
@@ -52,6 +56,7 @@ export class AuthController implements OnModuleInit {
         if (user && user.password === loginDto.password) {
             request.session.user = user; //
             request.session.user.online = true; //
+            this.socketGateway.server.emit('statusChange', { id: request.session.user.id, online: request.session.user.online }); // @Test
             //request.session.user.save(); //
             await this.userService.updateUserOnlineStatus(user.id, true);
             return 'success';
@@ -65,6 +70,8 @@ export class AuthController implements OnModuleInit {
         if(request.session.user) {
             //const user = request.session.user.online
             await this.userService.updateUserOnlineStatus(request.session.user.id, false);
+            request.session.user.online = false;
+            this.socketGateway.server.emit('statusChange', { id: request.session.user.id, online: request.session.user.online }); // @Test
             request.session.user = null;
             return "logged out!";
         }
@@ -106,6 +113,7 @@ export class AuthController implements OnModuleInit {
         if (user && user.password === 'passwort') {
             request.session.user = user; //
             request.session.user.online = true; //
+            this.socketGateway.server.emit('statusChange', { id: user.id, online: request.session.user.online }); // @test
             await this.userService.updateUserOnlineStatus(user.id, true);
             return 'success';
         } else {

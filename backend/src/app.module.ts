@@ -16,6 +16,7 @@ import { UserEntity } from './user/entities/userEntity.entity';
 import { AdminService } from "./admin/admin.service";
 import { QuestionEntity } from "./question/entities/questionEntity.entity";
 import { AuthController } from './auth/auth.controller';
+import { SocketGateway } from './socket/socket.gateway';
 
 
 @Module({
@@ -42,6 +43,6 @@ import { AuthController } from './auth/auth.controller';
     StatisticsModule,
   ],
   controllers: [AppController, AuthController],
-  providers: [AppService, AuthService, UserService, AdminService],
+  providers: [AppService, AuthService, UserService, AdminService, SocketGateway],
 })
 export class AppModule {}
