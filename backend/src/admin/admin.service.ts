@@ -20,8 +20,26 @@ export class AdminService {
     //const existingQuestion = await this.findById(createQuestionDto.id);
     return await this.questionRepository.save(this.questionRepository.create(createQuestionDto));
   }
-  updateQuestion(id: string, updateQuestionDto: UpdateQuestionDto) {
-    // Logik zum Aktualisieren einer Frage.
+
+  async updateQuestion(id: string, updateQuestionDto: UpdateQuestionDto) {
+    const question = await this.questionRepository.findOne({ where: { id: id } });
+
+    if (!question) {
+      throw new NotFoundException(`Question with ID ${id} not found`);
+    }
+
+    if (updateQuestionDto.text) {
+      question.text = updateQuestionDto.text;
+    }
+    if (updateQuestionDto.options) {
+      question.options = updateQuestionDto.options;
+    }
+    if (updateQuestionDto.correctAnswer) {
+      question.correctAnswer = updateQuestionDto.correctAnswer;
+    }
+
+    await this.questionRepository.save(question);
+    return question;
   }
 
   async deleteQuestion(id: string) {
