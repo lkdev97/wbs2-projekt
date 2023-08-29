@@ -28,7 +28,7 @@ export class FriendshipService {
     async showAllOnlineFriends(userId: string) {
 
         const friendshipEntries = await this.friendshipRepository.find({
-            where: { userId }, // add: friendStatus: FriendStatus.ACCEPTED
+            where: { userId, friendStatus: FriendStatus.ACCEPTED }, // add: friendStatus: FriendStatus.ACCEPTED
         });
       
         const friendIds = friendshipEntries.map(
