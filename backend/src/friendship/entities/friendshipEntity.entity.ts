@@ -2,13 +2,9 @@ import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, ManyToOne, JoinC
 import { UserEntity } from '../../user/entities/userEntity.entity'
 
 export enum FriendStatus {
-<<<<<<< HEAD
     PENDING = 'PENDING',
     BLOCKED = 'BLOCKED',
     ACCEPTED = 'ACCEPTED',
-=======
-
->>>>>>> 77be42071220043b2b88e44f46803efbe448175e
 }
 
 @Entity()
@@ -26,7 +22,6 @@ export class FriendshipEntity {
     @ManyToOne(() => UserEntity, user => user.friendships)
     @JoinColumn({ name: 'friendId' })
     friend: UserEntity;
-<<<<<<< HEAD
 
     @Column({
         type: 'text',
@@ -34,8 +29,6 @@ export class FriendshipEntity {
         default: FriendStatus.PENDING,
     })
     friendStatus: FriendStatus;
-=======
->>>>>>> 77be42071220043b2b88e44f46803efbe448175e
 }
 
 
