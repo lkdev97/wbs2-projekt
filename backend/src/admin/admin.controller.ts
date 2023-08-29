@@ -5,7 +5,7 @@ import { AdminGuard } from "./admin.guard";
 import { UpdateQuestionDto } from './dto/update-question';
 
 @Controller('admin')
-//@UseGuards(AdminGuard)
+@UseGuards(AdminGuard)
 export class AdminController {
     constructor(
         private readonly adminSerivce: AdminService,
