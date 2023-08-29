@@ -64,6 +64,12 @@ export class AuthController implements OnModuleInit {
             return 'failed';
         }
     }
+    @Get('user')
+    async getUser(@Req() request) {
+        if(request.session.user) {
+            return request.session.user;
+        }
+    }
 
     @Get('logout')
     async logout(@Req() request) {
