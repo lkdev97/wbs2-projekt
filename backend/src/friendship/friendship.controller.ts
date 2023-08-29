@@ -1,4 +1,4 @@
-import { Controller, Get, UseGuards, Req, Body, Post} from '@nestjs/common';
+import { Controller, Get, UseGuards, Req, Body, Post, Patch} from '@nestjs/common';
 import { AuthGuard } from "../auth/auth.guard";
 import { FriendshipService } from "./friendship.service";
 import { FriendStatus } from './entities/friendshipEntity.entity';
@@ -22,9 +22,9 @@ export class FriendshipController {
     }
 
     //@Update()
-    @Post('update')
-    async updateFriendStatus(@Body() userId: string, @Req() request) {
+    @Patch('update')
+    async updateFriendStatus(@Body() { userId, friendStatus }, @Req() request) {
         const frinedId = request.session.user.id;
-        return this.friendshipService.updateFriendStatus(userId, frinedId, FriendStatus.ACCEPTED);
+        return this.friendshipService.updateFriendStatus(userId, frinedId, friendStatus);
     }
 }
