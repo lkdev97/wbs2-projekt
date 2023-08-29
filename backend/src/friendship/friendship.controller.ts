@@ -16,9 +16,9 @@ export class FriendshipController {
     }
 
     @Post('addFriend')
-    async addFriend(@Body() friendId: string, @Req() request) {
+    async addFriend(@Body() { friendId }: { friendId: string }, @Req() request) {
         const userId = request.session.user.id;
-        return await this.friendshipService.addFriendRequest(friendId, userId);
+        return await this.friendshipService.addFriendRequest(userId, friendId);
     }
 
     //@Update()

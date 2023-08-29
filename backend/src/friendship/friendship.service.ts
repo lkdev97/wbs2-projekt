@@ -44,6 +44,20 @@ export class FriendshipService {
 
     // User als Freund adden: userId ist die Id von dem Benutzer, der die Anfrage sendet und friendId von dem User der die Anfrage erhält
     async addFriendRequest(userId: string, friendId: string) {
+        if (userId === friendId) {
+            return 'You cannot send a friend request to yourself';
+        }
+
+        const existingEntry = await this.friendshipRepository.findOne({ // Check ob es schon einen Eintrag in der Entity gibt mit der FriendId, UserId
+            where: [
+                { userId: userId, friendId: friendId }, 
+                { userId: friendId, friendId: userId },
+            ],
+        });
+    
+        if (existingEntry) {
+            return 'Friend request already sent.';
+        }
         const newFriendship = this.friendshipRepository.create({friendId: friendId, userId: userId});
         await this.friendshipRepository.save(newFriendship);
     }
