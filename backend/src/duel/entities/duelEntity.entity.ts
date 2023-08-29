@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { UserEntity } from 'src/user/entities/userEntity.entity';
 
 export enum DuelStatus {
   ONGOING = 'ONGOING',
@@ -10,11 +11,11 @@ export class DuelEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  challengerId: string;
+  @ManyToOne(() => UserEntity)
+  challenger: UserEntity;
 
-  @Column()
-  opponentId: string;
+  @ManyToOne(() => UserEntity)
+  opponent: UserEntity;
 
   @Column({
     type: 'text',
