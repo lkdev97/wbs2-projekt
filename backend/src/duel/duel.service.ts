@@ -1,9 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateDuelDto } from './dto/create-duel';
 import { SubmitAnswerDto } from './dto/submit-answer';
 import { DuelEntity } from './entities/duelEntity.entity';
+import { UserEntity } from 'src/user/entities/userEntity.entity';
+import { DuelStatus } from './entities/duelEntity.entity';
 
 @Injectable()
 export class DuelService {
@@ -13,13 +15,24 @@ export class DuelService {
   ) {}
 
   async createDuel(createDuelDto: CreateDuelDto): Promise<DuelEntity> {
-    // Hier wird ein neues Duel-Objekt erstellt und in der Datenbank gespeichert.
-    return null;
+    const { challengerId, opponentId } = createDuelDto;
+
+    const duel = new DuelEntity();
+    duel.challenger = { id: challengerId } as UserEntity;
+    duel.opponent = { id: opponentId } as UserEntity;
+    duel.status = DuelStatus.ONGOING;
+
+    return this.duelRepository.save(duel);
   }
 
-  async getDuel(id: string): Promise<DuelEntity> {
-    // Hier wird ein Duel-Objekt aus der Datenbank abgerufen.
-    return null;
+  async getDuel(id: string) {
+    const duel = await this.duelRepository.findBy({id});
+
+    if (!duel) {
+      throw new NotFoundException(`Duel with ID ${id} not found`);
+    }
+
+    return duel;
   }
 
   async submitAnswer(
