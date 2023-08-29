@@ -56,7 +56,7 @@ export class AuthController implements OnModuleInit {
         if (user && user.password === loginDto.password) {
             request.session.user = user; //
             request.session.user.online = true; //
-            this.socketGateway.server.emit('statusChange', { id: request.session.user.id, online: request.session.user.online }); // @Test
+            this.socketGateway.server.emit('statusChange', { id: user.id, online: request.session.user.online }); // @Test
             //request.session.user.save(); //
             await this.userService.updateUserOnlineStatus(user.id, true);
             return 'success';
