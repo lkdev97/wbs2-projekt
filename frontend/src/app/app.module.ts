@@ -9,6 +9,7 @@ import {RouterLink, RouterModule, RouterOutlet, Routes} from "@angular/router";
 import { DuellComponent } from './duell/duell.component';
 import { AdminViewComponent } from './admin/admin-view.component';
 import { UserComponent } from './user/user.component';
+import { ProfilseiteComponent } from './profilseite/profilseite.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartseiteComponent},
@@ -16,7 +17,8 @@ const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'admin', component: AdminViewComponent},
   {path: 'duell', component: DuellComponent },
-  {path: 'user', component: UserComponent}
+  {path: 'user', component: UserComponent},
+  {path: 'profil', component: ProfilseiteComponent}
 
 ]
 
@@ -28,7 +30,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     DuellComponent,
     AdminViewComponent,
-    UserComponent
+    UserComponent,
+    ProfilseiteComponent
   ],
   imports: [
     BrowserModule,
