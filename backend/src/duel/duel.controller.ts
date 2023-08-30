@@ -2,6 +2,7 @@ import { Controller, Get, UseGuards, Post, Body, Req, Patch } from '@nestjs/comm
 import {AuthGuard} from "../auth/auth.guard";
 import { DuelService } from './duel.service';
 import { CreateDuelDto } from './dto/create-duel';
+import { SubmitAnswerDto } from './dto/submit-answer';
 
 
 @Controller('duel')
@@ -26,6 +27,13 @@ export class DuelController {
         }
 
         return await this.duelService.createDuel(createDuelDto);
+    }
+
+    //@TODO
+    @Patch('answer')
+    async questionAnswer(@Body() SubmitAnswerDto) {
+        await this.duelService.submitAnswer(SubmitAnswerDto.id, SubmitAnswerDto);
+
     }
 
     @Patch('update')

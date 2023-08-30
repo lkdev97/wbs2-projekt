@@ -54,10 +54,9 @@ export class DuelService {
     return duel;
   }
 
-  async submitAnswer(
-    duelId: string,
-    submitAnswerDto: SubmitAnswerDto,
-  ): Promise<void> {
+  //@TOOD !!
+  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto): Promise<void> { //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
+    const duel = await this.duelRepository.findOne({ where: { id: duelId } });
     //die Antwort eines Spielers zu speichern.und die Richtigkeit der Antwort zu überprüfen.
     // Aktualisiert gegebenenfalls auch den Duel-Status und den Sieger.
   }
