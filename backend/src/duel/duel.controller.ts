@@ -1,12 +1,35 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, UseGuards, Post, Body, Req, Patch } from '@nestjs/common';
 import {AuthGuard} from "../auth/auth.guard";
+import { DuelService } from './duel.service';
+import { CreateDuelDto } from './dto/create-duel';
+
 
 @Controller('duel')
 @UseGuards(AuthGuard) //
 export class DuelController {
 
+    constructor(
+        private readonly duelService: DuelService,
+    ) {}
     @Get()
     duelPage() {
         return "Duel Page";
+    }
+
+    @Post()
+    async startDuel(@Body() createDuelDto: CreateDuelDto, @Req() request)  {
+        if(createDuelDto.challengerId == createDuelDto.opponentId) {
+            return "you cant start a duel vs yourself";
+        }
+        if(await this.duelService.hasOngoingDuel(createDuelDto.challengerId) || await this.duelService.hasOngoingDuel(createDuelDto.opponentId)) {
+            return "opponent or challenger has a ongoing duel";
+        }
+
+        return await this.duelService.createDuel(createDuelDto);
+    }
+
+    @Patch('update')
+    async finishDuel(@Body() { duelId, winnerId }) {
+        return await this.duelService.updateDuel(duelId, winnerId);
     }
 }
