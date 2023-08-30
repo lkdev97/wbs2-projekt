@@ -66,6 +66,8 @@ export class LoginComponent {
 
     }else{
       this.out= this.error;
+      console.log(this.error)
+
 
 
     }

@@ -16,28 +16,31 @@
             <label class="label is-medium">Register</label>
             <label class="label">Firstname</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Firstname">
+              <input class="input" [(ngModel)]="userFirstName" type="text" placeholder="Firstname">
             </div>
           </div>
           <div class="field">
             <label class="label">Lastname</label>
             <div class="control">
-              <input class="input" type="text" placeholder="Lastname">
+              <input class="input" [(ngModel)]="userLastName" type="text" placeholder="Lastname">
             </div>
           </div>
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
-              <input class="input" type="email" placeholder="Email">
+              <input class="input" [(ngModel)]="userEmail" type="email" placeholder="Email">
             </div>
           </div>
           <div class="field">
             <label class="label">Password</label>
             <div class="control">
-              <input class="input" type="password" placeholder="Password">
+              <input class="input" [(ngModel)]="userPassword" type="password" placeholder="Password">
             </div>
-            <button class="button">JOIN</button>
-            <button class="button">ABORT</button>
+            <p [ngClass]="out" class="out">{{out}}</p>
+
+            <a class="linkText" [routerLink]="['']"><button class="button"  (click)="buttonClickedAccept()" >JOIN</button></a>
+            <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
+            <button class="button" [routerLink]="[''] ">ABORT</button>
           </div>
           <div class="field">
             <p>Bereits ein Konto?</p>
