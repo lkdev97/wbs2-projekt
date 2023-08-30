@@ -10,6 +10,7 @@ import { DuellComponent } from './duell/duell.component';
 import { AdminViewComponent } from './admin/admin-view.component';
 import { UserComponent } from './user/user.component';
 import { ProfilseiteComponent } from './profilseite/profilseite.component';
+import {FormsModule} from "@angular/forms";
 
 const appRoutes: Routes = [
   {path: '', component: StartseiteComponent},
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     BrowserModule,
     RouterLink,
     RouterOutlet,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    FormsModule
 
   ],
   providers: [],
