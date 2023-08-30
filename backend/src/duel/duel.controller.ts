@@ -29,10 +29,14 @@ export class DuelController {
         return await this.duelService.createDuel(createDuelDto);
     }
 
-    //@TODO
+    @Get('question') //@TODO
+    async getDuelQuestion(@Body() { duelId }) { 
+        return this.duelService.selectNewQuestion(duelId);
+    }
+
     @Patch('answer')
     async questionAnswer(@Body() { SubmitAnswerDto, userId }) {
-        return await this.duelService.submitAnswer(SubmitAnswerDto.id, SubmitAnswerDto, userId);
+        return await this.duelService.submitAnswer(SubmitAnswerDto.duelId, SubmitAnswerDto, userId);
     }
 
     @Patch('update')

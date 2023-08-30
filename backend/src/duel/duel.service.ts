@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, Not, In } from 'typeorm';
 import { CreateDuelDto } from './dto/create-duel';
 import { SubmitAnswerDto } from './dto/submit-answer';
 import { DuelEntity } from './entities/duelEntity.entity';
@@ -38,6 +38,7 @@ export class DuelService {
   async createDuel(createDuelDto: CreateDuelDto): Promise<DuelEntity> {
     const { challengerId, opponentId } = createDuelDto;
 
+    //@TODO: Check ob die Validierung im Frontend oder Backend gemacht wird
     /*const challenger = await this.userService.getUserById(challengerId);
     const opponent = await this.userService.getUserById(opponentId);
   
@@ -49,6 +50,7 @@ export class DuelService {
     duel.challenger = { id: challengerId } as UserEntity;
     duel.opponent = { id: opponentId } as UserEntity;
     duel.status = DuelStatus.ONGOING;
+    duel.answeredQuestions = [];
 
     return this.duelRepository.save(duel);
   }
@@ -71,8 +73,9 @@ export class DuelService {
     }
     return false;
   }
-  //@TOOD !!
-  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto, userId: string): Promise<void> { //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
+
+  //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
+  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto, userId: string): Promise<void> { 
     const duel = await this.duelRepository.findOne({ where: { id: duelId } });
     const question = await this.questionRepository.findOne({where: {id: submitAnswerDto.questionId}});
     const correct = await this.checkAnswer(submitAnswerDto.questionId, submitAnswerDto.answer);
@@ -96,5 +99,23 @@ export class DuelService {
     duel.status = DuelStatus.FINISHED;
     await this.duelRepository.save(duel);
     return duel;
+  }
+
+  //@TODO
+  async selectNewQuestion(duelId: string): Promise<QuestionEntity> {
+    const duel = await this.duelRepository.findOne({ where: { id: duelId } });
+    const answeredQuestionIds = duel.answeredQuestions;
+
+    //@Test
+    //Idee: Könnte auch in einer for-Schleife Math.random() in Range von allen questions durchgehen ob schon in 'answeredQuestionsIds'
+    const newQuestion = await this.questionRepository.findOne({
+      where: {
+        id: Not(In(answeredQuestionIds)), 
+      },
+    });
+
+    duel.answeredQuestions.push(newQuestion.id); //
+    await this.duelRepository.save(duel);
+    return newQuestion;
   }
 }
