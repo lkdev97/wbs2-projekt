@@ -1,4 +1,7 @@
-
+/*
+ Die style.css Datei ist eine CSS Datei die für alle Seiten gilt
+ aus diesem Grund ist hier die Orange Border und die Hintergrundfarbe für jeden Body hinterlegt
+ */
 body {
   background-color: #272727;
 
@@ -6,7 +9,6 @@ body {
 
 html{
   border: #de5612 solid 0.125rem;
-
 }
 
 
