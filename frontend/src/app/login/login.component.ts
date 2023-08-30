@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+//import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -8,8 +9,9 @@ import {Component} from '@angular/core';
 export class LoginComponent {
 
 
-  constructor() {
-  }
+  constructor() {  }
+
+
 
 
   userEmail: string = "";
@@ -52,8 +54,16 @@ export class LoginComponent {
   buttonClickedAccept() {
     console.error("buttonClickedAccept")
     if (!this.whitespace(this.userEmail) && !this.whitespace(this.userPassword)) {
+
+      /*TODO: HTTP-Request auf funktion überprüfen
+      this.http.get<any>('http://localhost:3000/auth/login').subscribe(data =>{
+        this.userEmail = data.userEmail;
+      })
+
+       */
       console.log("IF-ABFRAGE")
       this.out= "Wilkommen" +" "+ this.userEmail;
+
     }else{
       this.out= this.error;
 

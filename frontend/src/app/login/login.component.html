@@ -30,7 +30,7 @@
             </div>
             <p [ngClass]="out" class="out">{{out}}</p>
 
-            <button class="button" (click)="buttonClickedAccept()">JOIN</button>
+             <a class="linkText" [routerLink]="['']"><button class="button"  (click)="buttonClickedAccept()" >JOIN</button></a>
             <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
             <button class="button" [routerLink]="[''] ">ABORT</button>
           </div>
