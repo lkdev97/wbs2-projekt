@@ -8,18 +8,14 @@
   padding-bottom: 15%;
   padding-top: 5%;
   border-right: #de5612 solid 0.125rem;
-
-
-
 }
+
 .rightUp{
   padding-right: 0;
   border-right:  solid 0.125rem rgba(105,105,105, 0.5);
   padding-bottom: 15%;
   padding-top: 5%;
   border-left: #de5612 solid 0.125rem;
-
-
 }
 .whiteColorLeft{
   font-size: x-large;
