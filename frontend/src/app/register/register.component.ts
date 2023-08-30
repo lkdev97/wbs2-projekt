@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -8,7 +9,8 @@ import { Component } from '@angular/core';
 export class RegisterComponent {
 
 
-  constructor() {  }
+
+  constructor(private http: HttpClient) {  }
 
   userFirstName: string = "";
   userLastName: string= "";
@@ -51,17 +53,22 @@ export class RegisterComponent {
   }
 
   buttonClickedAccept() {
+
     console.error("buttonClickedAccept")
     if (!this.whitespace(this.userEmail) && !this.whitespace(this.userPassword)&&
       !this.whitespace(this.userLastName)&& !this.whitespace(this.userFirstName)&&
       this.specialCharacterChecker(this.userLastName)&&this.specialCharacterChecker(this.userFirstName)) {
 
+
       /*TODO: HTTP-Request auf funktion überprüfen
-      this.http.get<any>('http://localhost:3000/auth/login').subscribe(data =>{
+      this.http.post<any>('http://localhost:3000/auth/login', {userFirstName: this.userFirstName, userLastName: this.userLastName,
+        userEmail: this.userEmail, userPassword: this.userPassword}).subscribe(data =>{
         this.userFirstName = data.userFirstName;
       })
 
        */
+
+
       console.log("IF-ABFRAGE")
       this.out= "Wilkommen" +" "+ this.userEmail;
 
