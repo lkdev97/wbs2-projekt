@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany } from 'typeorm';
 import { UserEntity } from 'src/user/entities/userEntity.entity';
+import { DuelAnswerEntity } from './duelAnswerEntity.entity';
 
 export enum DuelStatus {
   ONGOING = 'ONGOING',
@@ -26,4 +27,7 @@ export class DuelEntity {
 
   @Column({ nullable: true })
   winnerId: string;
+
+  @OneToMany(() => DuelAnswerEntity, duelAnswer => duelAnswer.duel)
+  duelAnswers: DuelAnswerEntity[];
 }

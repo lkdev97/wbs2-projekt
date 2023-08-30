@@ -6,6 +6,9 @@ import { SubmitAnswerDto } from './dto/submit-answer';
 import { DuelEntity } from './entities/duelEntity.entity';
 import { UserEntity } from 'src/user/entities/userEntity.entity';
 import { DuelStatus } from './entities/duelEntity.entity';
+import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
+import { QuestionEntity } from 'src/question/entities/questionEntity.entity';
+
 
 
 @Injectable()
@@ -13,6 +16,12 @@ export class DuelService {
   constructor(
     @InjectRepository(DuelEntity)
     private readonly duelRepository: Repository<DuelEntity>,
+    @InjectRepository(DuelAnswerEntity)
+    private readonly duelAnswerRepository: Repository<DuelAnswerEntity>,
+    @InjectRepository(QuestionEntity)
+    private readonly questionRepository: Repository<QuestionEntity>,
+    @InjectRepository(UserEntity)
+    private readonly userEntity: Repository<UserEntity>,
   ) {}
 
   async hasOngoingDuel(userId: string): Promise<boolean> {
@@ -54,11 +63,28 @@ export class DuelService {
     return duel;
   }
 
+  async checkAnswer(id: string, answer: string) {
+    const question = this.questionRepository.findOne({where: {id}});
+
+    if(answer === (await question).correctAnswer) {
+      return true;
+    }
+    return false;
+  }
   //@TOOD !!
-  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto): Promise<void> { //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
+  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto, userId: string): Promise<void> { //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
     const duel = await this.duelRepository.findOne({ where: { id: duelId } });
-    //die Antwort eines Spielers zu speichern.und die Richtigkeit der Antwort zu überprüfen.
-    // Aktualisiert gegebenenfalls auch den Duel-Status und den Sieger.
+    const question = await this.questionRepository.findOne({where: {id: submitAnswerDto.questionId}});
+    const correct = await this.checkAnswer(submitAnswerDto.questionId, submitAnswerDto.answer);
+    const user = await this.userEntity.findOne({ where: { id: userId } });
+
+    const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this 
+    duelAnswer.correct = correct;
+    duelAnswer.question = question;
+    duelAnswer.user = user;
+    duelAnswer.duel = duel;
+
+    await this.duelAnswerRepository.save(duelAnswer);
   }
 
   async updateDuel(id: string, winnerId: string) {

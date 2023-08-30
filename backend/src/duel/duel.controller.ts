@@ -31,9 +31,8 @@ export class DuelController {
 
     //@TODO
     @Patch('answer')
-    async questionAnswer(@Body() SubmitAnswerDto) {
-        await this.duelService.submitAnswer(SubmitAnswerDto.id, SubmitAnswerDto);
-
+    async questionAnswer(@Body() { SubmitAnswerDto, userId }) {
+        return await this.duelService.submitAnswer(SubmitAnswerDto.id, SubmitAnswerDto, userId);
     }
 
     @Patch('update')
