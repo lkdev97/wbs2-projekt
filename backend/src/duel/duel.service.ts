@@ -101,21 +101,24 @@ export class DuelService {
     return duel;
   }
 
-  //@TODO
   async selectNewQuestion(duelId: string): Promise<QuestionEntity> {
     const duel = await this.duelRepository.findOne({ where: { id: duelId } });
     const answeredQuestionIds = duel.answeredQuestions;
 
-    //@Test
-    //Idee: Könnte auch in einer for-Schleife Math.random() in Range von allen questions durchgehen ob schon in 'answeredQuestionsIds'
-    const newQuestion = await this.questionRepository.findOne({
+    const unansweredQuestions = await this.questionRepository.find({
       where: {
         id: Not(In(answeredQuestionIds)), 
       },
     });
 
-    duel.answeredQuestions.push(newQuestion.id); //
+    if(unansweredQuestions.length == 0) {
+      throw new NotFoundException(`No unanswered Question found for Duel: ${duelId}`);
+    }
+    const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
+    const newQuestion = unansweredQuestions[randomIndex];
+
+    duel.answeredQuestions.push(newQuestion.id);
     await this.duelRepository.save(duel);
-    return newQuestion;
+    return newQuestion
   }
 }

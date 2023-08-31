@@ -31,7 +31,7 @@ export class DuelEntity {
   @OneToMany(() => DuelAnswerEntity, duelAnswer => duelAnswer.duel)
   duelAnswers: DuelAnswerEntity[];
   
-  @Column(({ type: 'text', array: true }))
+  @Column("simple-array")
   answeredQuestions: string[];
 
 }

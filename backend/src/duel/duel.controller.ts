@@ -6,7 +6,7 @@ import { SubmitAnswerDto } from './dto/submit-answer';
 
 
 @Controller('duel')
-@UseGuards(AuthGuard) //
+//@UseGuards(AuthGuard) //
 export class DuelController {
 
     constructor(
@@ -22,14 +22,17 @@ export class DuelController {
         if(createDuelDto.challengerId == createDuelDto.opponentId) {
             return "you cant start a duel vs yourself";
         }
-        if(await this.duelService.hasOngoingDuel(createDuelDto.challengerId) || await this.duelService.hasOngoingDuel(createDuelDto.opponentId)) {
-            return "opponent or challenger has a ongoing duel";
+        if(await this.duelService.hasOngoingDuel(createDuelDto.challengerId)) {
+            return `challenger ${createDuelDto.challengerId} has an ongoing duel`;
+        }
+        if(await this.duelService.hasOngoingDuel(createDuelDto.opponentId)) {
+            return `opponent ${createDuelDto.opponentId} has an ongoing duel`;
         }
 
         return await this.duelService.createDuel(createDuelDto);
     }
 
-    @Get('question') //@TODO
+    @Get('question')
     async getDuelQuestion(@Body() { duelId }) { 
         return this.duelService.selectNewQuestion(duelId);
     }
