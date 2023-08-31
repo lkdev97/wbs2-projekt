@@ -13,11 +13,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthService } from './auth/auth.service';
 import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/userEntity.entity';
-import { AdminService } from "./admin/admin.service";
-import { QuestionEntity } from "./question/entities/questionEntity.entity";
+import { AdminService } from './admin/admin.service';
+import { QuestionEntity } from './question/entities/questionEntity.entity';
 import { AuthController } from './auth/auth.controller';
 import { SocketGateway } from './socket/socket.gateway';
-
 
 @Module({
   imports: [
@@ -43,6 +42,12 @@ import { SocketGateway } from './socket/socket.gateway';
     StatisticsModule,
   ],
   controllers: [AppController, AuthController],
-  providers: [AppService, AuthService, UserService, AdminService, SocketGateway],
+  providers: [
+    AppService,
+    AuthService,
+    UserService,
+    AdminService,
+    SocketGateway,
+  ],
 })
 export class AppModule {}
