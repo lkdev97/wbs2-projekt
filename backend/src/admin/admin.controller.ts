@@ -13,51 +13,56 @@ import { AdminService } from './admin.service';
 import { CreateQuestionDto } from './dto/create-question';
 import { AdminGuard } from './admin.guard';
 import { UpdateQuestionDto } from './dto/update-question';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiTags,
+  ApiOperation,
+  ApiResponse,
+  ApiParam,
+  ApiBody,
+} from '@nestjs/swagger';
 
 @Controller('admin')
 @UseGuards(AdminGuard)
-@ApiTags('admin')
+@ApiTags('Admin')
 export class AdminController {
-  constructor(private readonly adminSerivce: AdminService) {}
+  constructor(private readonly adminService: AdminService) {}
 
   @Get('editor')
+  @ApiOperation({ summary: 'Retrieve all questions' })
+  @ApiResponse({ status: 200, description: 'Return all questions.' })
   editorPage() {
-    return this.adminSerivce.getAllQuestions();
+    return this.adminService.getAllQuestions();
   }
 
-  /**
-   *
-   * @param createQuestionDto
-   *
-   * Test with Curl
-   *
-   * curl -X POST -H "Content-Type: application/json" -d "{\"text\": \"Was ist die Hauptstadt von Frankreich?\", \"options\": [\"Berlin\", \"Madrid\", \"Paris\", \"Rom\"], \"correctAnswer\": \"Paris\"}" http://localhost:3000/admin/editor/create
-   */
   @Post('editor/create')
+  @ApiOperation({ summary: 'Create a new question' })
+  @ApiResponse({
+    status: 201,
+    description: 'The question has been successfully created.',
+  })
+  @ApiBody({ type: CreateQuestionDto })
   async createQuestionById(@Body() createQuestionDto: CreateQuestionDto) {
-    return this.adminSerivce.createQuestion(createQuestionDto);
+    return this.adminService.createQuestion(createQuestionDto);
   }
 
-  /**
-   *
-   * @param updateQuestionDto
-   * @param id
-   * @returns
-   *
-   * Test with curl
-   *
-   * curl -X PATCH "http://localhost:3000/admin/update/1" -H "Content-Type: application/json" -d "{\"text\": \"Die neue Frage\"}"
-   *
-   * curl -X PATCH  "http://localhost:3000/admin/update/1" -H "Content-Type: application/json" -d "{\"options\": [\"Neue Option 1\", \"Neue Option 2\", \"Neue Option 3\", \"Neue Option 4\"], \"correctAnswer\": \"Neue Option 2\"}"
-   */
   @Patch('update/:id')
+  @ApiOperation({ summary: 'Update an existing question' })
+  @ApiResponse({
+    status: 200,
+    description: 'The question has been successfully updated.',
+  })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: 'ID of the question to update',
+  })
+  @ApiBody({ type: UpdateQuestionDto })
   async updateQuestion(
     @Body() updateQuestionDto: UpdateQuestionDto,
     @Param('id') id: string,
   ) {
     try {
-      const updatedQuestion = await this.adminSerivce.updateQuestion(
+      const updatedQuestion = await this.adminService.updateQuestion(
         id,
         updateQuestionDto,
       );
@@ -69,21 +74,25 @@ export class AdminController {
       throw error;
     }
   }
-  /**
-   *
-   * @param id
-   *
-   * Test with curl
-   *
-   * replace 1 with any valid 'id' from question_entity
-   *
-   * >curl -X DELETE http://localhost:3000/admin/editor/delete/1
-   */
+
   @Delete('editor/delete/:id')
+  @ApiOperation({ summary: 'Delete an existing question' })
+  @ApiResponse({
+    status: 200,
+    description: 'The question has been successfully deleted.',
+  })
+  @ApiParam({
+    name: 'id',
+    required: true,
+    description: 'ID of the question to delete',
+  })
   async deleteCardById(@Param('id') id: string) {
-    return this.adminSerivce.deleteQuestion(id);
+    return this.adminService.deleteQuestion(id);
   }
+
   @Get()
+  @ApiOperation({ summary: 'Admin main page' })
+  @ApiResponse({ status: 200, description: 'Admin main page displayed.' })
   adminPage() {
     return 'this is the admin page';
   }

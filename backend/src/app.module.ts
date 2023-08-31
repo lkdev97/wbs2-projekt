@@ -21,11 +21,11 @@ import { SocketGateway } from './socket/socket.gateway';
 @Module({
   imports: [
     // eslint-disable-next-line
-   // ServeStaticModule.forRoot({
+    // ServeStaticModule.forRoot({
     // eslint-disable-next-line
-     // rootPath: join(__dirname, '..', '..', 'frontend', 'dist', 'frontend'),
+    // rootPath: join(__dirname, '..', '..', 'frontend', 'dist', 'frontend'),
     // eslint-disable-next-line
- //   }),
+    //   }),
 
     TypeOrmModule.forRoot({
       type: 'sqlite',

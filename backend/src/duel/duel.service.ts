@@ -9,8 +9,6 @@ import { DuelStatus } from './entities/duelEntity.entity';
 import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
 import { QuestionEntity } from 'src/question/entities/questionEntity.entity';
 
-
-
 @Injectable()
 export class DuelService {
   constructor(
@@ -34,7 +32,7 @@ export class DuelService {
 
     return !!ongoingDuel;
   }
-  
+
   async createDuel(createDuelDto: CreateDuelDto): Promise<DuelEntity> {
     const { challengerId, opponentId } = createDuelDto;
 
@@ -56,7 +54,7 @@ export class DuelService {
   }
 
   async getDuel(id: string) {
-    const duel = await this.duelRepository.findBy({id});
+    const duel = await this.duelRepository.findBy({ id });
 
     if (!duel) {
       throw new NotFoundException(`Duel with ID ${id} not found`);
@@ -66,22 +64,31 @@ export class DuelService {
   }
 
   async checkAnswer(id: string, answer: string) {
-    const question = this.questionRepository.findOne({where: {id}});
+    const question = this.questionRepository.findOne({ where: { id } });
 
-    if(answer === (await question).correctAnswer) {
+    if (answer === (await question).correctAnswer) {
       return true;
     }
     return false;
   }
 
   //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
-  async submitAnswer(duelId: string, submitAnswerDto: SubmitAnswerDto, userId: string): Promise<void> { 
+  async submitAnswer(
+    duelId: string,
+    submitAnswerDto: SubmitAnswerDto,
+    userId: string,
+  ): Promise<void> {
     const duel = await this.duelRepository.findOne({ where: { id: duelId } });
-    const question = await this.questionRepository.findOne({where: {id: submitAnswerDto.questionId}});
-    const correct = await this.checkAnswer(submitAnswerDto.questionId, submitAnswerDto.answer);
+    const question = await this.questionRepository.findOne({
+      where: { id: submitAnswerDto.questionId },
+    });
+    const correct = await this.checkAnswer(
+      submitAnswerDto.questionId,
+      submitAnswerDto.answer,
+    );
     const user = await this.userEntity.findOne({ where: { id: userId } });
 
-    const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this 
+    const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this
     duelAnswer.correct = correct;
     duelAnswer.question = question;
     duelAnswer.user = user;
@@ -107,18 +114,20 @@ export class DuelService {
 
     const unansweredQuestions = await this.questionRepository.find({
       where: {
-        id: Not(In(answeredQuestionIds)), 
+        id: Not(In(answeredQuestionIds)),
       },
     });
 
-    if(unansweredQuestions.length == 0) {
-      throw new NotFoundException(`No unanswered Question found for Duel: ${duelId}`);
+    if (unansweredQuestions.length == 0) {
+      throw new NotFoundException(
+        `No unanswered Question found for Duel: ${duelId}`,
+      );
     }
     const randomIndex = Math.floor(Math.random() * unansweredQuestions.length);
     const newQuestion = unansweredQuestions[randomIndex];
 
     duel.answeredQuestions.push(newQuestion.id);
     await this.duelRepository.save(duel);
-    return newQuestion
+    return newQuestion;
   }
 }

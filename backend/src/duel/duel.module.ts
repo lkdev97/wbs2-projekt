@@ -8,7 +8,14 @@ import { QuestionEntity } from 'src/question/entities/questionEntity.entity';
 import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([DuelEntity, UserEntity, QuestionEntity, DuelAnswerEntity])],
+  imports: [
+    TypeOrmModule.forFeature([
+      DuelEntity,
+      UserEntity,
+      QuestionEntity,
+      DuelAnswerEntity,
+    ]),
+  ],
   providers: [DuelService],
   controllers: [DuelController],
 })
