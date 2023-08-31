@@ -10,14 +10,14 @@ import { QuestionModule } from './question/question.module';
 import { DuelModule } from './duel/duel.module';
 import { StatisticsModule } from './statistics/statistics.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-
-// Entites
+import { AuthService } from './auth/auth.service';
+import { UserService } from './user/user.service';
 import { UserEntity } from './user/entities/userEntity.entity';
-import { DuelEntity } from './duel/entities/duelEntity.entity';
-import { QuestionEntity } from './question/entities/questionEntity.entity';
-import { FriendshipEntity } from './friendship/entities/friendshipEntity.entity';
-import { AdminEntity } from './admin/entities/adminEntity.entity';
-import { StatisticsEntity } from './statistics/entities/statisticsEntity.entity';
+import { AdminService } from "./admin/admin.service";
+import { QuestionEntity } from "./question/entities/questionEntity.entity";
+import { AuthController } from './auth/auth.controller';
+import { SocketGateway } from './socket/socket.gateway';
+
 
 @Module({
   imports: [
@@ -34,6 +34,7 @@ import { StatisticsEntity } from './statistics/entities/statisticsEntity.entity'
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([UserEntity, QuestionEntity]),
     UserModule,
     AdminModule,
     FriendshipModule,
@@ -41,7 +42,7 @@ import { StatisticsEntity } from './statistics/entities/statisticsEntity.entity'
     DuelModule,
     StatisticsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [AppController, AuthController],
+  providers: [AppService, AuthService, UserService, AdminService, SocketGateway],
 })
 export class AppModule {}

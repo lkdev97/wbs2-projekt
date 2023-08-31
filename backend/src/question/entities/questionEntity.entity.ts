@@ -1,17 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert, BeforeUpdate } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+} from 'typeorm';
 
 @Entity()
 export class QuestionEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
   @Column()
   text: string;
 
   @Column('text')
-  options: string[]; 
+  options: string[];
 
   @Column()
   correctAnswer: string;
-
 }
