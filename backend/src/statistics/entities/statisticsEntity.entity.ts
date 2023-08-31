@@ -1,5 +1,5 @@
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { UserEntity } from '../../user/entities/userEntity.entity'
+import { UserEntity } from '../../user/entities/userEntity.entity';
 
 @Entity()
 export class StatisticsEntity {
@@ -12,9 +12,7 @@ export class StatisticsEntity {
   @Column()
   totalGames: number;
 
-  @ManyToOne(() => UserEntity, user => user.statistics)
+  @ManyToOne(() => UserEntity, (user) => user.statistics)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;
 }
-
-

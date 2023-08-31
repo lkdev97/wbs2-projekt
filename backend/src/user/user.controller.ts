@@ -1,8 +1,11 @@
-import { Controller, Post, Body, Get, Param, Req } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Patch, Req } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/createUserDto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { UpdateUserDto } from './dto/updateUserDto';
 
 @Controller('users')
+@ApiTags('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -19,10 +22,16 @@ export class UserController {
 
   @Get('role')
   getUserRoleBySessionId(@Req() request) {
-    if(!request.session.user.id) {
+    if (!request.session.user.id) {
       return null;
     }
 
     return this.userService.getUserRoleById(request.session.user.id);
+  }
+
+  @Patch(':id')
+  @ApiOperation({ summary: 'Update user by ID' })
+  updateUser(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    return this.userService.updateUser(id, updateUserDto);
   }
 }
