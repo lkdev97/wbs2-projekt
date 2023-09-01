@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Not, In } from 'typeorm';
 import { CreateDuelDto } from './dto/create-duel';
@@ -8,6 +8,7 @@ import { UserEntity } from 'src/user/entities/userEntity.entity';
 import { DuelStatus } from './entities/duelEntity.entity';
 import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
 import { QuestionEntity } from 'src/question/entities/questionEntity.entity';
+import { StatisticsEntity } from 'src/statistics/entities/statisticsEntity.entity';
 
 @Injectable()
 export class DuelService {
@@ -19,7 +20,9 @@ export class DuelService {
     @InjectRepository(QuestionEntity)
     private readonly questionRepository: Repository<QuestionEntity>,
     @InjectRepository(UserEntity)
-    private readonly userEntity: Repository<UserEntity>,
+    private readonly userRepository: Repository<UserEntity>,
+    @InjectRepository(StatisticsEntity)
+    private readonly statisticRepository: Repository<StatisticsEntity>,
   ) {}
 
   async hasOngoingDuel(userId: string): Promise<boolean> {
@@ -28,10 +31,12 @@ export class DuelService {
         { challenger: { id: userId }, status: DuelStatus.ONGOING },
         { opponent: { id: userId }, status: DuelStatus.ONGOING },
       ],
+      relations: ['challenger', 'opponent'],
     });
 
     return !!ongoingDuel;
   }
+
 
   async createDuel(createDuelDto: CreateDuelDto): Promise<DuelEntity> {
     const { challengerId, opponentId } = createDuelDto;
@@ -86,7 +91,7 @@ export class DuelService {
       submitAnswerDto.questionId,
       submitAnswerDto.answer,
     );
-    const user = await this.userEntity.findOne({ where: { id: userId } });
+    const user = await this.userRepository.findOne({ where: { id: userId } });
 
     const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this
     duelAnswer.correct = correct;
@@ -97,11 +102,41 @@ export class DuelService {
     await this.duelAnswerRepository.save(duelAnswer);
   }
 
+  async updateStatistic(userId: string, opponentId: string, winnerId: string) {
+    let statistic = await this.statisticRepository.findOne({
+      where: {
+        user: { id: userId },
+        opponent: { id: opponentId },
+      },
+      relations: ['user', 'opponent'],
+    });
+    if(!statistic) {
+      statistic = new StatisticsEntity();
+      statistic.user = await this.userRepository.findOne({ where: { id: userId } });
+      statistic.opponent = await this.userRepository.findOne({ where: { id: opponentId } });
+      statistic.winsAgainstOpponent = 0;
+      statistic.totalGamesAgainstOpponent = 1;
+    } else {
+      statistic.totalGamesAgainstOpponent++;
+    }
+    if(winnerId === statistic.user.id) {
+      statistic.winsAgainstOpponent++;
+    }
+    await this.statisticRepository.save(statistic);
+  }
+
   async updateDuel(id: string, winnerId: string) {
-    const duel = await this.duelRepository.findOne({ where: { id: id } });
+    const duel = await this.duelRepository.findOne({ where: { id: id }, relations: ['challenger', 'opponent'] });
     if (!duel) {
       throw new NotFoundException(`Duel with ID ${id} not found`);
     }
+
+    if(duel.status == DuelStatus.FINISHED) {
+      throw new ConflictException(`Duel with ID ${id} is already finished`);
+    }
+
+    await this.updateStatistic(duel.challenger.id, duel.opponent.id, winnerId); 
+    await this.updateStatistic(duel.opponent.id, duel.challenger.id, winnerId); 
     duel.winnerId = winnerId;
     duel.status = DuelStatus.FINISHED;
     await this.duelRepository.save(duel);

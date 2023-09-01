@@ -44,9 +44,14 @@ export class UserEntity {
   @OneToMany(() => StatisticsEntity, (statistics) => statistics.user)
   statistics: StatisticsEntity[];
 
-  @ApiProperty({ description: 'List of duels where user is Player 1' })
-  @OneToMany(() => DuelEntity, (duel) => duel.id)
-  duelsAsPlayer1: DuelEntity[];
+  @ApiProperty({ description: 'List of duels where user is challenger' })
+  @OneToMany(() => DuelEntity, duel => duel.challenger)
+  duelsAsChallenger: DuelEntity[];
+
+  @ApiProperty({ description: 'List of duels where user is opponent' })
+  @OneToMany(() => DuelEntity, duel => duel.opponent)
+  duelsAsOpponent: DuelEntity[];
+
 
   @ApiProperty({ description: 'List of admin roles if user is an admin' })
   @OneToMany(() => AdminEntity, (admin) => admin.user)

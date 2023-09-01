@@ -11,11 +11,15 @@ export class StatisticsService {
   ) {}
   async getUserStatisticById(id: string) {
     const statistic = await this.statisticEntity.findOne({
-      where: { userId: id },
+        where: { user: { id } },
+        relations: ['user', 'opponent'],
     });
+
     if (!statistic) {
-      throw new NotFoundException(`Statistic with ID ${id} not found`);
+        throw new NotFoundException(`Statistic with user ID ${id} not found`);
     }
+
     return statistic;
   }
+
 }

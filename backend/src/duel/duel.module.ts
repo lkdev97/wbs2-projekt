@@ -6,6 +6,7 @@ import { DuelEntity } from './entities/duelEntity.entity';
 import { UserEntity } from 'src/user/entities/userEntity.entity';
 import { QuestionEntity } from 'src/question/entities/questionEntity.entity';
 import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
+import { StatisticsEntity } from 'src/statistics/entities/statisticsEntity.entity';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { DuelAnswerEntity } from './entities/duelAnswerEntity.entity';
       UserEntity,
       QuestionEntity,
       DuelAnswerEntity,
+      StatisticsEntity
     ]),
   ],
   providers: [DuelService],
