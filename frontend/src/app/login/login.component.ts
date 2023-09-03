@@ -68,11 +68,6 @@ export class LoginComponent {
       this.out= this.error;
       console.log(this.error)
 
-
-
     }
-
-
   }
-
 }

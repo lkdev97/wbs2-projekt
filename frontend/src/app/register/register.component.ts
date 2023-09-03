@@ -7,17 +7,15 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-
-
-  constructor(private http: HttpClient) {  }
-
   userFirstName: string = "";
   userLastName: string= "";
   userEmail: string = "";
   userPassword: string = "";
   out: string="";
   error: string = "Es gibt einen Fehler mit der Eingabe. Achten Sie auf sonderzeichen und darauf das alle Felder ausgefült sind"
+
+
+  constructor(private http: HttpClient) {  }
 
 
 
@@ -56,17 +54,17 @@ export class RegisterComponent {
 
     console.error("buttonClickedAccept")
     if (!this.whitespace(this.userEmail) && !this.whitespace(this.userPassword)&&
-      !this.whitespace(this.userLastName)&& !this.whitespace(this.userFirstName)&&
-      this.specialCharacterChecker(this.userLastName)&&this.specialCharacterChecker(this.userFirstName)) {
+      !this.whitespace(this.userLastName)&& !this.whitespace(this.userFirstName)) {
 
 
-      /*TODO: HTTP-Request auf funktion überprüfen
-      this.http.post<any>('http://localhost:3000/auth/login', {userFirstName: this.userFirstName, userLastName: this.userLastName,
+
+      /*TODO: HTTP-Request auf funktion überprüfen        */
+      this.http.post<any>('http://localhost:3000/auth/register', {userFirstName: this.userFirstName, userLastName: this.userLastName,
         userEmail: this.userEmail, userPassword: this.userPassword}).subscribe(data =>{
         this.userFirstName = data.userFirstName;
       })
 
-       */
+
 
 
       console.log("IF-ABFRAGE")
