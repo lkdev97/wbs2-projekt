@@ -16,9 +16,9 @@
             <label class="label is-medium">Login</label>
           </div>
           <div class="field">
-            <label class="label">Email</label>
+            <label class="label">Username</label>
             <div class="control">
-              <input class="input" type="email" [(ngModel)]="userEmail" name="userEmail" placeholder="Email">
+              <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="Username">
             </div>
           </div>
 
@@ -30,7 +30,7 @@
             </div>
             <p [ngClass]="out" class="out">{{out}}</p>
 
-             <a class="linkText" [routerLink]="['']"><button class="button"  (click)="buttonClickedAccept()" >JOIN</button></a>
+             <a class="linkText" ><button class="button"  (click)="buttonClickedAccept()" >JOIN</button></a>
             <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
             <button class="button" [routerLink]="[''] ">ABORT</button>
           </div>
