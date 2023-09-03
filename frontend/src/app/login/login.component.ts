@@ -64,9 +64,17 @@ export class LoginComponent {
         console.log(data.username)
       })
 
+      this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+        if (data !== null) {
+          console.log(data);
+          this.out= data.username +" " +data.id
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      });
 
 
-      this.out= "Wilkommen" +" "+ this.username;
+      this.out= this.username;
 
     }else{
       this.out= this.error;
