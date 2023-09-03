@@ -57,12 +57,15 @@ export class LoginComponent {
 
       //TODO: HTTP-Request auf funktion überprüfen
 
-      this.http.get<any>('http://localhost:3000/auth/login').subscribe(data =>{
+
+      this.http.post<any>('http://localhost:3000/auth/login',
+        {username: this.username, password: this.userPassword}).subscribe(data =>{
         this.username = data.username;
+        console.log(data.username)
       })
 
 
-      console.log("IF-ABFRAGE")
+
       this.out= "Wilkommen" +" "+ this.username;
 
     }else{
