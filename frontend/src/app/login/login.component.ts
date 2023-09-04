@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 export class LoginComponent {
 
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, private router: Router) {  }
 
 
 
@@ -54,18 +55,16 @@ export class LoginComponent {
   buttonClickedAccept() {
     console.error("buttonClickedAccept")
     if (!this.whitespace(this.username) && !this.whitespace(this.userPassword)) {
-
-      //TODO: HTTP-Request auf funktion überprüfen
-
-
       this.http.post<any>('http://localhost:3000/auth/login',
         {username: this.username, password: this.userPassword}).subscribe(data =>{
         this.username = data.username;
         console.log(data.username)
       })
 
+
+
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-        if (data !== null) {
+        if (data !== null&& data != undefined) {
           console.log(data);
           this.out= data.username +" " +data.id
         } else {
@@ -74,7 +73,6 @@ export class LoginComponent {
       });
 
 
-      this.out= this.username;
 
     }else{
       this.out= this.error;

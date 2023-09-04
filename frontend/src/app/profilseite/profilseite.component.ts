@@ -1,11 +1,39 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-profilseite',
   templateUrl: './profilseite.component.html',
   styleUrls: ['./profilseite.component.css']
 })
-export class ProfilseiteComponent {
+
+export class ProfilseiteComponent implements OnInit {
+
+  out: string="";
+  out2: string="";
+
+  constructor(private http: HttpClient) {  }
+
+  ngOnInit() {
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+      if (data !== null && data !== undefined) {
+        console.log(data);
+        this.out = data.username + " " + data.id;
+      } else {
+        console.log('Keine Daten erhalten oder ungültige Antwort.');
+      }
+    });
+
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+      if (data !== null && data !== undefined) {
+        console.log(data);
+        this.out2 = data.username + " " + data.id;
+      } else {
+        console.log('Keine Daten erhalten oder ungültige Antwort.');
+      }
+    });
+  }
+
 
   // Testdaten
    playersList = [
@@ -32,7 +60,7 @@ export class ProfilseiteComponent {
 
   deleteFriend(friend: any) {
     // Den Index des Freundes in der Freundesliste finden
-    const index = this.friendsList.indexOf(friend);
+    const index: number = this.friendsList.indexOf(friend);
     // Prüfen, ob der Freund in der Liste ist
     if (index !== -1) {
       // Freund aus der Freundesliste entfernen

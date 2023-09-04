@@ -19,7 +19,7 @@ export class HeaderComponent {
   // Funktion zum Ausloggen
   logout() {
     this.isConfirmationPopupVisible = false;
-    this.router.navigate(['/']).then(
+    this.router.navigate(['/startseite']).then(
       () => {
         console.log('Erfolgreich umgeleitet');
       },
