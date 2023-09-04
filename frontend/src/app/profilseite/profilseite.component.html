@@ -16,7 +16,7 @@
       <div class="column leftDown">
         <div class="playersList">
         <h2>Spielerliste</h2>
-        <table class="custom-table">
+        <table class="playersListTable">
           <thead>
           <tr>
             <th>Spielername</th>
@@ -26,17 +26,17 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let spieler of playersList">
-            <td>{{ spieler.name }}</td>
+          <tr *ngFor="let player of playersList">
+            <td>{{ player.name }}</td>
             <td>
 
-              <span [ngClass]="{'online': spieler.online, 'offline': !spieler.online}">
-              {{ spieler.online ? 'Online' : 'Offline' }}
+              <span [ngClass]="{'online': player.online, 'offline': !player.online}">
+              {{ player.online ? 'Online' : 'Offline' }}
             </span>
             </td>
             <td>
 
-              <button (click)="addToFriendslist(spieler)">Freund hinzufügen</button>
+              <button (click)="addToFriendslist(player)">Freund hinzufügen</button>
             </td>
           </tr>
           </tbody>
@@ -48,7 +48,7 @@
       <div class="column rightDown">
         <div class="friendsList">
         <h2>Freundesliste</h2>
-        <table class="custom-table">
+        <table class="friendsListTable">
           <thead>
           <tr>
             <th>Spielername</th>

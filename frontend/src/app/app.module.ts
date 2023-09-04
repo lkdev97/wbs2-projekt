@@ -11,6 +11,7 @@ import { AdminViewComponent } from './admin/admin-view.component';
 import { UserComponent } from './user/user.component';
 import { ProfilseiteComponent } from './profilseite/profilseite.component';
 import {FormsModule} from "@angular/forms";
+import { HeaderComponent } from './header/header.component';
 
 const appRoutes: Routes = [
   {path: '', component: StartseiteComponent},
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     DuellComponent,
     AdminViewComponent,
     UserComponent,
-    ProfilseiteComponent
+    ProfilseiteComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

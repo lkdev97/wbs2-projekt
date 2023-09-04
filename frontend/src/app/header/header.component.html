@@ -1,0 +1,14 @@
+
+<header>
+     <button class="logoutButton" (click)="showConfirmationPopup()">Logout</button>
+
+    <div class="confirmationPopup" [ngClass]="{ 'show': isConfirmationPopupVisible }">
+    <div class="popupContent">
+      <p>Wollen Sie sich wirklich ausloggen?</p>
+      <button (click)="logout()">Ja</button>
+      <button (click)="cancelLogout()">Abbrechen</button>
+    </div>
+  </div>
+
+
+</header>
