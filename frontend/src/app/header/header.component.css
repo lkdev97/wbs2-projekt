@@ -1,0 +1,33 @@
+.logoutButton {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #de5612;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.confirmationPopup {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Hintergrund mit Transparenz für Overlay-Effekt */
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.popupContent {
+  background-color: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.show {
+  display: flex;
+}

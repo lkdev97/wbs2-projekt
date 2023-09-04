@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,23 +35,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "frontend",
-    "last_opened_file_path": "C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie",
-    "ts.external.directory.path": "C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -96,7 +96,6 @@
       <workItem from="1692003629335" duration="492000" />
       <workItem from="1692162603401" duration="5377000" />
       <workItem from="1693234029708" duration="7080000" />
-      <workItem from="1693731958169" duration="6045000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -170,49 +169,7 @@
       <option name="project" value="LOCAL" />
       <updated>1693422582195</updated>
     </task>
-    <task id="LOCAL-00011" summary="Backend und Frontend funktioniert zusammen">
-      <created>1693485216964</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1693485216964</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Fehler beim Anzeigen der Register seite gefunden und behoben">
-      <created>1693734794950</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1693734794950</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben">
-      <created>1693736433446</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1693736433446</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag.">
-      <created>1693737201587</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1693737201587</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Login Onlinestatuts wird in der Datenbank verändert">
-      <created>1693737635882</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1693737635886</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Login Onlinestatuts wird in der Datenbank verändert">
-      <created>1693738088074</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1693738088074</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,11 +187,6 @@
     <MESSAGE value="Verlinkungen auf Stefans seiten ( login.component.html, startseite.component.html, register.component.html ) fertig. TODO: If abfrage für die Inputfelder schreiben die vor dem Buttonklick ausgeführt wird bzw. der Button soll erst enabled werden wenn alle felder valide ausgefüllt sind. Sollange ein Input nicht richtig ist soll eine Fehlermeldung vorhanden sein." />
     <MESSAGE value="Duell Komponente hinzugefügt" />
     <MESSAGE value="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele." />
-    <MESSAGE value="Backend und Frontend funktioniert zusammen" />
-    <MESSAGE value="Fehler beim Anzeigen der Register seite gefunden und behoben" />
-    <MESSAGE value="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben" />
-    <MESSAGE value="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag." />
-    <MESSAGE value="Login Onlinestatuts wird in der Datenbank verändert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Onlinestatuts wird in der Datenbank verändert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele." />
   </component>
 </project>

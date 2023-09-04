@@ -12,13 +12,73 @@
     </div>
 
     <div class="columns">
+
       <div class="column leftDown">
+        <div class="playersList">
+        <h2>Spielerliste</h2>
+        <table class="playersListTable">
+          <thead>
+          <tr>
+            <th>Spielername</th>
+            <th>Status</th>
+            <th>Aktionen</th>
 
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let player of playersList">
+            <td>{{ player.name }}</td>
+            <td>
+
+              <span [ngClass]="{'online': player.online, 'offline': !player.online}">
+              {{ player.online ? 'Online' : 'Offline' }}
+            </span>
+            </td>
+            <td>
+
+              <button class="addFriend" (click)="addToFriendslist(player)">Freund hinzufügen</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="column rightDown">
+      </div>
 
+
+      <div class="column rightDown">
+        <div class="friendsList">
+        <h2>Freundesliste</h2>
+        <table class="friendsListTable">
+          <thead>
+          <tr>
+            <th>Spielername</th>
+            <th>Status</th>
+            <th>Aktionen</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let friend of friendsList">
+            <td>{{ friend.name }}</td>
+            <td>
+
+              <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
+              {{ friend.online ? 'Online' : 'Offline' }}
+            </span>
+            </td>
+            <td>
+
+              <button class="deleteFriend" (click)="deleteFriend(friend)">Freund entfernen</button>
+
+              <button class="startDuel" (click)="startDuel(friend)">Spiel starten</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
       </div>
     </div>
+
   </section>
 </div>
 

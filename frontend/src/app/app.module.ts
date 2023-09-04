@@ -12,6 +12,7 @@ import { UserComponent } from './user/user.component';
 import { ProfilseiteComponent } from './profilseite/profilseite.component';
 import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 
 const appRoutes: Routes = [
   {path: 'startseite', component: StartseiteComponent},
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   {path: 'duell', component: DuellComponent },
   {path: 'user', component: UserComponent},
   {path: 'profil', component: ProfilseiteComponent}
+
 ]
 
 @NgModule({
@@ -32,7 +34,8 @@ const appRoutes: Routes = [
     DuellComponent,
     AdminViewComponent,
     UserComponent,
-    ProfilseiteComponent
+    ProfilseiteComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
