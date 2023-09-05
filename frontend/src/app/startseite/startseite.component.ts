@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-startseite',
@@ -8,13 +9,26 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class StartseiteComponent implements OnInit{
 
-  constructor(private route: Router) {  }
+  isUserLoggedIn: boolean = false; // Hier wird der Anmeldestatus gespeichert
+
+
+
+  constructor(private route: Router, private http: HttpClient) {  }
 
   buttonClicked(){
     this.route.navigate(['/login'])
   }
-  ngOnInit() {
 
+
+  ngOnInit() {
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+      if (data !== null&& data != undefined) {
+        console.log(data);
+        this.isUserLoggedIn = true;
+      } else {
+        console.log('kein Nutzer Angemeldet.');
+      }
+    });
   }
 
 }

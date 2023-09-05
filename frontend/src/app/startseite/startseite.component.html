@@ -1,6 +1,6 @@
 <!-- STARTSEITE -->
 <div class="container">
-  <section>
+  <section *ngIf="!isUserLoggedIn">
     <div class="columns">
       <div class="column leftUp">
         <div class="hightSection">
@@ -17,6 +17,45 @@
       <div class="column linksRechts">
         <h1 class="main">QUIZDUELL</h1>
         <button class="button"><a class="linkText" [routerLink]="['/login']">JOIN NOW</a></button>
+
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column leftDown">
+        <div class="hightSection">
+          <h1 class="whiteColorLeft"> <a class="linkText" [routerLink]="['/profil']">My Account</a> </h1>
+        </div>
+      </div>
+      <div class="arrow">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="column rightDown">
+        <div class="hightSection">
+          <h1 class="whiteColorRight">ABOUT</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section *ngIf="isUserLoggedIn">
+    <div class="columns">
+      <div class="column leftUp">
+        <div class="hightSection">
+        </div>
+      </div>
+      <div class="column rightUp">
+        <div class="hightSection">
+
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column linksRechts">
+        <h1 class="main">QUIZDUELL</h1>
+        <button class="button"><a class="linkText" [routerLink]="['/profil']">PLAY NOW</a></button>
 
       </div>
     </div>
