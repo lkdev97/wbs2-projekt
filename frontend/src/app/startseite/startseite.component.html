@@ -23,8 +23,11 @@
 
     <div class="columns">
       <div class="column leftDown">
-        <div class="hightSection">
+        <div class="hightSection" *ngIf="isUserLoggedIn">
           <h1 class="whiteColorLeft"> <a class="linkText" [routerLink]="['/profil']">My Account</a> </h1>
+        </div>
+        <div class="hightSection" *ngIf="!isUserLoggedIn">
+          <h1 class="whiteColorLeft"> <a class="linkText" [routerLink]="['/login']">My Account</a> </h1>
         </div>
       </div>
       <div class="arrow">
