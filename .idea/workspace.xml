@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,23 +40,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "Stefan__Frontend__Funktion",
+    "last_opened_file_path": "C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editing.templates",
+    "ts.external.directory.path": "C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -100,6 +103,7 @@
       <workItem from="1693234029708" duration="7080000" />
       <workItem from="1693731958169" duration="6045000" />
       <workItem from="1693840484086" duration="963000" />
+      <workItem from="1693928189814" duration="1604000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -215,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693738088074</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="neustes Backend in den Branch gezogen">
+      <created>1693927349057</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1693927349057</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +249,7 @@
     <MESSAGE value="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben" />
     <MESSAGE value="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag." />
     <MESSAGE value="Login Onlinestatuts wird in der Datenbank verändert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Onlinestatuts wird in der Datenbank verändert" />
+    <MESSAGE value="neustes Backend in den Branch gezogen" />
+    <option name="LAST_COMMIT_MESSAGE" value="neustes Backend in den Branch gezogen" />
   </component>
 </project>
