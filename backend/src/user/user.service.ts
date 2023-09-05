@@ -53,7 +53,9 @@ export class UserService {
 
   //@TODO
   async findByUsername(username: string): Promise<UserEntity | null> {
-    const user = await this.userRepository.findOne({ where: { username: username } });
+    const user = await this.userRepository.findOne({
+      where: { username: username },
+    });
     return user || null;
   }
 

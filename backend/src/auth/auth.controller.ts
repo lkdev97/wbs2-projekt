@@ -4,8 +4,15 @@ import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dto/createUserDto';
 import * as session from 'express-session';
 import { SocketGateway } from 'src/socket/socket.gateway';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation, ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('Auth')
 export class AuthController implements OnModuleInit {
   constructor(
     private readonly userService: UserService,
@@ -48,6 +55,10 @@ export class AuthController implements OnModuleInit {
    * curl -X POST "http://localhost:3000/auth/login" -H "Content-Type: application/json" -d "{\"username\": \"admin\", \"password\": \"passwort\"}"
    */
   @Post('login')
+  @ApiOperation({ summary: 'User login' })
+  @ApiBody({ type: LoginDto })
+  @ApiOkResponse({ description: 'Login successful' })
+  @ApiUnauthorizedResponse({ description: 'Login failed' })
   async login(@Body() loginDto: LoginDto, @Req() request) {
     //const { username, password } = loginDto;
     const user = await this.userService.findByUsername(loginDto.username);
@@ -67,6 +78,8 @@ export class AuthController implements OnModuleInit {
     }
   }
   @Get('user')
+  @ApiOperation({ summary: 'Get current user' })
+  @ApiOkResponse({ description: 'Returns current user' })
   async getUser(@Req() request) {
     if (request.session.user) {
       return request.session.user;
@@ -74,6 +87,8 @@ export class AuthController implements OnModuleInit {
   }
 
   @Get('logout')
+  @ApiOperation({ summary: 'User logout' })
+  @ApiOkResponse({ description: 'Logout successful' })
   async logout(@Req() request) {
     if (request.session.user) {
       //const user = request.session.user.online
@@ -106,6 +121,10 @@ export class AuthController implements OnModuleInit {
    * curl -X POST "http://localhost:3000/auth/register" -H "Content-Type: application/json" -d "{\"username\": \"test\", \"password\": \"passwort\"}"
    */
   @Post('register')
+  @ApiOperation({ summary: 'User registration' })
+  @ApiBody({ type: CreateUserDto })
+  @ApiOkResponse({ description: 'Registration successful' })
+  @ApiUnauthorizedResponse({ description: 'Registration failed' })
   async register(@Body() registerDto: CreateUserDto) {
     const user = await this.userService.createUser(registerDto);
 
@@ -117,6 +136,8 @@ export class AuthController implements OnModuleInit {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Login page' })
+  @ApiOkResponse({ description: 'Displays the login page' })
   async loginPage(@Req() request) {
     //this.login({ username: 'admin', password: 'passwort' } as any, {} as Request);
 
