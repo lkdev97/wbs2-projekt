@@ -77,6 +77,103 @@ export class DuelService {
     return false;
   }
 
+  /**
+   * @param duelId 
+   * @returns The user who won the Duel. 
+   * @returns duel.opponent => opponent is the winner
+   * @returns duel.challenger => challenger is the winner
+   * @returns null => duel ends in an draw
+   * 
+   * Can be also changed to just the userId: duel.opponent; => duel.opponent.id;
+   * 
+   */
+  async getWinnerByDuelId(duelId: string) {
+    const duel = await this.duelRepository.findOne({
+      where: { id: duelId },
+      relations: ['challenger', 'opponent', 'duelAnswers'],
+    });
+
+    if (!duel) {
+      throw new NotFoundException(`Duel with ID ${duelId} not found`);
+    }
+
+    const challengerId = duel.challenger.id;
+    const opponentId = duel.opponent.id;
+
+    const challengerCount = await this.duelAnswerRepository.count({
+      where: {
+        duel: { id: duelId },
+        user: { id: challengerId },
+        correct: true,
+      },
+    });
+  
+    const opponentCount = await this.duelAnswerRepository.count({
+      where: {
+        duel: { id: duelId },
+        user: { id: opponentId },
+        correct: true,
+      },
+    });
+
+    if (challengerCount > opponentCount) {
+      return duel.challenger; // challenger is winner
+    } else if (opponentCount > challengerCount) {
+      return duel.opponent; // opponent is winner
+    } else {
+      return null; // draw
+    }
+  }
+
+  /**
+   * Returns the Score from an Duel as object 'score' with the challengerScore and opponentScore.
+   * 
+   * @param duelId 
+   * @returns score Object with score.challengerScore and score.opponentScore
+   */
+  async getDuelScore(duelId: string) {
+  const duel = await this.duelRepository.findOne({
+    where: { id: duelId },
+    relations: ['challenger', 'opponent', 'duelAnswers', 'duelAnswers.user'],
+  });
+
+  if (!duel) {
+    throw new NotFoundException(`Duel with ID ${duelId} not found`);
+  }
+
+  const challengerId = duel.challenger?.id;
+  const opponentId = duel.opponent?.id;
+
+  if (!challengerId || !opponentId) {
+    throw new NotFoundException(
+      `Challenger or opponent not found in Duel with ID ${duelId}`
+    );
+  }
+
+  const challengerCount = await this.duelAnswerRepository.count({
+    where: {
+      duel: { id: duelId },
+      user: { id: challengerId },
+      correct: true,
+    },
+  });
+
+  const opponentCount = await this.duelAnswerRepository.count({
+    where: {
+      duel: { id: duelId },
+      user: { id: opponentId },
+      correct: true,
+    },
+  });
+
+  const score = {
+    challengerScore: challengerCount,
+    opponentScore: opponentCount,
+  };
+
+  return score;
+  }
+
   //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
   async submitAnswer(
     duelId: string,
@@ -93,6 +190,19 @@ export class DuelService {
     );
     const user = await this.userRepository.findOne({ where: { id: userId } });
 
+    const existingDuelAnswer = await this.duelAnswerRepository.findOne({
+      where: {
+        duel: { id: duel.id },
+        user: { id: user.id },
+        question: { id: question.id },
+      },
+      relations: ['duel', 'user', 'question'],
+    });
+
+    if (existingDuelAnswer) {
+      throw new ConflictException(`User: ${user.id} has already answered Question: ${question.id} in Duel: ${duel.id}`);
+    }
+  
     const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this
     duelAnswer.correct = correct;
     duelAnswer.question = question;
@@ -125,7 +235,8 @@ export class DuelService {
     await this.statisticRepository.save(statistic);
   }
 
-  async updateDuel(id: string, winnerId: string) {
+  //async updateDuel(id: string, winnerId: string) {
+    async updateDuel(id: string) {
     const duel = await this.duelRepository.findOne({ where: { id: id }, relations: ['challenger', 'opponent'] });
     if (!duel) {
       throw new NotFoundException(`Duel with ID ${id} not found`);
@@ -134,10 +245,20 @@ export class DuelService {
     if(duel.status == DuelStatus.FINISHED) {
       throw new ConflictException(`Duel with ID ${id} is already finished`);
     }
+    const winner = await this.getWinnerByDuelId(duel.id); //@TODO: Test
 
-    await this.updateStatistic(duel.challenger.id, duel.opponent.id, winnerId); 
-    await this.updateStatistic(duel.opponent.id, duel.challenger.id, winnerId); 
-    duel.winnerId = winnerId;
+    //await this.updateStatistic(duel.challenger.id, duel.opponent.id, winnerId); 
+    //await this.updateStatistic(duel.opponent.id, duel.challenger.id, winnerId);
+    if(winner != null) {
+      await this.updateStatistic(duel.challenger.id, duel.opponent.id, winner.id); 
+      await this.updateStatistic(duel.opponent.id, duel.challenger.id, winner.id); 
+      duel.winnerId = winner.id;
+    } else { // DRAW
+      await this.updateStatistic(duel.challenger.id, duel.opponent.id, null); 
+      await this.updateStatistic(duel.opponent.id, duel.challenger.id, null); 
+      duel.winnerId = null;
+    }
+
     duel.status = DuelStatus.FINISHED;
     await this.duelRepository.save(duel);
     return duel;
