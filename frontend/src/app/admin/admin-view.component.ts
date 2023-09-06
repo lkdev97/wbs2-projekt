@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: 'app-admin',
@@ -7,10 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    const availableQuestionsList = document.getElementById('availableQuestions');
+    this.http.get<any>(`http://localhost:3000/admin/editor`).subscribe(data => {
+      if (data !== null && data !== undefined) {
+        for (let i = 0; i < data; i++) {
+          // Hier kommt der Code, der in jeder Iteration ausgeführt werden soll.
+          console.log(data[i]);
+        }
+        // Hier fügst du das Ergebnis-Objekt zu deinem Array hinzu
+      } else {
+        console.log('Keine Daten erhalten oder ungültige Antwort.');
+      }
+    });
+
+
+
+
+const availableQuestionsList = document.getElementById('availableQuestions');
     const selectedQuestionsList = document.getElementById('selectedQuestions');
 
     availableQuestionsList?.addEventListener('click', (event) => {
