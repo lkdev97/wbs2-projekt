@@ -1,14 +1,33 @@
-
 <header>
-     <button class="logoutButton" (click)="showConfirmationPopup()">Logout</button>
-
-    <div class="confirmationPopup" [ngClass]="{ 'show': isConfirmationPopupVisible }">
+  <button
+    class="homeButton"
+    (click)="sharedService.getHome()"
+    [disabled]="isConfirmationPopupVisible"
+  >
+    Home
+  </button>
+  <button
+    class="profileButton"
+    *ngIf="sharedService.isLoggedIn"
+    (click)="sharedService.getToProfile()"
+    [disabled]="isConfirmationPopupVisible"
+  >
+    Profil
+  </button>
+  <button
+    class="logoutButton"
+    *ngIf="sharedService.isLoggedIn"
+    (click)="showConfirmationPopup()"
+    [disabled]="isConfirmationPopupVisible"
+  >
+    Logout
+  </button>
+  <div class="confirmationPopup" [ngClass]="{ 'show': isConfirmationPopupVisible }">
     <div class="popupContent">
       <p>Wollen Sie sich wirklich ausloggen?</p>
-      <button (click)="logout()">Ja</button>
-      <button (click)="cancelLogout()">Abbrechen</button>
+      <button class="button" (click)="logout()">Ja</button>
+      <button class="button" (click)="cancelLogout()">Abbrechen</button>
     </div>
   </div>
-
-
 </header>
+

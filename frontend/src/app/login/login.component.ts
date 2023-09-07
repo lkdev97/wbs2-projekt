@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component,ChangeDetectorRef} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {SharedService} from "../shared.service";
 import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-login',
@@ -10,7 +12,17 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
 
-  constructor(private http: HttpClient, private router: Router) {  }
+
+  constructor(
+    private http: HttpClient,
+
+    public sharedService: SharedService,
+
+    private changeDetectorRef: ChangeDetectorRef,
+
+    private route: Router
+  ) {  }
+
 
 
 
@@ -53,31 +65,47 @@ export class LoginComponent {
   }
 
   buttonClickedAccept() {
+
     console.error("buttonClickedAccept")
     if (!this.whitespace(this.username) && !this.whitespace(this.userPassword)) {
       this.http.post<any>('http://localhost:3000/auth/login',
-        {username: this.username, password: this.userPassword}).subscribe(data =>{
+        { username: this.username, password: this.userPassword }).subscribe(data => {
         this.username = data.username;
-        console.log(data.username)
-      })
 
 
+
+        this.sharedService.isLoggedIn = true;
+        console.log(this.sharedService.isLoggedIn);
+        this.showLogoutNProfileBtns();
+
+
+
+        console.log(data.username);
+
+
+      });
 
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-        if (data !== null&& data != undefined) {
+        if (data !== null && data != undefined) {
           console.log(data);
-          this.out= data.username +" " +data.id
+          this.out = data.username + " " + data.id
+
+
+
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');
         }
       });
-
-
-
-    }else{
-      this.out= this.error;
-      console.log(this.error)
-
+    } else {
+      this.out = this.error;
+      console.log(this.error);
     }
   }
+
+  showLogoutNProfileBtns(){
+    this.sharedService.isLoggedIn = true;
+    console.log(this.sharedService.isLoggedIn);
+    this.changeDetectorRef.detectChanges();
+  }
+
 }

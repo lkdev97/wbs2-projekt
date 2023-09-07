@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 
+import { ActivatedRoute } from '@angular/router'; // Importiere ActivatedRoute, um die Route-Parameter zu extrahieren
+
+
 @Component({
   selector: 'app-profilseite',
   templateUrl: './profilseite.component.html',
@@ -14,6 +17,7 @@ export class ProfilseiteComponent implements OnInit {
 
   constructor(private http: HttpClient) {  }
 
+
   ngOnInit() {
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       if (data !== null && data !== undefined) {
@@ -23,6 +27,7 @@ export class ProfilseiteComponent implements OnInit {
         console.log('Keine Daten erhalten oder ungültige Antwort.');
       }
     });
+
 
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       if (data !== null && data !== undefined) {

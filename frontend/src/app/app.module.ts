@@ -14,6 +14,9 @@ import {FormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 
+import {SharedService} from "./shared.service";
+
+
 const appRoutes: Routes = [
   {path: 'startseite', component: StartseiteComponent},
   {path: 'login', component:LoginComponent},
@@ -45,6 +48,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule,
   ],
+  providers: [SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
