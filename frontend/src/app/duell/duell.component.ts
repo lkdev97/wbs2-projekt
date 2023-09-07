@@ -46,23 +46,33 @@ export class DuellComponent implements OnInit {
     });
 
 
-    const answers = document.querySelectorAll('.answer');
 
-    answers.forEach(answer => {
-      answer.addEventListener('click', () => {
-        answers.forEach(otherAnswer => {
-          if (otherAnswer !== answer) {
-            otherAnswer.classList.remove('clicked');
-          }
-        });
-        answer.classList.toggle('clicked');
-      });
-    });
+  }
+
+
+
+
+
+  answerButton(){
+    console.log("answerButtonPressed")
+    this.http.patch<any>('http://localhost:3000/duel/answer',
+      {duelId: "4f97d8ae-3f98-450b-b400-cdd7cd4c504b", questionId: "ques567", answer: "Paris"})
+      .subscribe(data =>{
+
+      })
+
   }
 }
 
+
+/**
+ * getRandomNumber. This function generates a Number between 1 and 4 and includes both. It is used in the http test witch
+ * get the correct Answer for a Question. It changes the Position of the correct Answer everytime a get Request is needed
+ */
 function getRandomNumber() {
   // Generiere eine zufällige Zahl zwischen 1 und 4
   const randomNumber = Math.floor(Math.random() * 4) + 1;
   return randomNumber;
 }
+
+

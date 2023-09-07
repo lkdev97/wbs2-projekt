@@ -42,6 +42,26 @@ export class StartseiteComponent implements OnInit{
       },
     });
   }
+  duelData() {
+    console.log("start");
+    this.http.get<any>('http://localhost:3000/duel/question', {
+    }).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Überprüfen Sie den Statuscode
+        if (data.status === 201) {
+          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
+        } else {
+          console.error('Ungültiger Statuscode:', data.status);
+        }
+      },
+      //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+      error: (error) => {
+
+        console.error('HTTP-Fehler:', error);
+      },
+    });
+  }
 
 
   duelend(){
