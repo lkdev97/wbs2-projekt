@@ -9,6 +9,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class StartseiteComponent implements OnInit{
 
+  question: string =""
   isUserLoggedIn: boolean = false; // Hier wird der Anmeldestatus gespeichert
 
 
@@ -19,20 +20,34 @@ export class StartseiteComponent implements OnInit{
     this.route.navigate(['/login'])
   }
 
-  duelstart(){
-    console.log("start")
-    this.http.post<any>('http://localhost:3000/duel',
-      {challengerId: "ae3a6a2c-4ca9-4539-bfd8-dad4babdffd3", opponentId: "4d08c859-4cb5-4b65-bbde-ebd1f1649780"})
-      .subscribe(data =>{
-
-      console.log(data)
-    })
-
+  duelstart() {
+    console.log("start");
+    this.http.post<any>('http://localhost:3000/duel', {
+      challengerId: "3efb41a7-615a-4334-8ec0-aa393f1ff3bd",
+      opponentId: "42b8f292-677e-4013-a380-485ec9232f20"
+    }).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Überprüfen Sie den Statuscode
+        if (data.status === 201) {
+          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
+        } else {
+          console.error('Ungültiger Statuscode:', data.status);
+        }
+      },
+      //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+      error: (error) => {
+        this.route.navigate(['/duell']);
+        console.error('HTTP-Fehler:', error);
+      },
+    });
   }
+
+
   duelend(){
     console.log("ende")
     this.http.patch<any>('http://localhost:3000/duel/update',
-      {duelId: "dafe1839-e5ac-4258-98fd-af420a24aeb5", questionId: "ques567", answer: "Paris"})
+      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: "ques567", answer: "Paris"})
       .subscribe(data =>{
 
       console.log(data)

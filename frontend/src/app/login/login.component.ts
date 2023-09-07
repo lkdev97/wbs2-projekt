@@ -10,14 +10,13 @@ import {Router} from "@angular/router";
 export class LoginComponent {
 
 
-  constructor(private http: HttpClient, private router: Router) {  }
-
-
+  constructor(private http: HttpClient, private route: Router) {
+  }
 
 
   username: string = "";
   userPassword: string = "";
-  out: string="";
+  out: string = "";
   error: string = "Es gibt einen Fehler mit der Eingabe. Achten Sie auf sonderzeichen und darauf das alle Felder ausgefült sind"
 
 
@@ -53,31 +52,39 @@ export class LoginComponent {
   }
 
   buttonClickedAccept() {
-    console.error("buttonClickedAccept")
     if (!this.whitespace(this.username) && !this.whitespace(this.userPassword)) {
       this.http.post<any>('http://localhost:3000/auth/login',
-        {username: this.username, password: this.userPassword}).subscribe(data =>{
-        this.username = data.username;
-        console.log(data.username)
+        {username: this.username, password: this.userPassword}).subscribe({
+        next: (data) => {
+          this.username = data.username;
+          console.log(data.username)
+          console.log(data);
+          // Überprüfen Sie den Statuscode
+          if (data.status === 201) {
+            // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
+          } else {
+            console.error('Ungültiger Statuscode:', data.status);
+          }
+        },
+        //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+        error: (error) => {
+          this.route.navigate(['/startseite']);
+          console.error('HTTP-Fehler:', error);
+        },
+
       })
 
-
-
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-        if (data !== null&& data != undefined) {
+        if (data !== null && data != undefined) {
           console.log(data);
-          this.out= data.username +" " +data.id
+          this.out = data.username + " " + data.id
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');
         }
       });
-
-
-
-    }else{
-      this.out= this.error;
+    } else {
+      this.out = this.error;
       console.log(this.error)
-
     }
   }
 }
