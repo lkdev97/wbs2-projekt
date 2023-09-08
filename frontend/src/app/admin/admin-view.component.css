@@ -34,7 +34,12 @@
   text-align: center;
   color: white;
 }
-
 label{
+  color: white;
+}
+
+.updateQuestionsBTN{
+  background-color: transparent;
+  border: transparent;
   color: white;
 }

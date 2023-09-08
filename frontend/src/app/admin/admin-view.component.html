@@ -13,6 +13,21 @@
 
 <div class="container">
   <ul class="list" id="availableQuestions">
-    <li *ngFor="let question of adminOutput" class="question-item">{{ question }}</li>
+    <li *ngFor="let question of adminOutput" class="question-item">  <button class="button updateQuestionsBTN"  (click)="updateQuestion()">{{ question }}  </button>
+      </li>
+
   </ul>
+
+</div>
+
+<div *ngIf="updateButtonPressed">
+  <label>ID: </label>
+  <input type="text" [(ngModel)]="QuestionId" >
+  <label>Frage: </label>
+  <input type="text"  [(ngModel)]="QuestionUpdate">
+  <label>Richtige Antwort: </label>
+  <input type="text" [(ngModel)]="QuestionCorrectAnswerUpdate" >
+  <label>Falsche Antworten: </label>
+  <input type="text" [(ngModel)]="QuestionFalseAnswersUpdate" >
+  <button class="button" (click)="updateButton()">Bestätigen</button>
 </div>

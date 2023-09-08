@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +17,13 @@ export class AdminViewComponent implements OnInit {
   data: string = "";
   adminOutput: string[] = [];
   buttonPressed = false;
-  constructor(private http: HttpClient) { }
+  updateButtonPressed= false;
+
+  QuestionId: string = "";
+  QuestionUpdate: string = "";
+  QuestionCorrectAnswerUpdate: string = "";
+  QuestionFalseAnswersUpdate: string = "";
+  constructor(private http: HttpClient, private  route: Router) { }
 
   ngOnInit(): void {
     console.log("Adminseite")
@@ -25,7 +32,7 @@ export class AdminViewComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/admin/editor').subscribe({
       next: (data) => {
         if (data !== null && data !== undefined) {
-          this.adminOutput = data.map((item: { text: any; }) => item.text); // Extrahiert die Fragen aus der Antwort
+          this.adminOutput = data.map((item: {  text: any; id: any}) =>  "ID: "+ item.id +" "+ "Frage: "+ item.text); // Extrahiert die Fragen aus der Antwort
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');
         }
@@ -71,6 +78,8 @@ const availableQuestionsList = document.getElementById('availableQuestions');
 
   addAnswer(){
     this.buttonPressed = true
+    this.updateButtonPressed = false;
+
   }
 
   add(){
@@ -78,6 +87,24 @@ const availableQuestionsList = document.getElementById('availableQuestions');
     this.http.post<any>('http://localhost:3000/admin/editor/create',
       {text: this.newQuestion, options: this.newQuestionFalseAnswer, correctAnswer: this.newQuestionCorrectAnswer}).subscribe(data =>{
     })
+  }
+
+  updateQuestion(){
+    console.log("updateQuestion")
+    this.updateButtonPressed = true;
+
+    this.buttonPressed = false;
+
+
+
+
+  }
+  updateButton(){
+    console.log("updateQuestion")
+
+    this.http.patch<any>('http://localhost:3000/admin/update/' + this.QuestionId,
+      {text: this.QuestionUpdate, options: this.QuestionFalseAnswersUpdate, correctAnswer: this.QuestionCorrectAnswerUpdate}).subscribe(data =>{
+      })
 
   }
 }
