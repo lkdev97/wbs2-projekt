@@ -51,6 +51,8 @@ export class LoginComponent {
     return false
   }
 
+
+  //TODO: ELSE FÜR DIE FLASCHEN DATEN EINFÜGEN
   buttonClickedAccept() {
     if (!this.whitespace(this.username) && !this.whitespace(this.userPassword)) {
       this.http.post<any>('http://localhost:3000/auth/login',

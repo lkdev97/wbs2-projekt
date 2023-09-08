@@ -8,23 +8,31 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AdminViewComponent implements OnInit {
 
+  data: string = "";
+  adminOutput: string[] = [];
+  buttonPressed = false;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<any>(`http://localhost:3000/admin/editor`).subscribe(data => {
-      if (data !== null && data !== undefined) {
-        for (let i = 0; i < data; i++) {
-          // Hier kommt der Code, der in jeder Iteration ausgeführt werden soll.
-          console.log(data[i]);
+    console.log("Adminseite")
+
+
+    this.http.get<any>('http://localhost:3000/admin/editor').subscribe({
+      next: (data) => {
+        if (data !== null && data !== undefined) {
+          this.adminOutput = data.map((item: { text: any; }) => item.text); // Extrahiert die Fragen aus der Antwort
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
         }
-        // Hier fügst du das Ergebnis-Objekt zu deinem Array hinzu
-      } else {
-        console.log('Keine Daten erhalten oder ungültige Antwort.');
-      }
+      },
+      error: (error) => {
+        console.error('HTTP-Fehler:', error);
+      },
     });
 
 
 
+/*
 
 const availableQuestionsList = document.getElementById('availableQuestions');
     const selectedQuestionsList = document.getElementById('selectedQuestions');
@@ -52,5 +60,14 @@ const availableQuestionsList = document.getElementById('availableQuestions');
         }
       }
     });
+
+ */
+  }
+
+  addAnswer(){
+    console.log("addAnswer")
+    this.buttonPressed = true
+
+
   }
 }

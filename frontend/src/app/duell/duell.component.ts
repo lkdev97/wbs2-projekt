@@ -56,7 +56,7 @@ export class DuellComponent implements OnInit {
   answerButton(){
     console.log("answerButtonPressed")
     this.http.patch<any>('http://localhost:3000/duel/answer',
-      {duelId: "4f97d8ae-3f98-450b-b400-cdd7cd4c504b", questionId: "ques567", answer: "Paris"})
+      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: "ques567", answer: "Paris"})
       .subscribe(data =>{
 
       })
