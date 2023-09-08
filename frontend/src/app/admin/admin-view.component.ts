@@ -107,4 +107,12 @@ const availableQuestionsList = document.getElementById('availableQuestions');
       })
 
   }
+  DeleteButton(){
+    console.log("DeleteButton")
+
+    this.http.delete<any>('http://localhost:3000/admin/editor/delete/' + this.QuestionId,
+    ).subscribe(data =>{
+      })
+
+  }
 }
