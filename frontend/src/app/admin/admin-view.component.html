@@ -3,12 +3,12 @@
 
 <div *ngIf="buttonPressed">
   <label>Frage: </label>
-  <input type="text">
+  <input type="text" [(ngModel)]="newQuestion">
   <label>Richtige Antwort: </label>
-  <input type="text" >
+  <input type="text" [(ngModel)]="newQuestionCorrectAnswer" >
   <label>Flasche Anworten: </label>
-  <input type="text" >
-  <!-- Weitere Input-Felder hier -->
+  <input type="text" [(ngModel)]="newQuestionFalseAnswer" >
+  <button class="button" (click)="add()">Bestätigen</button>
 </div>
 
 <div class="container">

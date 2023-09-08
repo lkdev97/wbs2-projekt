@@ -58,7 +58,6 @@ export class RegisterComponent {
 
 
 
-      /*TODO: HTTP-Request auf funktion überprüfen        */
       this.http.post<any>('http://localhost:3000/auth/register',
         {username: this.userFirstName, password: this.userPassword}).subscribe(data =>{
         this.userFirstName = data.username;

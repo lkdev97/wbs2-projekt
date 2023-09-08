@@ -8,6 +8,11 @@ import { HttpClient } from "@angular/common/http";
 })
 export class AdminViewComponent implements OnInit {
 
+  newQuestion: string = "";
+  newQuestionCorrectAnswer: string = "";
+  newQuestionFalseAnswer: string = "";
+
+
   data: string = "";
   adminOutput: string[] = [];
   buttonPressed = false;
@@ -65,9 +70,14 @@ const availableQuestionsList = document.getElementById('availableQuestions');
   }
 
   addAnswer(){
-    console.log("addAnswer")
     this.buttonPressed = true
+  }
 
+  add(){
+    console.log("addAnswer")
+    this.http.post<any>('http://localhost:3000/admin/editor/create',
+      {text: this.newQuestion, options: this.newQuestionFalseAnswer, correctAnswer: this.newQuestionCorrectAnswer}).subscribe(data =>{
+    })
 
   }
 }
