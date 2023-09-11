@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Req, Patch } from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, Patch, UseGuards } from '@nestjs/common';
 import { DuelService } from './duel.service';
 import { CreateDuelDto } from './dto/create-duel';
 import { SubmitAnswerDto } from './dto/submit-answer';
@@ -10,9 +10,10 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { QuestionEntity } from '../question/entities/questionEntity.entity';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('duel')
-//@UseGuards(AuthGuard) //
+@UseGuards(AuthGuard) //
 @ApiTags('Duel')
 export class DuelController {
   constructor(private readonly duelService: DuelService) {}
@@ -66,7 +67,16 @@ export class DuelController {
   @ApiOperation({ summary: 'Finish the duel' })
   @ApiBody({ type: SubmitAnswerDto })
   @ApiOkResponse({ description: 'Duel finished' })
-  async finishDuel(@Body() { duelId, winnerId }) {
-    return await this.duelService.updateDuel(duelId, winnerId);
+  //async finishDuel(@Body() { duelId, winnerId }) {
+    async finishDuel(@Body() { duelId }) {
+    //return await this.duelService.updateDuel(duelId, winnerId);
+    return await this.duelService.updateDuel(duelId);
+  }
+
+  @Get('score')
+  @ApiOperation({ summary: 'Get the score of a duel' })
+  @ApiOkResponse({ description: 'Dispaly Duel score' })
+  async getScore(@Body() { duelId }) {
+    return this.duelService.getDuelScore(duelId);
   }
 }
