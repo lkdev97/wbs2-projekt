@@ -128,3 +128,8 @@
 .playersList tr:nth-child(odd), .friendsList tr:nth-child(odd) {
   background-color: #272727;
 }
+
+.out, .out2 {
+  color: #de5612;
+
+}

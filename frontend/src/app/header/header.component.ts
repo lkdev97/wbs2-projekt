@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import {SharedService} from "../shared.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-header',
@@ -9,34 +10,43 @@ import {SharedService} from "../shared.service";
 })
 export class HeaderComponent {
 
-  isConfirmationPopupVisible: boolean = false;
+  //isConfirmationPopupVisible: boolean = false;
 
-  constructor(private router: Router, public sharedService: SharedService) {}
+  constructor(private router: Router, public sharedService: SharedService,private http: HttpClient) {}
 
 
   // Funktion zum Anzeigen der Bestätigung
   showConfirmationPopup() {
-    this.isConfirmationPopupVisible = true;
+    this.sharedService.isConfirmationPopupVisible = true;
   }
 
   // Funktion zum Ausloggen
   logout() {
-    this.isConfirmationPopupVisible = false;
-    this.router.navigate(['/startseite']).then(
-      () => {
-        this.sharedService.isLoggedIn = false;
-        console.log('Erfolgreich ausgeloggt');
+    this.sharedService.isConfirmationPopupVisible = false;
+
+    this.http.get(`http://localhost:3000/auth/logout`).subscribe({
+      next: () => {
+        this.router.navigate(['/startseite']).then(
+          () => {
+            this.sharedService.isLoggedIn = false;
+            console.log('Erfolgreich ausgeloggt');
+          },
+          (error) => {
+            console.error('Fehler bei der Umleitung', error);
+          }
+        );
       },
-      (error) => {
-        console.error('Fehler bei der Umleitung', error);
-      }
-    );
+      error: (error) => {
+        console.error('Fehler beim Ausloggen im Backend', error);
+      },
+    });
   }
 
 
 
+
   cancelLogout() {
-    this.isConfirmationPopupVisible = false;
+    this.sharedService.isConfirmationPopupVisible = false;
   }
 
 }

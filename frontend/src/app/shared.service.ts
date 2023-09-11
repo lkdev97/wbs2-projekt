@@ -10,17 +10,20 @@ export class SharedService {
   constructor(private router: Router) {}
 
   isLoggedIn = false;
+  isConfirmationPopupVisible: boolean = false;
 
 
   getToProfile(){
-    this.router.navigate(['/profil']).then(
-      () => {
-        console.log('auf der Profilseite angekommen');
-      },
-      (error) => {
-        console.error('Fehler bei der Umleitung', error);
-      }
-    );
+    if (!this.isConfirmationPopupVisible) {
+      this.router.navigate(['/profil']).then(
+        () => {
+          console.log('auf der Profilseite angekommen');
+        },
+        (error) => {
+          console.error('Fehler bei der Umleitung', error);
+        }
+      );
+    }
   }
 
   getHome(){

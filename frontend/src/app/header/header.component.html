@@ -2,7 +2,7 @@
   <button
     class="homeButton"
     (click)="sharedService.getHome()"
-    [disabled]="isConfirmationPopupVisible"
+    [disabled]="sharedService.isConfirmationPopupVisible"
   >
     Home
   </button>
@@ -10,7 +10,7 @@
     class="profileButton"
     *ngIf="sharedService.isLoggedIn"
     (click)="sharedService.getToProfile()"
-    [disabled]="isConfirmationPopupVisible"
+    [disabled]="sharedService.isConfirmationPopupVisible"
   >
     Profil
   </button>
@@ -18,11 +18,11 @@
     class="logoutButton"
     *ngIf="sharedService.isLoggedIn"
     (click)="showConfirmationPopup()"
-    [disabled]="isConfirmationPopupVisible"
+    [disabled]="sharedService.isConfirmationPopupVisible"
   >
     Logout
   </button>
-  <div class="confirmationPopup" [ngClass]="{ 'show': isConfirmationPopupVisible }">
+  <div class="confirmationPopup" [ngClass]="{ 'show': sharedService.isConfirmationPopupVisible }">
     <div class="popupContent">
       <p>Wollen Sie sich wirklich ausloggen?</p>
       <button class="button" (click)="logout()">Ja</button>

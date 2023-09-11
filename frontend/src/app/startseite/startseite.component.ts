@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {SharedService} from "../shared.service";
 
 @Component({
   selector: 'app-startseite',
@@ -8,7 +9,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class StartseiteComponent implements OnInit{
 
-  constructor(private route: Router) {  }
+  constructor(public sharedService: SharedService,private route: Router) {  }
 
   buttonClicked(){
     this.route.navigate(['/login'])

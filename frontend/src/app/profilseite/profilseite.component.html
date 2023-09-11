@@ -4,8 +4,11 @@
       <div class="column leftUp">
         <div class="hightSection">
           <h1 class="whiteColorLeft">My Account</h1>
-          <p [ngClass]="out" class="out">{{out}}</p>
-          <p [ngClass]="out2" class="out">{{out2}}</p>
+          <p [ngClass]="out" class="out">Spielername:  {{out}}</p>
+          <br>
+          <br>
+          <br>
+          <p [ngClass]="out2" class="out">ID:  {{out2}}</p>
         </div>
       </div>
       <div class="column rightUp">
@@ -38,7 +41,7 @@
               </td>
               <td>
 
-                <button class="addFriend" (click)="addToFriendslist(player)">Freund hinzufügen</button>
+                <button class="addFriend" (click)="addToFriendslist(friendId)">Freund hinzufügen</button>
               </td>
             </tr>
             </tbody>
