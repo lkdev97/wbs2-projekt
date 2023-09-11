@@ -16,13 +16,7 @@ export class ProfilseiteComponent implements OnInit {
 
 
   // Testdaten Spielerliste
-  playersList = [
-    {name: 'Spieler 1', online: true},
-    {name: 'Spieler 2', online: false},
-    {name: 'Spieler 3', online: false},
-    {name: 'Spieler 4', online: false},
-
-  ];
+  playersList: any = [];
 
   friendsList: any[] = [];
 
@@ -39,16 +33,27 @@ export class ProfilseiteComponent implements OnInit {
       }
     });
 
-    // Rufe die Freundesliste vom Server ab und aktualisiere die friendsList-Variable
+    // Freundesliste abrufen und aktualisieren
     this.http.get<any>(`http://localhost:3000/friendship/list-friends/{userId}`).subscribe(data => {
       if (Array.isArray(data)) {
-        // Prüfe, ob die Daten ein Array sind
-        this.friendsList = data; // Aktualisiere die Freundesliste
+
+        this.friendsList = data;
       } else {
         console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
       }
     });
+
+    // Spielerliste abrufen und aktualisieren
+    this.http.get<any>(`http://localhost:3000/users/online`).subscribe(data => {
+      if (Array.isArray(data)) {
+
+        this.playersList = data;
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
+      }
+    });
   }
+
 
 
   //Friend ID muss aus der Spielerliste ausgelesen werden
