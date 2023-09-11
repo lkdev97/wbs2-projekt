@@ -43,10 +43,7 @@ export class HeaderComponent {
   }
 
 
-
-
   cancelLogout() {
     this.sharedService.isConfirmationPopupVisible = false;
   }
-
 }

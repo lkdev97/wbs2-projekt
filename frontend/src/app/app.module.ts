@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   {path: 'startseite', component: StartseiteComponent},
   {path: 'login', component:LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'admin', component: AdminViewComponent},
+  {path: 'adminseite', component: AdminViewComponent},
   {path: 'duell', component: DuellComponent },
   {path: 'user', component: UserComponent},
   {path: 'profil', component: ProfilseiteComponent}

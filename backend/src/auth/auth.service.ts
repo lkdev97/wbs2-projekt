@@ -4,16 +4,16 @@ import { UserEntity } from 'src/user/entities/userEntity.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(
-    private readonly userService: UserService, 
-  ) {}
+  constructor(private readonly userService: UserService) {}
 
-  async validateUser(username: string, password: string): Promise<UserEntity | null> {
+  async validateUser(
+    username: string,
+    password: string,
+  ): Promise<UserEntity | null> {
     const user = await this.userService.findByUsername(username);
     if (user && user.password === password) {
       return user;
     }
     return null;
   }
-
 }

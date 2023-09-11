@@ -1,29 +1,33 @@
-import {
-  Controller,
-  Get,
-  UseGuards,
-  Post,
-  Body,
-  Req,
-  Patch,
-} from '@nestjs/common';
-import { AuthGuard } from '../auth/auth.guard';
+import { Controller, Get, Post, Body, Req, Patch } from '@nestjs/common';
 import { DuelService } from './duel.service';
 import { CreateDuelDto } from './dto/create-duel';
 import { SubmitAnswerDto } from './dto/submit-answer';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
+import { QuestionEntity } from '../question/entities/questionEntity.entity';
 
 @Controller('duel')
 //@UseGuards(AuthGuard) //
-@ApiTags('duel')
+@ApiTags('Duel')
 export class DuelController {
   constructor(private readonly duelService: DuelService) {}
   @Get()
+  @ApiOperation({ summary: 'Duel Page' })
+  @ApiOkResponse({ description: 'Displays the duel page' })
   duelPage() {
     return 'Duel Page';
   }
 
   @Post()
+  @ApiOperation({ summary: 'Start a new duel' })
+  @ApiBody({ type: CreateDuelDto })
+  @ApiOkResponse({ description: 'Duel started' })
+  @ApiBadRequestResponse({ description: 'Invalid inputs or ongoing duel' })
   async startDuel(@Body() createDuelDto: CreateDuelDto, @Req() request) {
     if (createDuelDto.challengerId == createDuelDto.opponentId) {
       return 'you cant start a duel vs yourself';
@@ -39,11 +43,17 @@ export class DuelController {
   }
 
   @Get('question')
+  @ApiOperation({ summary: 'Get a new question for the duel' })
+  @ApiBody({ type: QuestionEntity })
+  @ApiOkResponse({ description: 'Question selected' })
   async getDuelQuestion(@Body() { duelId }) {
     return this.duelService.selectNewQuestion(duelId);
   }
 
   @Patch('answer')
+  @ApiOperation({ summary: 'Submit an answer for a duel question' })
+  @ApiBody({ type: SubmitAnswerDto })
+  @ApiOkResponse({ description: 'Answer submitted' })
   async questionAnswer(@Body() { SubmitAnswerDto, userId }) {
     return await this.duelService.submitAnswer(
       SubmitAnswerDto.duelId,
@@ -53,6 +63,9 @@ export class DuelController {
   }
 
   @Patch('update')
+  @ApiOperation({ summary: 'Finish the duel' })
+  @ApiBody({ type: SubmitAnswerDto })
+  @ApiOkResponse({ description: 'Duel finished' })
   async finishDuel(@Body() { duelId, winnerId }) {
     return await this.duelService.updateDuel(duelId, winnerId);
   }

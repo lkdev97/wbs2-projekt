@@ -1,24 +1,34 @@
+
+<button class="button" (click)="addAnswer()">Neue Frage hinzufügen </button>
+
+<div *ngIf="buttonPressed">
+  <label>Frage: </label>
+  <input type="text" [(ngModel)]="newQuestion">
+  <label>Richtige Antwort: </label>
+  <input type="text" [(ngModel)]="newQuestionCorrectAnswer" >
+  <label>Flasche Anworten: </label>
+  <input type="text" [(ngModel)]="newQuestionFalseAnswer" >
+  <button class="button" (click)="add()">Bestätigen</button>
+</div>
+
 <div class="container">
   <ul class="list" id="availableQuestions">
-    <li>Frage 1</li>
-    <li>Frage 2</li>
-    <li>Frage 3</li>
-    <li>Frage 4</li>
-    <li>Frage 5</li>
-    <li>Frage 6</li>
-    <li>Frage 7</li>
-    <li>Frage 8</li>
-    <li>Frage 9</li>
-    <li>Frage 10</li>
-    <li>Frage 11</li>
-    <li>Frage 12</li>
-    <li>Frage 13</li>
-    <li>Frage 14</li>
+    <li *ngFor="let question of adminOutput" class="question-item">  <button class="button updateQuestionsBTN"  (click)="updateQuestion()">{{ question }}  </button>
+      </li>
 
-    <!-- Weitere Fragen hier -->
   </ul>
 
-  <ul class="list" id="selectedQuestions">
-    <!-- Ausgewählte Fragen werden hier angezeigt -->
-  </ul>
+</div>
+
+<div *ngIf="updateButtonPressed">
+  <label>ID: </label>
+  <input type="text" [(ngModel)]="QuestionId" >
+  <label>Frage: </label>
+  <input type="text"  [(ngModel)]="QuestionUpdate">
+  <label>Richtige Antwort: </label>
+  <input type="text" [(ngModel)]="QuestionCorrectAnswerUpdate" >
+  <label>Falsche Antworten: </label>
+  <input type="text" [(ngModel)]="QuestionFalseAnswersUpdate" >
+  <button class="button" (click)="updateButton()">Bestätigen</button>
+  <button class="button" (click)="DeleteButton()">Delete</button>
 </div>
