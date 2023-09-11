@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component,ChangeDetectorRef} from '@angular/core';
 import { Router } from '@angular/router';
 import {SharedService} from "../shared.service";
 import {HttpClient} from "@angular/common/http";
@@ -12,7 +12,12 @@ export class HeaderComponent {
 
   //isConfirmationPopupVisible: boolean = false;
 
-  constructor(private router: Router, public sharedService: SharedService,private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    public sharedService: SharedService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private http: HttpClient
+  ) {}
 
 
   // Funktion zum Anzeigen der Bestätigung
@@ -29,6 +34,7 @@ export class HeaderComponent {
         this.router.navigate(['/startseite']).then(
           () => {
             this.sharedService.isLoggedIn = false;
+            this.changeDetectorRef.detectChanges();
             console.log('Erfolgreich ausgeloggt');
           },
           (error) => {
