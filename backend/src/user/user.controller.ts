@@ -24,6 +24,13 @@ export class UserController {
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.userService.createUser(createUserDto);
   }
+  
+  @Get('online')
+  @ApiOperation({ summary: 'Get all online users' })
+  @ApiOkResponse({ description: 'Successfully returned all users that are currently online' })
+  getOnlineUsers() {
+    return this.userService.getOnlineUsers();
+  }
 
   @Get(':id')
   @ApiOperation({ summary: 'Get user by ID' })
