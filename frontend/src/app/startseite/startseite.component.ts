@@ -37,6 +37,7 @@ export class StartseiteComponent implements OnInit{
         }
       },
       //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+      //TODO: Wenn duell eigentlich nicht funktionieren sollte geht er dennoch auf die Duell seite.
       error: (error) => {
         this.route.navigate(['/duell']);
         console.error('HTTP-Fehler:', error);

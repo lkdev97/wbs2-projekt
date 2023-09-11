@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -12,10 +13,11 @@ export class RegisterComponent {
   userEmail: string = "";
   userPassword: string = "";
   out: string="";
+  username: string = "";
   error: string = "Es gibt einen Fehler mit der Eingabe. Achten Sie auf sonderzeichen und darauf das alle Felder ausgefült sind"
 
 
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient, private route: Router) {  }
 
 
 
@@ -56,18 +58,31 @@ export class RegisterComponent {
     if (!this.whitespace(this.userEmail) && !this.whitespace(this.userPassword)&&
       !this.whitespace(this.userLastName)&& !this.whitespace(this.userFirstName)) {
 
-
-
       this.http.post<any>('http://localhost:3000/auth/register',
         {username: this.userFirstName, password: this.userPassword}).subscribe(data =>{
         this.userFirstName = data.username;
       })
 
+      this.http.post<any>('http://localhost:3000/auth/login',
+        {username: this.username, password: this.userPassword}).subscribe({
+        next: (data) => {
+          this.username = data.username;
+          console.log(data.username)
+          console.log(data);
+          // Überprüfen Sie den Statuscode
+          if (data.status === 201) {
+            // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
+          } else {
+            console.error('Ungültiger Statuscode:', data.status);
+          }
+        },
+        //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+        error: (error) => {
+          this.route.navigate(['/startseite']);
+          console.error('HTTP-Fehler:', error);
+        },
 
-
-
-      console.log("IF-ABFRAGE")
-      this.out= "Wilkommen" +" "+ this.userEmail;
+      })
 
     }else{
       this.out= this.error;

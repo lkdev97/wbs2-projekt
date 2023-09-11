@@ -6,12 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/register/register.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/register/register.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dimas_testbranch" />
+        <entry key="$PROJECT_DIR$" value="Stefan_Frontend_Funktion" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -30,7 +26,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -48,14 +44,14 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;frontend&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Stefan__Frontend__Funktion&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.grazie&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -106,6 +102,11 @@
       <workItem from="1693234029708" duration="7080000" />
       <workItem from="1693731958169" duration="6045000" />
       <workItem from="1693840484086" duration="963000" />
+      <workItem from="1693928189814" duration="4557000" />
+      <workItem from="1693932820533" duration="1089000" />
+      <workItem from="1693934007369" duration="23000" />
+      <workItem from="1693995053902" duration="5464000" />
+      <workItem from="1694106067232" duration="13062000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -221,7 +222,91 @@
       <option name="project" value="LOCAL" />
       <updated>1693738088074</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="neustes Backend in den Branch gezogen">
+      <created>1693927349057</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1693927349057</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Duell und Logout angefangen. Logout funktioniert und duell gibt es noch fragen bei der Fragen darstellung">
+      <created>1693930035714</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1693930035714</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Startseite loggedin and loggedout status hinzugefügt.">
+      <created>1693932242681</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1693932242681</updated>
+    </task>
+    <task id="LOCAL-00020" summary="My Account an den Login Status gekoppelt sodass der Nutzer die Login seite oder Profilseite sieht je nach status">
+      <created>1693932699076</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693932699076</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Webseiten Aussehen ein wenig verändert. Meinungen gerne erwünscht">
+      <created>1693933763113</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693933763113</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Start und End duel Button auf der Startseite eingebunden (TEST) diese Funktionieren auch solang ich die Ids der Nutzer hardcode. Wird verändert wenn die Freundesliste fertig ist">
+      <created>1693996690884</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693996690884</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Erste Admin versuche.">
+      <created>1694001229279</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1694001229279</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Bug Fixes&#10;Duell correctAnswer hinzugefügt mit RandomNumber&#10;Login route auf Startseite &#10;DuellStart route auf duell Seite">
+      <created>1694110939689</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1694110939689</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus">
+      <created>1694112905943</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1694112905943</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus">
+      <created>1694189248690</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1694189248690</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Admin seite Fragen werden geladen und erster Ansatz zum hinzufügen neuer Fragen">
+      <created>1694191783565</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1694191783565</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Fragen Hinzufügen klappt per Button">
+      <created>1694192414567</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1694192414567</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -229,7 +314,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Bulma im Frontend für weiterarbeit vorbereitet" />
     <MESSAGE value="First Homepage update" />
     <MESSAGE value="Homepage without Pics finished also responsiv fix" />
     <MESSAGE value="Homepage Main Headline" />
@@ -244,6 +328,17 @@
     <MESSAGE value="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben" />
     <MESSAGE value="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag." />
     <MESSAGE value="Login Onlinestatuts wird in der Datenbank verändert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login Onlinestatuts wird in der Datenbank verändert" />
+    <MESSAGE value="neustes Backend in den Branch gezogen" />
+    <MESSAGE value="Duell und Logout angefangen. Logout funktioniert und duell gibt es noch fragen bei der Fragen darstellung" />
+    <MESSAGE value="Startseite loggedin and loggedout status hinzugefügt." />
+    <MESSAGE value="My Account an den Login Status gekoppelt sodass der Nutzer die Login seite oder Profilseite sieht je nach status" />
+    <MESSAGE value="Webseiten Aussehen ein wenig verändert. Meinungen gerne erwünscht" />
+    <MESSAGE value="Start und End duel Button auf der Startseite eingebunden (TEST) diese Funktionieren auch solang ich die Ids der Nutzer hardcode. Wird verändert wenn die Freundesliste fertig ist" />
+    <MESSAGE value="Erste Admin versuche." />
+    <MESSAGE value="Bug Fixes&#10;Duell correctAnswer hinzugefügt mit RandomNumber&#10;Login route auf Startseite &#10;DuellStart route auf duell Seite" />
+    <MESSAGE value="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus" />
+    <MESSAGE value="Admin seite Fragen werden geladen und erster Ansatz zum hinzufügen neuer Fragen" />
+    <MESSAGE value="Fragen Hinzufügen klappt per Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fragen Hinzufügen klappt per Button" />
   </component>
 </project>
