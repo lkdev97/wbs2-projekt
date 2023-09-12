@@ -58,11 +58,19 @@ export class FriendshipController {
   @ApiBody({ schema: { example: { userId: '123', friendStatus: 'accepted' } } })
   @ApiOkResponse({ description: 'Successfully updated the friendship status' })
   async updateFriendStatus(@Body() { userId, friendStatus }, @Req() request) {
-    const frinedId = request.session.user.id;
+    const friendId = request.session.user.id;
     return this.friendshipService.updateFriendStatus(
       userId,
-      frinedId,
+      friendId,
       friendStatus,
     );
+  }
+
+  @Get('requests')
+  @ApiOperation({ summary: 'Return pending friend request from current user' })
+  @ApiOkResponse({ description: 'Successfully returned all pending friend requests' })
+  async getFriendRequests(@Req() request) {
+    const friendId = request.session.user.id;
+    return this.friendshipService.getAllPendingFriendRequestsByFriendId(friendId);
   }
 }
