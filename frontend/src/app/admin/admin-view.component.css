@@ -43,3 +43,20 @@ label{
   border: transparent;
   color: white;
 }
+
+.addQuestion{
+  padding-top: 5px;
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+.updateQuestions{
+  padding-top: 5px;
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+
+.addQuestionBtn{
+margin-left: 10%;
+}

@@ -1,34 +1,69 @@
 
-<button class="button" (click)="addAnswer()">Neue Frage hinzufügen </button>
+<button class="button addQuestionBtn" (click)="addAnswer()">Neue Frage hinzufügen </button>
 
-<div *ngIf="buttonPressed">
-  <label>Frage: </label>
-  <input type="text" [(ngModel)]="newQuestion">
-  <label>Richtige Antwort: </label>
-  <input type="text" [(ngModel)]="newQuestionCorrectAnswer" >
-  <label>Flasche Anworten: </label>
-  <input type="text" [(ngModel)]="newQuestionFalseAnswer" >
+<div *ngIf="buttonPressed" class="addQuestion">
+  <div class="field">
+    <label class="label">Frage: </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="newQuestion" >
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Richtige Antwort: </label>
+    <div class="control">
+      <input class="input" type="password" [(ngModel)]="newQuestionCorrectAnswer">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Flasche Antworten: </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="newQuestionFalseAnswer" >
+    </div>
+  </div>
   <button class="button" (click)="add()">Bestätigen</button>
 </div>
 
+
+
 <div class="container">
   <ul class="list" id="availableQuestions">
-    <li *ngFor="let question of adminOutput" class="question-item">  <button class="button updateQuestionsBTN"  (click)="updateQuestion()">{{ question }}  </button>
-      </li>
-
+    <li *ngFor="let question of adminOutput; let i = index" class="question-item">
+      <button class="button updateQuestionsBTN" (click)="updateQuestion(i)">{{ question.text }}</button>
+    </li>
   </ul>
-
 </div>
 
-<div *ngIf="updateButtonPressed">
-  <label>ID: </label>
-  <input type="text" [(ngModel)]="QuestionId" >
-  <label>Frage: </label>
-  <input type="text"  [(ngModel)]="QuestionUpdate">
-  <label>Richtige Antwort: </label>
-  <input type="text" [(ngModel)]="QuestionCorrectAnswerUpdate" >
-  <label>Falsche Antworten: </label>
-  <input type="text" [(ngModel)]="QuestionFalseAnswersUpdate" >
-  <button class="button" (click)="updateButton()">Bestätigen</button>
+
+<div *ngIf="updateButtonPressed" class="updateQuestions">
+  <div class="field">
+    <label class="label">Id: </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="QuestionId" readonly >
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="label">Frage überarbeitet: </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="QuestionUpdate">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Antworten überarbeitet (Richtig): </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="QuestionCorrectAnswerUpdate" >
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Antworten überarbeitet (Falsch): </label>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="QuestionFalseAnswersUpdate" >
+    </div>
+  </div>
+  <button class="button"  (click)="updateButton()">Bestätigen</button>
   <button class="button" (click)="DeleteButton()">Delete</button>
 </div>
+
+
+

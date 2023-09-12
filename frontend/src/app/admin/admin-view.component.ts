@@ -15,7 +15,7 @@ export class AdminViewComponent implements OnInit {
 
 
   data: string = "";
-  adminOutput: string[] = [];
+  adminOutput: { id: any; text: any }[] = [];
   buttonPressed = false;
   updateButtonPressed= false;
 
@@ -32,7 +32,7 @@ export class AdminViewComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/admin/editor').subscribe({
       next: (data) => {
         if (data !== null && data !== undefined) {
-          this.adminOutput = data.map((item: {  text: any; id: any}) =>  "ID: "+ item.id +" "+ "Frage: "+ item.text); // Extrahiert die Fragen aus der Antwort
+          this.adminOutput = data;
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');
         }
@@ -44,36 +44,37 @@ export class AdminViewComponent implements OnInit {
 
 
 
-/*
 
-const availableQuestionsList = document.getElementById('availableQuestions');
-    const selectedQuestionsList = document.getElementById('selectedQuestions');
+    /*
 
-    availableQuestionsList?.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      if (target.tagName === 'LI') {
-        target.classList.toggle('selected');
-        if (target.classList.contains('selected')) {
-          selectedQuestionsList?.appendChild(target);
-        } else {
-          availableQuestionsList.appendChild(target);
-        }
-      }
-    });
+    const availableQuestionsList = document.getElementById('availableQuestions');
+        const selectedQuestionsList = document.getElementById('selectedQuestions');
 
-    selectedQuestionsList?.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      if (target.tagName === 'LI') {
-        target.classList.toggle('selected');
-        if (target.classList.contains('selected')) {
-          availableQuestionsList?.appendChild(target);
-        } else {
-          selectedQuestionsList.appendChild(target);
-        }
-      }
-    });
+        availableQuestionsList?.addEventListener('click', (event) => {
+          const target = event.target as HTMLElement;
+          if (target.tagName === 'LI') {
+            target.classList.toggle('selected');
+            if (target.classList.contains('selected')) {
+              selectedQuestionsList?.appendChild(target);
+            } else {
+              availableQuestionsList.appendChild(target);
+            }
+          }
+        });
 
- */
+        selectedQuestionsList?.addEventListener('click', (event) => {
+          const target = event.target as HTMLElement;
+          if (target.tagName === 'LI') {
+            target.classList.toggle('selected');
+            if (target.classList.contains('selected')) {
+              availableQuestionsList?.appendChild(target);
+            } else {
+              selectedQuestionsList.appendChild(target);
+            }
+          }
+        });
+
+     */
   }
 
   addAnswer(){
@@ -92,17 +93,32 @@ const availableQuestionsList = document.getElementById('availableQuestions');
     })
   }
 
-  updateQuestion(){
+  updateQuestion(index: number) {
+
+
     console.log("updateQuestion")
     this.updateButtonPressed = true;
 
     this.buttonPressed = false;
+    if (this.adminOutput[index] !== undefined) {
+      const selectedQuestion = this.adminOutput[index];
+      // Hier haben Sie Zugriff auf die ausgewählte Frage und deren ID
+      console.log('Ausgewählte Frage:', selectedQuestion.id);
 
+      // Hier können Sie die ID und die Frage in ein Input-Feld schreiben
+      this.QuestionId = ` ${selectedQuestion.id}`;
+    }
   }
+
+
   updateButton(){
+
+    const cleanedQuestionId = this.QuestionId.trim();
+
+    console.log(this.QuestionId)
     console.log("updateQuestion")
 
-    this.http.patch<any>('http://localhost:3000/admin/update/' + this.QuestionId,
+    this.http.patch<any>('http://localhost:3000/admin/update/' + cleanedQuestionId,
       {text: this.QuestionUpdate, options: this.QuestionFalseAnswersUpdate, correctAnswer: this.QuestionCorrectAnswerUpdate}).subscribe(data =>{
       alert("Die Frage wurde bearbeitet")
 
@@ -112,9 +128,11 @@ const availableQuestionsList = document.getElementById('availableQuestions');
 
   }
   DeleteButton(){
+    const cleanedQuestionId = this.QuestionId.trim();
+
     console.log("DeleteButton")
 
-    this.http.delete<any>('http://localhost:3000/admin/editor/delete/' + this.QuestionId,
+    this.http.delete<any>('http://localhost:3000/admin/editor/delete/' + cleanedQuestionId,
     ).subscribe(data =>{
       alert("Die" + " " + this.QuestionId + " " + "wurde gelöscht")
 
