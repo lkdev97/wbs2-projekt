@@ -26,14 +26,34 @@ export class DuellComponent implements OnInit {
           let num = getRandomNumber();
 
           if (num == 1) {
+            console.log(data.id)
+
             this.answer1 = data.correctAnswer;
+            this.answer2 = data.options;
+            this.answer3 = data.options;
+            this.answer4 = data.options;
           } else {
             if (num == 2) {
+              console.log(data.id)
+
+              this.answer1 = data.options;
               this.answer2 = data.correctAnswer;
+              this.answer3 = data.options;
+              this.answer4 = data.options;
             } else {
               if (num == 3) {
+                console.log(data.id)
+
+                this.answer1 = data.options;
+                this.answer2 = data.options;
                 this.answer3 = data.correctAnswer;
+                this.answer4 = data.options;
               } else {
+                console.log(data.id)
+
+                this.answer1 = data.options;
+                this.answer2 = data.options;
+                this.answer3 = data.options;
                 this.answer4 = data.correctAnswer;
               }
             }

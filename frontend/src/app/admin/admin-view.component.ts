@@ -86,6 +86,9 @@ const availableQuestionsList = document.getElementById('availableQuestions');
     console.log("addAnswer")
     this.http.post<any>('http://localhost:3000/admin/editor/create',
       {text: this.newQuestion, options: this.newQuestionFalseAnswer, correctAnswer: this.newQuestionCorrectAnswer}).subscribe(data =>{
+      alert("Die neue Frage wurde hinzugefügt")
+
+      this.reloadPage();
     })
   }
 
@@ -95,15 +98,16 @@ const availableQuestionsList = document.getElementById('availableQuestions');
 
     this.buttonPressed = false;
 
-
-
-
   }
   updateButton(){
     console.log("updateQuestion")
 
     this.http.patch<any>('http://localhost:3000/admin/update/' + this.QuestionId,
       {text: this.QuestionUpdate, options: this.QuestionFalseAnswersUpdate, correctAnswer: this.QuestionCorrectAnswerUpdate}).subscribe(data =>{
+      alert("Die Frage wurde bearbeitet")
+
+      this.reloadPage();
+
       })
 
   }
@@ -112,7 +116,15 @@ const availableQuestionsList = document.getElementById('availableQuestions');
 
     this.http.delete<any>('http://localhost:3000/admin/editor/delete/' + this.QuestionId,
     ).subscribe(data =>{
+      alert("Die" + " " + this.QuestionId + " " + "wurde gelöscht")
+
+      this.reloadPage();
       })
 
   }
+
+  reloadPage() {
+    window.location.reload(); // Die Seite neu laden
+  }
+
 }

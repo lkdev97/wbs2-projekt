@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="logout Bug gefixt">
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +52,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "editing.templates",
-    "ts.external.directory.path": "C:\\Users\\dimas\\WebstormProjects\\wbs2-projekt\\backend\\node_modules\\typescript\\lib",
+    "ts.external.directory.path": "C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -305,15 +306,7 @@
       <option name="project" value="LOCAL" />
       <updated>1694192414567</updated>
     </task>
-    <task id="LOCAL-00029" summary="logout Bug gefixt">
-      <option name="closed" value="true" />
-      <created>1694456489767</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1694456489767</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +314,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="First Homepage update" />
     <MESSAGE value="Homepage without Pics finished also responsiv fix" />
     <MESSAGE value="Homepage Main Headline" />
     <MESSAGE value="Login started. TODO: Glas effect on Login form" />
@@ -345,7 +339,6 @@
     <MESSAGE value="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus" />
     <MESSAGE value="Admin seite Fragen werden geladen und erster Ansatz zum hinzufügen neuer Fragen" />
     <MESSAGE value="Fragen Hinzufügen klappt per Button" />
-    <MESSAGE value="logout Bug gefixt" />
-    <option name="LAST_COMMIT_MESSAGE" value="logout Bug gefixt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fragen Hinzufügen klappt per Button" />
   </component>
 </project>
