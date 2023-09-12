@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 
 import {SharedService} from "./shared.service";
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 
 const appRoutes: Routes = [
@@ -24,7 +25,8 @@ const appRoutes: Routes = [
   {path: 'adminseite', component: AdminViewComponent},
   {path: 'duell', component: DuellComponent },
   {path: 'user', component: UserComponent},
-  {path: 'profil', component: ProfilseiteComponent}
+  {path: 'profil', component: ProfilseiteComponent},
+  {path: 'aboutus', component: AboutusComponent}
 
 ]
 
@@ -38,7 +40,8 @@ const appRoutes: Routes = [
     AdminViewComponent,
     UserComponent,
     ProfilseiteComponent,
-    HeaderComponent
+    HeaderComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,
