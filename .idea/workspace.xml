@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -39,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "Stefan__Frontend__Funktion",
-    "last_opened_file_path": "C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editing.templates",
-    "ts.external.directory.path": "C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Stefan__Frontend__Funktion&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -327,7 +326,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694518730465</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="ABOUT US seite angelegt und mit der Readme versehen">
+      <created>1694529498389</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1694529498389</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,7 +341,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Login started. TODO: Glas effect on Login form" />
     <MESSAGE value="Login started. TODO: Glas effect on Login form and Register finish" />
     <MESSAGE value="Glasseffekt auf register.component.html und login.component.html fertig gemacht. TODO: verlinkungen auf die einzelenen seiten per Router Link" />
     <MESSAGE value="Verlinkungen auf Stefans seiten ( login.component.html, startseite.component.html, register.component.html ) fertig. TODO: If abfrage für die Inputfelder schreiben die vor dem Buttonklick ausgeführt wird bzw. der Button soll erst enabled werden wenn alle felder valide ausgefüllt sind. Sollange ein Input nicht richtig ist soll eine Fehlermeldung vorhanden sein." />
@@ -360,6 +365,7 @@
     <MESSAGE value="Benachrichtigungen für den Admin erstellt (für das löschen hinzufügen und ändern der Questions" />
     <MESSAGE value="Admin ansicht. Automatisches eintragen der Ids für das löschen und updaten der Fragen. Sowie css überarbeitet (für die Admin seite)" />
     <MESSAGE value="Kleiner Bugfix. Amdin seite ist somit meines Wissens nach komplett fertig und bedarf keiner weitern bearbeitung" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kleiner Bugfix. Amdin seite ist somit meines Wissens nach komplett fertig und bedarf keiner weitern bearbeitung" />
+    <MESSAGE value="ABOUT US seite angelegt und mit der Readme versehen" />
+    <option name="LAST_COMMIT_MESSAGE" value="ABOUT US seite angelegt und mit der Readme versehen" />
   </component>
 </project>
