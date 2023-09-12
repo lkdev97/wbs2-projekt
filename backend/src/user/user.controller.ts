@@ -32,6 +32,13 @@ export class UserController {
     return this.userService.getOnlineUsers();
   }
 
+  @Get('all')
+  @ApiOperation({ summary: 'Get all users' })
+  @ApiOkResponse({ description: 'Successfully returned all users' })
+  getAllUsers() {
+    return this.userService.findAllUsers();
+  }
+
   @Get(':id')
   @ApiOperation({ summary: 'Get user by ID' })
   @ApiOkResponse({ description: 'Successfully returned the user' })
