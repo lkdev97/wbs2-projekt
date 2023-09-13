@@ -15,14 +15,15 @@ export class FriendshipService {
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
   ) {}
+  
   async showAllFriendsById(userId: string) {
     const friendshipEntries = await this.friendshipRepository.find({
-      where: { userId, friendStatus: FriendStatus.ACCEPTED },
+      where: [
+        { userId, friendStatus: FriendStatus.ACCEPTED },
+        { friendId: userId, friendStatus: FriendStatus.ACCEPTED },
+      ],
     });
 
-    const friendIds = friendshipEntries.map(
-      (friendshipEntry) => friendshipEntry.friendId,
-    );
     return friendshipEntries;
   }
 
