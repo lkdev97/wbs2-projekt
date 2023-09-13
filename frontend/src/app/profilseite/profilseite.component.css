@@ -117,7 +117,7 @@
   text-align: center;
 }
 
-.playersList th, .friendsList th, requestList th {
+.playersList th, .friendsList th, .requestList th {
   background-color: #393939;
 }
 

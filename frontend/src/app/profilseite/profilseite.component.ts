@@ -29,31 +29,42 @@ export class ProfilseiteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-      if (data !== null && data !== undefined) {
-        console.log(data);
-        this.out = data.username;
-        this.out2 = data.id;
-      } else {
-        console.log('Keine Daten erhalten oder ungültige Antwort.');
-      }
-    });
 
-    // Freundesliste abrufen und aktualisieren
-    this.http.get<any>(`http://localhost:3000/friendship/list-friends/{userId}`).subscribe(data => {
-      if (Array.isArray(data)) {
+      this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+        if (data !== null && data !== undefined) {
+          this.out = data.username;
+          this.out2 = data.id;
+          const userId = data.id; // UserId hier speichern
 
-        this.friendsList = data;
-      } else {
-        console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
-      }
-    });
+          console.log("userId vor dem Renderig der Freundesliste: "+userId);
+
+          this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
+            if (Array.isArray(data)) {
+              this.friendsList = data;
+              console.log(data);
+              console.log(this.friendsList);
+              console.log("empfangene Freundesliste: " + data);
+            } else {
+              console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
+            }
+          });
+
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      });
+
+
+
+
+
 
     // Spielerliste abrufen und aktualisieren
     this.http.get<any>(`http://localhost:3000/users/all`).subscribe(data => {
       if (Array.isArray(data)) {
 
         this.playersList = data;
+        //console.log("empfangene Spielerliste: "+ data);
       } else {
         console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
       }

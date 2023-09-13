@@ -28,7 +28,7 @@
             <td>{{ request.userId }}</td>
             <td>
               <button (click)="acceptFriendship(request.userId)">Annehmen</button>
-              <button (click)="rejectFriendship(request)">Ablehnen</button>
+              <button (click)="rejectFriendship(request.userId)">Ablehnen</button>
             </td>
           </tr>
           </tbody>
@@ -85,7 +85,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let friend of friendsList">
-              <td>{{ friend.username }}</td>
+              <td>{{ friend.friendId }}</td>
               <td>
 
               <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
