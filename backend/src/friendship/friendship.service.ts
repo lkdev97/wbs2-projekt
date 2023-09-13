@@ -81,4 +81,13 @@ export class FriendshipService {
       await this.friendshipRepository.save(friendship);
     }
   }
+
+  async getAllPendingFriendRequestsByFriendId(friendId: string) {
+    return this.friendshipRepository.find({
+      where: {
+        friendId: friendId,
+        friendStatus: FriendStatus.PENDING,
+      },
+    });
+  }
 }
