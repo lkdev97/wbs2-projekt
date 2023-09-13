@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +108,7 @@
       <workItem from="1694106067232" duration="13062000" />
       <workItem from="1694530398111" duration="1460000" />
       <workItem from="1694584933535" duration="2152000" />
-      <workItem from="1694587202654" duration="972000" />
+      <workItem from="1694587202654" duration="1676000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -358,7 +357,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694586763460</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt.">
+      <created>1694588228010</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1694588228010</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +372,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Duell Komponente hinzugefügt" />
     <MESSAGE value="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele." />
     <MESSAGE value="Backend und Frontend funktioniert zusammen" />
     <MESSAGE value="Fehler beim Anzeigen der Register seite gefunden und behoben" />
@@ -391,6 +396,7 @@
     <MESSAGE value="Bug fix für das About Us auf der startseite.component.html" />
     <MESSAGE value="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt." />
     <MESSAGE value="Register angepasst" />
-    <option name="LAST_COMMIT_MESSAGE" value="Register angepasst" />
+    <MESSAGE value="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt." />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt." />
   </component>
 </project>
