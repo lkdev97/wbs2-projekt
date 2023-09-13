@@ -13,19 +13,18 @@ export class StartseiteComponent implements OnInit{
   question: string =""
   isUserLoggedIn: boolean = false; // Hier wird der Anmeldestatus gespeichert
 
-
-
   constructor(private route: Router,public sharedService: SharedService, private http: HttpClient) {  }
 
   buttonClicked(){
     this.route.navigate(['/login'])
   }
 
+  //TODO: duelstart, duelend, dueldat müssen auf die profilseite gepackt werden
   duelstart() {
     console.log("start");
     this.http.post<any>('http://localhost:3000/duel', {
-      challengerId: "3efb41a7-615a-4334-8ec0-aa393f1ff3bd",
-      opponentId: "42b8f292-677e-4013-a380-485ec9232f20"
+      challengerId: "1",
+      opponentId: "0"
     }).subscribe({
       next: (data) => {
         console.log(data);

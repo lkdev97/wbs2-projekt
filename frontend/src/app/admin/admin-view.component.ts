@@ -26,7 +26,6 @@ export class AdminViewComponent implements OnInit {
   constructor(private http: HttpClient, private  route: Router) { }
 
   ngOnInit(): void {
-    console.log("Adminseite")
 
 
     this.http.get<any>('http://localhost:3000/admin/editor').subscribe({
@@ -75,6 +74,8 @@ export class AdminViewComponent implements OnInit {
         });
 
      */
+    console.log(this.adminOutput)
+
   }
 
   addAnswer(){
