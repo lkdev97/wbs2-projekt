@@ -29,16 +29,22 @@ export class FriendshipService {
 
   async showAllOnlineFriends(userId: string) {
     const friendshipEntries = await this.friendshipRepository.find({
-      where: { userId, friendStatus: FriendStatus.ACCEPTED }, // add: friendStatus: FriendStatus.ACCEPTED
+      where: [
+        { userId, friendStatus: FriendStatus.ACCEPTED },
+        { friendId: userId, friendStatus: FriendStatus.ACCEPTED },
+      ],
     });
 
-    const friendIds = friendshipEntries.map(
-      (friendshipEntry) => friendshipEntry.friendId,
-    );
-
-    const onlineFriends = await this.userRepository.find({
-      where: { id: In(friendIds), online: true },
-    });
+    const onlineFriends = [];
+    for (const friendshipEntry of friendshipEntries) {
+      const searchUserId = friendshipEntry.userId === userId ? friendshipEntry.friendId : friendshipEntry.userId;
+      const friend = await this.userRepository.findOne({
+        where: { id: searchUserId, online: true },
+      });
+      if (friend) {
+        onlineFriends.push(friend);
+      }
+    }
 
     return onlineFriends;
   }

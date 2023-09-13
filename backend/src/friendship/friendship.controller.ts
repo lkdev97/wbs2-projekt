@@ -30,7 +30,7 @@ export class FriendshipController {
     description: 'Successfully returned a list of online friends',
   })
   async friendshipPage(@Req() request) {
-    return await this.friendshipService.showAllFriendsById(
+    return await this.friendshipService.showAllOnlineFriends(
       request.session.user.id,
     );
   }
