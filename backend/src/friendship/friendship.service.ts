@@ -24,7 +24,18 @@ export class FriendshipService {
       ],
     });
 
-    return friendshipEntries;
+    const allFriends = [];
+    for (const friendshipEntry of friendshipEntries) {
+      const searchUserId = friendshipEntry.userId === userId ? friendshipEntry.friendId : friendshipEntry.userId;
+      const friend = await this.userRepository.findOne({
+        where: { id: searchUserId },
+      });
+      if (friend) {
+        allFriends.push(friend);
+      }
+    }
+
+    return allFriends;
   }
 
   async showAllOnlineFriends(userId: string) {
@@ -90,11 +101,21 @@ export class FriendshipService {
   }
 
   async getAllPendingFriendRequestsByFriendId(friendId: string) {
-    return this.friendshipRepository.find({
+    const pendingFriendshipEntries = await this.friendshipRepository.find({
       where: {
         friendId: friendId,
         friendStatus: FriendStatus.PENDING,
       },
     });
+
+    const userIds = pendingFriendshipEntries.map(
+      (friendshipEntry) => friendshipEntry.userId
+    );
+
+    const users = await this.userRepository.find({
+      where: { id: In(userIds) },
+    });
+
+    return users;
   }
 }
