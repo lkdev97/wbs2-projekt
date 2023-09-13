@@ -7,6 +7,7 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
+  questionid: string = "";
   question: string = "";
   answer1: string = "";
   answer2: string = "";
@@ -73,10 +74,20 @@ export class DuellComponent implements OnInit {
 
 
 
-  answerButton(){
+  answerButton(clickedButton: string){
     console.log("answerButtonPressed")
+    console.log(clickedButton)
+
+    this.http.get<any>(`http://localhost:3000/duel/question`).subscribe(data => {
+      if (data !== null && data !== undefined) {
+        console.log(data.id);
+        this.questionid = data.id;
+        console.log("QuestionID" + " "+ this.questionid)
+      }
+    });
+
     this.http.patch<any>('http://localhost:3000/duel/answer',
-      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: "ques567", answer: "Paris"})
+      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: this.questionid, answer: clickedButton})
       .subscribe(data =>{
 
       })
