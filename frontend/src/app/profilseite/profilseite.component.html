@@ -12,7 +12,28 @@
         </div>
       </div>
       <div class="column rightUp">
-
+        <div class="requestList">
+        <h2>Pending Friendship Requests</h2>
+        <table class="requestListTable">
+          <thead>
+          <tr>
+            <th>Eigene ID</th>
+            <th>ID des Freundes</th>
+            <th>Friendship Status</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of pendingFriendshipRequests">
+            <td>{{ request.friendId }}</td>
+            <td>{{ request.userId }}</td>
+            <td>
+              <button (click)="acceptFriendship(request.userId)">Annehmen</button>
+              <button (click)="rejectFriendship(request)">Ablehnen</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
       </div>
     </div>
 
@@ -32,7 +53,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let player of playersList">
-              <td>{{ player.name }}</td>
+              <td>{{ player.username }}</td>
               <td>
 
               <span [ngClass]="{'online': player.online, 'offline': !player.online}">
@@ -41,7 +62,7 @@
               </td>
               <td>
 
-                <button class="addFriend" (click)="addToFriendslist(friendId)">Freund hinzufügen</button>
+                <button class="addFriend" (click)="addToFriendslist(player.id)">Freund hinzufügen</button>
               </td>
             </tr>
             </tbody>
@@ -64,7 +85,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let friend of friendsList">
-              <td>{{ friend.name }}</td>
+              <td>{{ friend.username }}</td>
               <td>
 
               <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
@@ -73,9 +94,9 @@
               </td>
               <td>
 
-                <button class="deleteFriend" (click)="deleteFriend(friend)">Freund entfernen</button>
+                <button class="deleteFriend" >Freund entfernen</button>
 
-                <button class="startDuel" (click)="startDuel(friend)">Spiel starten</button>
+                <button class="startDuel" >Spiel starten</button>
               </td>
             </tr>
             </tbody>
