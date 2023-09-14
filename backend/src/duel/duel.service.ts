@@ -132,46 +132,49 @@ export class DuelService {
    * @returns score Object with score.challengerScore and score.opponentScore
    */
   async getDuelScore(duelId: string) {
-  const duel = await this.duelRepository.findOne({
-    where: { id: duelId },
-    relations: ['challenger', 'opponent', 'duelAnswers', 'duelAnswers.user'],
-  });
+    if(!duelId) {
+      throw new ConflictException(`duelId is undefined - Submit a valid duelId`);
+    }
+    const duel = await this.duelRepository.findOne({
+      where: { id: duelId },
+      relations: ['challenger', 'opponent', 'duelAnswers', 'duelAnswers.user'],
+    });
 
-  if (!duel) {
-    throw new NotFoundException(`Duel with ID ${duelId} not found`);
-  }
+    if (!duel) {
+      throw new NotFoundException(`Duel with ID ${duelId} not found`);
+    }
 
-  const challengerId = duel.challenger?.id;
-  const opponentId = duel.opponent?.id;
+    const challengerId = duel.challenger?.id;
+    const opponentId = duel.opponent?.id;
 
-  if (!challengerId || !opponentId) {
-    throw new NotFoundException(
-      `Challenger or opponent not found in Duel with ID ${duelId}`
-    );
-  }
+    if (!challengerId || !opponentId) {
+      throw new NotFoundException(
+        `Challenger or opponent not found in Duel with ID ${duelId}`
+      );
+    }
 
-  const challengerCount = await this.duelAnswerRepository.count({
-    where: {
-      duel: { id: duelId },
-      user: { id: challengerId },
-      correct: true,
-    },
-  });
+    const challengerCount = await this.duelAnswerRepository.count({
+      where: {
+        duel: { id: duelId },
+        user: { id: challengerId },
+        correct: true,
+      },
+    });
 
-  const opponentCount = await this.duelAnswerRepository.count({
-    where: {
-      duel: { id: duelId },
-      user: { id: opponentId },
-      correct: true,
-    },
-  });
+    const opponentCount = await this.duelAnswerRepository.count({
+      where: {
+        duel: { id: duelId },
+        user: { id: opponentId },
+        correct: true,
+      },
+    });
 
-  const score = {
-    challengerScore: challengerCount,
-    opponentScore: opponentCount,
-  };
+    const score = {
+      challengerScore: challengerCount,
+      opponentScore: opponentCount,
+    };
 
-  return score;
+    return score;
   }
 
   //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
