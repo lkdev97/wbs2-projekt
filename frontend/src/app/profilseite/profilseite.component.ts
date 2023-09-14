@@ -1,5 +1,6 @@
 import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import {Router} from "@angular/router";
 
 
 
@@ -14,6 +15,9 @@ export class ProfilseiteComponent implements OnInit {
   out: string = "";
   out2: string = "";
 
+  currentUserId: string = "";
+  selectedOpponentId: number | null = null; // Initialisieren Sie die ausgewählte ID mit null
+
 
 
   // Arrays für Daten
@@ -25,7 +29,8 @@ export class ProfilseiteComponent implements OnInit {
 
   constructor(
       private changeDetectorRef: ChangeDetectorRef,
-      private http: HttpClient
+      private http: HttpClient,
+      private route: Router
   ) { }
 
   ngOnInit() {
@@ -34,20 +39,23 @@ export class ProfilseiteComponent implements OnInit {
         if (data !== null && data !== undefined) {
           this.out = data.username;
           this.out2 = data.id;
+          this.currentUserId = data.id;
           const userId = data.id; // UserId hier speichern
+
 
           console.log("userId vor dem Renderig der Freundesliste: "+userId);
 
-          this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
-            if (Array.isArray(data)) {
-              this.friendsList = data;
-              console.log(data);
-              console.log(this.friendsList);
-              console.log("empfangene Freundesliste: " + data);
-            } else {
-              console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
-            }
-          });
+            this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
+              if (Array.isArray(data)) {
+
+                this.friendsList = data;
+                console.log(data);
+                console.log(this.friendsList);
+                console.log("empfangene Freundesliste: " + data);
+              } else {
+                console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
+              }
+            });
 
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');
@@ -124,6 +132,31 @@ export class ProfilseiteComponent implements OnInit {
 
   }
 
+
+  duelstart(playerId: number) {
+    this.selectedOpponentId = playerId
+    console.log("duellstart mit " + this.currentUserId + " und " + playerId);
+    this.http.post<any>('http://localhost:3000/duel', {
+      challengerId: this.currentUserId,
+      opponentId: this.selectedOpponentId
+    }).subscribe({
+      next: (data) => {
+        console.log(data);
+        // Überprüfen Sie den Statuscode
+        if (data.status === 201) {
+          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
+        } else {
+          console.error('Ungültiger Statuscode:', data.status);
+        }
+      },
+      //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
+      //TODO: Wenn duell eigentlich nicht funktionieren sollte geht er dennoch auf die Duell seite.
+      error: (error) => {
+        this.route.navigate(['/duell']);
+        console.error('HTTP-Fehler:', error);
+      },
+    });
+  }
 
 
 

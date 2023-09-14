@@ -85,7 +85,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let friend of friendsList">
-              <td>{{ friend.friendId }}</td>
+              <td>{{ friend.id }}</td>
               <td>
 
               <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
@@ -96,7 +96,7 @@
 
                 <button class="deleteFriend" >Freund entfernen</button>
 
-                <button class="startDuel" >Spiel starten</button>
+                <button class="startDuel"  (click)="duelstart(friend.id)" >Spiel starten</button>
               </td>
             </tr>
             </tbody>

@@ -23,8 +23,8 @@ export class StartseiteComponent implements OnInit{
   duelstart() {
     console.log("start");
     this.http.post<any>('http://localhost:3000/duel', {
-      challengerId: "1",
-      opponentId: "0"
+      challengerId: "6a9e50ef-7d87-416d-a545-93d0e8eb144e",
+      opponentId: "749e3b00-b5a0-44e3-b627-fdcbfa6c4132"
     }).subscribe({
       next: (data) => {
         console.log(data);
@@ -68,7 +68,7 @@ export class StartseiteComponent implements OnInit{
   duelend(){
     console.log("ende")
     this.http.patch<any>('http://localhost:3000/duel/update',
-      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: "ques567", answer: "Paris"})
+      {duelId: "7e827140-d664-4bed-823e-77307f6ccd0b", questionId: "ques567", answer: "Paris"})
       .subscribe(data =>{
 
       console.log(data)
