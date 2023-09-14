@@ -15,29 +15,47 @@ export class FriendshipService {
     @InjectRepository(UserEntity)
     private userRepository: Repository<UserEntity>,
   ) {}
+  
   async showAllFriendsById(userId: string) {
     const friendshipEntries = await this.friendshipRepository.find({
-      where: { userId, friendStatus: FriendStatus.ACCEPTED },
+      where: [
+        { userId, friendStatus: FriendStatus.ACCEPTED },
+        { friendId: userId, friendStatus: FriendStatus.ACCEPTED },
+      ],
     });
 
-    const friendIds = friendshipEntries.map(
-      (friendshipEntry) => friendshipEntry.friendId,
-    );
-    return friendshipEntries;
+    const allFriends = [];
+    for (const friendshipEntry of friendshipEntries) {
+      const searchUserId = friendshipEntry.userId === userId ? friendshipEntry.friendId : friendshipEntry.userId;
+      const friend = await this.userRepository.findOne({
+        where: { id: searchUserId },
+      });
+      if (friend) {
+        allFriends.push(friend);
+      }
+    }
+
+    return allFriends;
   }
 
   async showAllOnlineFriends(userId: string) {
     const friendshipEntries = await this.friendshipRepository.find({
-      where: { userId, friendStatus: FriendStatus.ACCEPTED }, // add: friendStatus: FriendStatus.ACCEPTED
+      where: [
+        { userId, friendStatus: FriendStatus.ACCEPTED },
+        { friendId: userId, friendStatus: FriendStatus.ACCEPTED },
+      ],
     });
 
-    const friendIds = friendshipEntries.map(
-      (friendshipEntry) => friendshipEntry.friendId,
-    );
-
-    const onlineFriends = await this.userRepository.find({
-      where: { id: In(friendIds), online: true },
-    });
+    const onlineFriends = [];
+    for (const friendshipEntry of friendshipEntries) {
+      const searchUserId = friendshipEntry.userId === userId ? friendshipEntry.friendId : friendshipEntry.userId;
+      const friend = await this.userRepository.findOne({
+        where: { id: searchUserId, online: true },
+      });
+      if (friend) {
+        onlineFriends.push(friend);
+      }
+    }
 
     return onlineFriends;
   }
@@ -83,11 +101,21 @@ export class FriendshipService {
   }
 
   async getAllPendingFriendRequestsByFriendId(friendId: string) {
-    return this.friendshipRepository.find({
+    const pendingFriendshipEntries = await this.friendshipRepository.find({
       where: {
         friendId: friendId,
         friendStatus: FriendStatus.PENDING,
       },
     });
+
+    const userIds = pendingFriendshipEntries.map(
+      (friendshipEntry) => friendshipEntry.userId
+    );
+
+    const users = await this.userRepository.find({
+      where: { id: In(userIds) },
+    });
+
+    return users;
   }
 }
