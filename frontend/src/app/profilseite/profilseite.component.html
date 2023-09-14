@@ -17,18 +17,16 @@
         <table class="requestListTable">
           <thead>
           <tr>
-            <th>Eigene ID</th>
-            <th>ID des Freundes</th>
-            <th>Friendship Status</th>
+            <th>Name des Spielers</th>
+            <th>Freundschaftsstatus</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let request of pendingFriendshipRequests">
-            <td>{{ request.friendId }}</td>
-            <td>{{ request.userId }}</td>
+            <td>{{ request.username }}</td>
             <td>
-              <button (click)="acceptFriendship(request.userId)">Annehmen</button>
-              <button (click)="rejectFriendship(request.userId)">Ablehnen</button>
+              <button (click)="acceptFriendship(request.id)">Annehmen</button>
+              <button (click)="rejectFriendship(request.id)">Ablehnen</button>
             </td>
           </tr>
           </tbody>
@@ -85,7 +83,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let friend of friendsList">
-              <td>{{ friend.id }}</td>
+              <td>{{ friend.username }}</td>
               <td>
 
               <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
