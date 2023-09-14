@@ -73,6 +73,15 @@ export class LoginComponent {
           this.username = data.username;
           console.log(data.username)
           console.log(data);
+
+
+
+
+            this.sharedService.isLoggedIn = true;
+            console.log(this.sharedService.isLoggedIn);
+            this.showLogoutNProfileBtns();
+
+
           // Überprüfen Sie den Statuscode
           if (data.status === 201) {
             // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
@@ -82,9 +91,7 @@ export class LoginComponent {
         },
         //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
         error: (error) => {
-          this.sharedService.isLoggedIn = true;
-          console.log(this.sharedService.isLoggedIn);
-          this.showLogoutNProfileBtns();
+
 
 
           this.route.navigate(['/startseite']);

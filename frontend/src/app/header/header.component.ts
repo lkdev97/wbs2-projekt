@@ -27,10 +27,11 @@ export class HeaderComponent {
 
   // Funktion zum Ausloggen
   logout() {
-    this.sharedService.isConfirmationPopupVisible = false;
+
 
     this.http.get(`http://localhost:3000/auth/logout`).subscribe({
       next: () => {
+        this.sharedService.isConfirmationPopupVisible = false;
         this.router.navigate(['/startseite']).then(
           () => {
             this.sharedService.isLoggedIn = false;

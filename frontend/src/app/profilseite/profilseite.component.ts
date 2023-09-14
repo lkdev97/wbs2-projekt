@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-profilseite',
@@ -15,81 +16,116 @@ export class ProfilseiteComponent implements OnInit {
 
 
 
-  // Testdaten Spielerliste
+  // Arrays für Daten
   playersList: any = [];
 
   friendsList: any[] = [];
 
-  constructor(private http: HttpClient) { }
+  pendingFriendshipRequests: any = [];
+
+  constructor(
+      private changeDetectorRef: ChangeDetectorRef,
+      private http: HttpClient
+  ) { }
 
   ngOnInit() {
-    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-      if (data !== null && data !== undefined) {
-        console.log(data);
-        this.out = data.username;
-        this.out2 = data.id;
-      } else {
-        console.log('Keine Daten erhalten oder ungültige Antwort.');
-      }
-    });
 
-    // Freundesliste abrufen und aktualisieren
-    this.http.get<any>(`http://localhost:3000/friendship/list-friends/{userId}`).subscribe(data => {
-      if (Array.isArray(data)) {
+      this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+        if (data !== null && data !== undefined) {
+          this.out = data.username;
+          this.out2 = data.id;
+          const userId = data.id; // UserId hier speichern
 
-        this.friendsList = data;
-      } else {
-        console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
-      }
-    });
+          console.log("userId vor dem Renderig der Freundesliste: "+userId);
+
+          this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
+            if (Array.isArray(data)) {
+              this.friendsList = data;
+              console.log(data);
+              console.log(this.friendsList);
+              console.log("empfangene Freundesliste: " + data);
+            } else {
+              console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
+            }
+          });
+
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      });
+
+
+
+
+
 
     // Spielerliste abrufen und aktualisieren
-    this.http.get<any>(`http://localhost:3000/users/online`).subscribe(data => {
+    this.http.get<any>(`http://localhost:3000/users/all`).subscribe(data => {
       if (Array.isArray(data)) {
 
         this.playersList = data;
+        //console.log("empfangene Spielerliste: "+ data);
       } else {
         console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
       }
     });
+
+    this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
+      if (Array.isArray(data)) {
+
+        this.pendingFriendshipRequests = data;
+        console.log(this.pendingFriendshipRequests);
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der offenen Requests.');
+      }
+    });
+
+
+
   }
 
 
 
-  //Friend ID muss aus der Spielerliste ausgelesen werden
- friendId = "";
-  addToFriendslist(friendId:string) {
-    // Prüfen, ob der Spieler bereits in der Freundesliste ist
-    if (!this.isPlayerInFriendsList(friendId)) {
-      this.friendsList.push(friendId);
-      this.http.post<any>(`http://localhost:3000/friendship/addFriend`, friendId).subscribe(data => {
+  addToFriendslist(playerId: number) {
+    // Erstellen Sie ein Observable, das die HTTP-Anfrage darstellt
+    this.http.post(`http://localhost:3000/friendship/addFriend`, { friendId: playerId })
+        .subscribe({
+          next: (response: any) => {
+            if (response.status === 201) {
+              console.log('Einladung erfolgreich verschickt.');
+              this.changeDetectorRef.detectChanges();
 
+            } else {
+              console.error('Ungültiger Statuscode:', response.status);
+            }
+          },
+          error: (error: any) => {
+            console.error('Fehler beim Verschicken des Requests.', error);
+          }
+        });
+  }
+  acceptFriendship(userId:number){
+      this.http.patch('http://localhost:3000/friendship/update',{userId: userId, friendStatus: 'ACCEPTED'}).subscribe({
+        next: (response: any) =>{
+          if (response.status === 201){
+            console.log("Freund erfolgreich hinzugefügt.")
+            this.changeDetectorRef.detectChanges();
+          } else {
+           console.error('Ungültiger Statuscode:', response.status);
+          }
+        },
+        error: (error:any)=>{
+          console.error("Fehler beim Hinzufügen des Spielers zur Freundesliste.",error);
+        }
       });
-    }
   }
 
-  // MUSS ÜBERARBEITET WERDEN!!!
-  deleteFriend(friend: any) {
-    // Den Index des Freundes in der Freundesliste finden
-    const index: number = this.friendsList.indexOf(friend);
-    // Prüfen, ob der Freund in der Liste ist
-    if (index !== -1) {
-      // Freund aus der Freundesliste entfernen
-      this.friendsList.splice(index, 1);
-    }
+  rejectFriendship(request:any){
+
   }
 
 
 
-  //MUSS ÜBERARBEITET WERDEN!!!
-  private isPlayerInFriendsList(player: any): boolean {
-    // Überprüfe, ob der Spieler in der friendsList enthalten ist
-    return this.friendsList.some((friend) => friend.name === player.name);
-  }
 
 
-
-  startDuel(friend: any) {
-
-  }
 }
