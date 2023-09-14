@@ -17,18 +17,16 @@
         <table class="requestListTable">
           <thead>
           <tr>
-            <th>Eigene ID</th>
-            <th>ID des Freundes</th>
-            <th>Friendship Status</th>
+            <th>Name des Spielers</th>
+            <th>Freundschaftsstatus</th>
           </tr>
           </thead>
           <tbody>
           <tr *ngFor="let request of pendingFriendshipRequests">
-            <td>{{ request.friendId }}</td>
-            <td>{{ request.userId }}</td>
+            <td>{{ request.username }}</td>
             <td>
-              <button (click)="acceptFriendship(request.userId)">Annehmen</button>
-              <button (click)="rejectFriendship(request.userId)">Ablehnen</button>
+              <button (click)="acceptFriendship(request.id)">Annehmen</button>
+              <button (click)="rejectOrBlockFriendship(request.id)">Ablehnen</button>
             </td>
           </tr>
           </tbody>
@@ -85,7 +83,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let friend of friendsList">
-              <td>{{ friend.id }}</td>
+              <td>{{ friend.username }}</td>
               <td>
 
               <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
@@ -94,7 +92,7 @@
               </td>
               <td>
 
-                <button class="deleteFriend" >Freund entfernen</button>
+                <button class="deleteFriend" (click)="rejectOrBlockFriendship(friend.id)" >Freund entfernen</button>
 
                 <button class="startDuel"  (click)="duelstart(friend.id)" >Spiel starten</button>
               </td>
@@ -119,16 +117,13 @@
     <table class="historyTable">
       <tr>
         <th>Gegner</th>
-        <th>Ergbenis</th>
+        <th>Spiele gegen Gegner</th>
+        <th>Siege gegen Gegner</th>
       </tr>
-      <tr>
-        <td>DUMMYDATEN1</td>
-        <td>DUMMYDATEN1</td>
-      </tr>
-      <tr>
-        <td>DUMMYDATEN2</td>
-        <td>DUMMYDATEN2</td>
-
+      <tr *ngFor="let game of statistics">
+        <td>{{ game.id }}</td>
+        <td>{{ game.totalGamesAgainstOpponent }}</td>
+        <td>{{ game.winsAgainstOpponent }}</td>
       </tr>
     </table>
   </div>
