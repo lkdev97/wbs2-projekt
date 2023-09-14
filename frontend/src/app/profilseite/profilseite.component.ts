@@ -144,15 +144,17 @@ export class ProfilseiteComponent implements OnInit {
         console.log(data);
         // Überprüfen Sie den Statuscode
         if (data.status === 201) {
+
           // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
         } else {
+          this.route.navigate(['/duell']);
+
           console.error('Ungültiger Statuscode:', data.status);
         }
       },
       //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
       //TODO: Wenn duell eigentlich nicht funktionieren sollte geht er dennoch auf die Duell seite.
       error: (error) => {
-        this.route.navigate(['/duell']);
         console.error('HTTP-Fehler:', error);
       },
     });
