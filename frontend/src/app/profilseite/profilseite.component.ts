@@ -5,6 +5,8 @@ import {Router} from "@angular/router";
 
 
 
+
+
 @Component({
   selector: 'app-profilseite',
   templateUrl: './profilseite.component.html',
@@ -21,12 +23,19 @@ export class ProfilseiteComponent implements OnInit {
 
 
 
+
+
   // Arrays für Daten
   playersList: any = [];
 
   friendsList: any[] = [];
 
   pendingFriendshipRequests: any = [];
+
+  statistics: any = [];
+
+
+
 
 
 
@@ -37,7 +46,7 @@ export class ProfilseiteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+      //Username und ID abrufen und anzeigen
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
         if (data !== null && data !== undefined) {
           this.out = data.username;
@@ -49,6 +58,7 @@ export class ProfilseiteComponent implements OnInit {
           const userId = data.id;
           //console.log("userId vor dem Renderig der Freundesliste: "+userId);
 
+            //Freundesliste des angemeldeten Users abrufen
             this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
               if (Array.isArray(data)) {
 
@@ -80,7 +90,7 @@ export class ProfilseiteComponent implements OnInit {
         console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
       }
     });
-
+    // Offene Freundschaftsanfragen abrufen
     this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
       if (Array.isArray(data)) {
 
@@ -92,6 +102,17 @@ export class ProfilseiteComponent implements OnInit {
     });
 
 
+    //Statistik des Spielers abrufen
+    this.http.get<any>(`http://localhost:3000/statistics`).subscribe(data => {
+      if (Array.isArray(data)) {
+
+        this.statistics = data;
+        //console.log(this.statistics);
+        //console.log("empfangene Statistik: " + data);
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der Statistik.');
+      }
+    });
 
   }
 
@@ -114,10 +135,13 @@ export class ProfilseiteComponent implements OnInit {
   }
   acceptFriendship(userId:number){
       this.http.patch('http://localhost:3000/friendship/update',{userId: userId, friendStatus: 'ACCEPTED'}).subscribe({
-        next: (response: any) =>{
+        next: () =>{
 
             //console.log("Freund erfolgreich hinzugefügt.")
             this.changeDetectorRef.detectChanges();
+
+
+
 
         },
         error: (error:any)=>{
@@ -126,8 +150,17 @@ export class ProfilseiteComponent implements OnInit {
       });
   }
 
-  rejectFriendship(request:any){
+  rejectOrBlockFriendship(userId:number){
+    this.http.patch('http://localhost:3000/friendship/update',{userId: userId, friendStatus: 'BLOCKED'}).subscribe({
+      next: () =>{
 
+        this.changeDetectorRef.detectChanges();
+
+      },
+      error: (error:any)=>{
+        console.error("Fehler beim blockieren der Freundschaftsanfrage.",error);
+      }
+    });
   }
 
 

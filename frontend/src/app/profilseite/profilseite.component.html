@@ -26,7 +26,7 @@
             <td>{{ request.username }}</td>
             <td>
               <button (click)="acceptFriendship(request.id)">Annehmen</button>
-              <button (click)="rejectFriendship(request.id)">Ablehnen</button>
+              <button (click)="rejectOrBlockFriendship(request.id)">Ablehnen</button>
             </td>
           </tr>
           </tbody>
@@ -92,7 +92,7 @@
               </td>
               <td>
 
-                <button class="deleteFriend" >Freund entfernen</button>
+                <button class="deleteFriend" (click)="rejectOrBlockFriendship(friend.id)" >Freund entfernen</button>
 
                 <button class="startDuel"  (click)="duelstart(friend.id)" >Spiel starten</button>
               </td>
@@ -117,16 +117,13 @@
     <table class="historyTable">
       <tr>
         <th>Gegner</th>
-        <th>Ergbenis</th>
+        <th>Spiele gegen Gegner</th>
+        <th>Siege gegen Gegner</th>
       </tr>
-      <tr>
-        <td>DUMMYDATEN1</td>
-        <td>DUMMYDATEN1</td>
-      </tr>
-      <tr>
-        <td>DUMMYDATEN2</td>
-        <td>DUMMYDATEN2</td>
-
+      <tr *ngFor="let game of statistics">
+        <td>{{ game.id }}</td>
+        <td>{{ game.totalGamesAgainstOpponent }}</td>
+        <td>{{ game.winsAgainstOpponent }}</td>
       </tr>
     </table>
   </div>
