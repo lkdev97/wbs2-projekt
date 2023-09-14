@@ -31,10 +31,11 @@ export class DuellComponent implements OnInit {
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
       console.log(this.duelId + " Die DuellId")
-      const duelId = this.duelId.toString(); // Wert, den Sie als Abfrageparameter senden möchten
-      const params = new HttpParams().set('duelId', duelId);
-      console.log(params + " params");
-      this.http.get<any>('http://localhost:3000/duel/question',{params})
+      const body = {duelId: this.duelId}; // Wert, den Sie als Abfrageparameter senden möchten
+      const headers = new HttpHeaders({
+        'Content-Tpe': 'application/json'
+      });
+      this.http.post<any>('http://localhost:3000/duel/question', body)
         .subscribe(data => {
           if (data !== null && data !== undefined) {
             console.log(this.duelId);
