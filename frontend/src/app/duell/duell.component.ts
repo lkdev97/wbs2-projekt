@@ -35,6 +35,7 @@ export class DuellComponent implements OnInit {
       const headers = new HttpHeaders({
         'Content-Tpe': 'application/json'
       });
+      //Scheint zu funktionieren es wird standard gemäß in die Datenbank geschrieben
       this.http.post<any>('http://localhost:3000/duel/question', body)
         .subscribe(data => {
           if (data !== null && data !== undefined) {
