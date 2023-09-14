@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-duell',
@@ -7,7 +7,11 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
-  questionId: string = "";
+  duelId: string = "";
+
+
+
+
   question: string = "";
   answer1: string = "";
   answer2: string = "";
@@ -15,12 +19,21 @@ export class DuellComponent implements OnInit {
   answer4: string = "";
   selectedAnswerId: number = 0
   id: number = 0
-  selectedQuestion: { id: number; text: string; } = { id: 0, text: '' };
+  selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
 
   constructor(private http: HttpClient) {
+
   }
 
+
+
   ngOnInit(): void {
+    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+      this.duelId = data.id;
+      console.log(this.duelId + " Die DuellId")
+    });
+
+
     this.http.get<any>(`http://localhost:3000/duel/question`).subscribe(data => {
       if (data !== null && data !== undefined) {
         console.log(data);
@@ -70,7 +83,6 @@ export class DuellComponent implements OnInit {
     });
 
 
-
   }
 
 
@@ -87,6 +99,7 @@ export class DuellComponent implements OnInit {
       this.reloadPage()
     });
   }
+
   reloadPage() {
     window.location.reload(); // Die Seite neu laden
   }
