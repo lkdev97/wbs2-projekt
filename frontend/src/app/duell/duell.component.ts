@@ -17,6 +17,7 @@ export class DuellComponent implements OnInit {
   id: number = 0
 
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
+  currentUserId: string = "";
 
 
   constructor(private http: HttpClient) {
@@ -251,9 +252,14 @@ export class DuellComponent implements OnInit {
     });
 
      */
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+       this.currentUserId = data.id;
 
+    });
 
   }
+
+
 
 
   answerButton(clickedButton: string) {
@@ -261,18 +267,37 @@ export class DuellComponent implements OnInit {
     console.log(clickedButton);
     console.log(this.selectedAnswerId + " test");
 
-    this.http.patch<any>('http://localhost:3000/duel/answer', {
-      duelId: "9403c352-4b27-4975-ba05-04ad3163c340",
-      questionId: this.selectedAnswerId,
-      answer: clickedButton
-    }).subscribe(data => {
-      this.reloadPage()
+    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+
+      this.duelId = data.id;
+      const payload = {
+        SubmitAnswerDto: {
+          duelId: this.duelId,
+          questionId: this.selectedAnswerId,
+          answer: clickedButton
+        },
+        userId: this.currentUserId
+      };
+
+      // HTTP-Header für die Anfrage
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+
+
+      this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers}).subscribe(data => {})
+
+
     });
+
+
   }
 
   reloadPage() {
     window.location.reload(); // Die Seite neu laden
   }
+
+
 }
 
 /**
