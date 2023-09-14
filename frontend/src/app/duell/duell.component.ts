@@ -15,12 +15,18 @@ export class DuellComponent implements OnInit {
   answer4: string = "";
   selectedAnswerId: number = 0
   id: number = 0
+  params: { duelId: string } = {
+    duelId: ''
+  };
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
   duelId: string = "";
   private body: HttpParams | {
     [p: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
   } | undefined;
   private headers: HttpHeaders | { [p: string]: string | string[]; } | undefined;
+  private bodyJSON: HttpParams | {
+    [p: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+  } | undefined;
   constructor(private http: HttpClient) {
 
   }
@@ -35,16 +41,21 @@ export class DuellComponent implements OnInit {
       console.log(this.duelId + " Die DuellId")
       // Senden Sie die GET-Anfrage mit den Abfrageparametern
       const body = { duelId: this.duelId }
+      const bodyJSON= JSON.stringify(body)
+      this.params = body
+
       console.log("body" +JSON.stringify(body) )
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
+      console.log(this.params)
     });
 
 
-
-    this.http.get<any>('http://localhost:3000/duel/question',{params: this.body, headers: this.headers})
+//TODO: Param probleme lösen es wird ein Object Object ausgegeben
+    this.http.get<any>('http://localhost:3000/duel/question',{params: this.params, headers: this.headers})
       .subscribe(data => {
+        console.log("richtiger Parameter " + this.params)
         if (data !== null && data !== undefined) {
           console.log(data);
           this.question = data.text;

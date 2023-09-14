@@ -115,7 +115,8 @@
       <workItem from="1694685165903" duration="4510000" />
       <workItem from="1694700265424" duration="2077000" />
       <workItem from="1694702409695" duration="562000" />
-      <workItem from="1694705896157" duration="1741000" />
+      <workItem from="1694705896157" duration="1960000" />
+      <workItem from="1694710625208" duration="698000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -392,7 +393,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694690065155</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Duel Versuche kp">
+      <created>1694707694114</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1694707694114</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +408,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Fehler beim Anzeigen der Register seite gefunden und behoben" />
     <MESSAGE value="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben" />
     <MESSAGE value="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag." />
     <MESSAGE value="Login Onlinestatuts wird in der Datenbank verändert" />
@@ -425,6 +432,7 @@
     <MESSAGE value="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt." />
     <MESSAGE value="Duellstart über die Profilseite funktioniert (mit kleinen Fehlern) &#10;TODO: Umleitung auf die duellseite" />
     <MESSAGE value="Umleitung zur Duellseite funktioniert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Umleitung zur Duellseite funktioniert" />
+    <MESSAGE value="Duel Versuche kp" />
+    <option name="LAST_COMMIT_MESSAGE" value="Duel Versuche kp" />
   </component>
 </project>
