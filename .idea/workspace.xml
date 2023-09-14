@@ -116,7 +116,7 @@
       <workItem from="1694700265424" duration="2077000" />
       <workItem from="1694702409695" duration="562000" />
       <workItem from="1694705896157" duration="1960000" />
-      <workItem from="1694710625208" duration="698000" />
+      <workItem from="1694710625208" duration="2452000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -400,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694707694114</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Param Problem">
+      <created>1694711582039</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1694711582039</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +415,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben" />
     <MESSAGE value="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag." />
     <MESSAGE value="Login Onlinestatuts wird in der Datenbank verändert" />
     <MESSAGE value="neustes Backend in den Branch gezogen" />
@@ -433,6 +439,7 @@
     <MESSAGE value="Duellstart über die Profilseite funktioniert (mit kleinen Fehlern) &#10;TODO: Umleitung auf die duellseite" />
     <MESSAGE value="Umleitung zur Duellseite funktioniert" />
     <MESSAGE value="Duel Versuche kp" />
-    <option name="LAST_COMMIT_MESSAGE" value="Duel Versuche kp" />
+    <MESSAGE value="Param Problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="Param Problem" />
   </component>
 </project>

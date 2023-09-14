@@ -7,7 +7,7 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
-
+  duelId: string = "";
   question: string = "";
   answer1: string = "";
   answer2: string = "";
@@ -15,18 +15,10 @@ export class DuellComponent implements OnInit {
   answer4: string = "";
   selectedAnswerId: number = 0
   id: number = 0
-  params: { duelId: string } = {
-    duelId: ''
-  };
+
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
-  duelId: string = "";
-  private body: HttpParams | {
-    [p: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
-  } | undefined;
-  private headers: HttpHeaders | { [p: string]: string | string[]; } | undefined;
-  private bodyJSON: HttpParams | {
-    [p: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
-  } | undefined;
+
+
   constructor(private http: HttpClient) {
 
   }
@@ -39,25 +31,124 @@ export class DuellComponent implements OnInit {
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
       console.log(this.duelId + " Die DuellId")
-      // Senden Sie die GET-Anfrage mit den Abfrageparametern
-      const body = { duelId: this.duelId }
-      const bodyJSON= JSON.stringify(body)
-      this.params = body
+      const duelId = this.duelId.toString(); // Wert, den Sie als Abfrageparameter senden möchten
+      const params = new HttpParams().set('duelId', duelId);
+      console.log(params + " params");
+      this.http.get<any>('http://localhost:3000/duel/question',{params})
+        .subscribe(data => {
+          if (data !== null && data !== undefined) {
+            console.log(this.duelId);
+            this.question = data.text;
+            this.selectedAnswerId = data.id;
+            if (data !== null) {
+              let num = getRandomNumber();
 
-      console.log("body" +JSON.stringify(body) )
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json'
+              if (num == 1) {
+                console.log(data.id)
+
+                this.answer1 = data.correctAnswer;
+                this.answer2 = data.options;
+                this.answer3 = data.options;
+                this.answer4 = data.options;
+              } else {
+                if (num == 2) {
+                  console.log(data.id)
+
+                  this.answer1 = data.options;
+                  this.answer2 = data.correctAnswer;
+                  this.answer3 = data.options;
+                  this.answer4 = data.options;
+                } else {
+                  if (num == 3) {
+                    console.log(data.id)
+
+                    this.answer1 = data.options;
+                    this.answer2 = data.options;
+                    this.answer3 = data.correctAnswer;
+                    this.answer4 = data.options;
+                  } else {
+                    console.log(data.id)
+
+                    this.answer1 = data.options;
+                    this.answer2 = data.options;
+                    this.answer3 = data.options;
+                    this.answer4 = data.correctAnswer;
+                  }
+                }
+              }
+            }
+          } else {
+            this.question = "Es gibt einen Fehler";
+            console.log('Keine Daten erhalten oder ungültige Antwort.');
+          }
+        });
+
+      /* Erstellen Sie den JSON-Payload
+      const duelid =  { duelId: this.duelId };
+
+
+
+      this.http.get<any>('http://localhost:3000/duel/question')
+        .subscribe(data => {
+        if (data !== null && data !== undefined) {
+          console.log(data);
+          this.question = data.text;
+          this.selectedAnswerId = data.id;
+          if (data !== null) {
+            let num = getRandomNumber();
+
+            if (num == 1) {
+              console.log(data.id)
+
+              this.answer1 = data.correctAnswer;
+              this.answer2 = data.options;
+              this.answer3 = data.options;
+              this.answer4 = data.options;
+            } else {
+              if (num == 2) {
+                console.log(data.id)
+
+                this.answer1 = data.options;
+                this.answer2 = data.correctAnswer;
+                this.answer3 = data.options;
+                this.answer4 = data.options;
+              } else {
+                if (num == 3) {
+                  console.log(data.id)
+
+                  this.answer1 = data.options;
+                  this.answer2 = data.options;
+                  this.answer3 = data.correctAnswer;
+                  this.answer4 = data.options;
+                } else {
+                  console.log(data.id)
+
+                  this.answer1 = data.options;
+                  this.answer2 = data.options;
+                  this.answer3 = data.options;
+                  this.answer4 = data.correctAnswer;
+                }
+              }
+            }
+          }
+        } else {
+          this.question = "Es gibt einen Fehler";
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
       });
-      console.log(this.params)
+
+       */
+
+
     });
 
 
-//TODO: Param probleme lösen es wird ein Object Object ausgegeben
-    this.http.get<any>('http://localhost:3000/duel/question',{params: this.params, headers: this.headers})
+/*
+//TODO: hiermit wirft er immerhin einen fehler params seien undefined
+    this.http.get<any>('http://localhost:3000/duel/question',{params})
       .subscribe(data => {
-        console.log("richtiger Parameter " + this.params)
         if (data !== null && data !== undefined) {
-          console.log(data);
+          console.log(this.duelId);
           this.question = data.text;
           this.selectedAnswerId = data.id;
           if (data !== null) {
