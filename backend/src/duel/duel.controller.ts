@@ -43,7 +43,7 @@ export class DuelController {
     return await this.duelService.createDuel(createDuelDto);
   }
 
-  @Get('question')
+  @Post('question')
   @ApiOperation({ summary: 'Get a new question for the duel' })
   @ApiBody({ type: QuestionEntity })
   @ApiOkResponse({ description: 'Question selected' })
@@ -73,7 +73,7 @@ export class DuelController {
     return await this.duelService.updateDuel(duelId);
   }
 
-  @Get('score')
+  @Post('score')
   @ApiOperation({ summary: 'Get the score of a duel' })
   @ApiOkResponse({ description: 'Dispaly Duel score' })
   async getScore(@Body() { duelId }) {
