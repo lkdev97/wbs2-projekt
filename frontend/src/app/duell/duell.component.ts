@@ -7,13 +7,15 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
-  questionid: string = "";
+  questionId: string = "";
   question: string = "";
   answer1: string = "";
   answer2: string = "";
   answer3: string = "";
   answer4: string = "";
-
+  selectedAnswerId: number = 0
+  id: number = 0
+  selectedQuestion: { id: number; text: string; } = { id: 0, text: '' };
 
   constructor(private http: HttpClient) {
   }
@@ -23,6 +25,7 @@ export class DuellComponent implements OnInit {
       if (data !== null && data !== undefined) {
         console.log(data);
         this.question = data.text;
+        this.selectedAnswerId = data.id;
         if (data !== null) {
           let num = getRandomNumber();
 
@@ -71,30 +74,23 @@ export class DuellComponent implements OnInit {
   }
 
 
+  answerButton(clickedButton: string) {
+    console.log("answerButtonPressed");
+    console.log(clickedButton);
+    console.log(this.selectedAnswerId + " test");
 
-
-
-  answerButton(clickedButton: string){
-    console.log("answerButtonPressed")
-    console.log(clickedButton)
-
-    this.http.get<any>(`http://localhost:3000/duel/question`).subscribe(data => {
-      if (data !== null && data !== undefined) {
-        console.log(data.id);
-        this.questionid = data.id;
-        console.log("QuestionID" + " "+ this.questionid)
-      }
+    this.http.patch<any>('http://localhost:3000/duel/answer', {
+      duelId: "9403c352-4b27-4975-ba05-04ad3163c340",
+      questionId: this.selectedAnswerId,
+      answer: clickedButton
+    }).subscribe(data => {
+      this.reloadPage()
     });
-
-    this.http.patch<any>('http://localhost:3000/duel/answer',
-      {duelId: "e267432a-7ed5-4c73-a2a3-22f9635ac0c9", questionId: this.questionid, answer: clickedButton})
-      .subscribe(data =>{
-
-      })
-
+  }
+  reloadPage() {
+    window.location.reload(); // Die Seite neu laden
   }
 }
-
 
 /**
  * getRandomNumber. This function generates a Number between 1 and 4 and includes both. It is used in the http test witch

@@ -2,15 +2,23 @@
   <div class="duel view">
     <div class="contentView">
       <div class="div1 question" [ngClass]="question">{{question}}</div>
-      <div class="div2 answer" [ngClass]="answer1"><button  (click)="answerButton(answer1)" class="button antwort">{{answer1}}</button></div>
-      <div class="div3 answer" [ngClass]="answer2"><button  (click)="answerButton(answer2)" class="button antwort">{{answer2}}</button></div>
-      <div class="div4 answer" [ngClass]="answer3"><button  (click)="answerButton(answer3)" class="button antwort">{{answer3}}</button></div>
-      <div class="div5 answer" [ngClass]="answer4"><button  (click)="answerButton(answer4)" class="button antwort">{{answer4}}</button></div>
+      <div class="div2 answer" [ngClass]="answer1">
+        <button (click)="answerButton(answer1)" class="button antwort">{{answer1}}</button>
+      </div>
+      <div class="div3 answer" [ngClass]="answer2">
+        <button (click)="answerButton(answer2)" class="button antwort">{{answer2}}</button>
+      </div>
+      <!-- Fügen Sie die Frage-ID in den anderen Buttons hinzu -->
+      <div class="div4 answer" [ngClass]="answer3">
+        <button (click)="answerButton(answer3)" class="button antwort">{{answer3}}</button>
+      </div>
+      <div class="div5 answer" [ngClass]="answer4">
+        <button (click)="answerButton(answer4)" class="button antwort">{{answer4}}</button>
+      </div>
 
-      <button class="button" (click)="answerButton('Antwort')">Antwort</button>
+
 
     </div>
   </div>
 </div>
-
 
