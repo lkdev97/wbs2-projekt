@@ -11,7 +11,12 @@ export class AdminViewComponent implements OnInit {
 
   newQuestion: string = "";
   newQuestionCorrectAnswer: string = "";
-  newQuestionFalseAnswer: string = "";
+  newQuestionFalseAnswer1: string = "";
+  newQuestionFalseAnswer2: string = "";
+  newQuestionFalseAnswer3: string = "";
+
+  newWrongQuestions: any [] =[];
+
 
 
   data: string = "";
@@ -23,7 +28,11 @@ export class AdminViewComponent implements OnInit {
   QuestionUpdate: string = "";
   QuestionCorrectAnswerUpdate: string = "";
   QuestionFalseAnswersUpdate: string = "";
-  constructor(private http: HttpClient, private  route: Router) { }
+  constructor(private http: HttpClient, private  route: Router) {
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer1);
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer2);
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer3);
+  }
 
   ngOnInit(): void {
 
@@ -41,39 +50,6 @@ export class AdminViewComponent implements OnInit {
       },
     });
 
-
-
-
-    /*
-
-    const availableQuestionsList = document.getElementById('availableQuestions');
-        const selectedQuestionsList = document.getElementById('selectedQuestions');
-
-        availableQuestionsList?.addEventListener('click', (event) => {
-          const target = event.target as HTMLElement;
-          if (target.tagName === 'LI') {
-            target.classList.toggle('selected');
-            if (target.classList.contains('selected')) {
-              selectedQuestionsList?.appendChild(target);
-            } else {
-              availableQuestionsList.appendChild(target);
-            }
-          }
-        });
-
-        selectedQuestionsList?.addEventListener('click', (event) => {
-          const target = event.target as HTMLElement;
-          if (target.tagName === 'LI') {
-            target.classList.toggle('selected');
-            if (target.classList.contains('selected')) {
-              availableQuestionsList?.appendChild(target);
-            } else {
-              selectedQuestionsList.appendChild(target);
-            }
-          }
-        });
-
-     */
     console.log(this.adminOutput)
 
   }
@@ -85,9 +61,10 @@ export class AdminViewComponent implements OnInit {
   }
 
   add(){
+
     console.log("addAnswer")
     this.http.post<any>('http://localhost:3000/admin/editor/create',
-      {text: this.newQuestion, options: this.newQuestionFalseAnswer, correctAnswer: this.newQuestionCorrectAnswer}).subscribe(data =>{
+      {text: this.newQuestion, options: this.newWrongQuestions, correctAnswer: this.newQuestionCorrectAnswer}).subscribe(data =>{
       alert("Die neue Frage wurde hinzugefügt")
 
       this.reloadPage();

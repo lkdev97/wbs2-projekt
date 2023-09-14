@@ -20,6 +20,7 @@ export class DuellComponent implements OnInit {
 
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
   currentUserId: string = "";
+  private test: any;
 
 
   constructor(private http: HttpClient, private route: Router
@@ -88,172 +89,9 @@ export class DuellComponent implements OnInit {
           }
         });
 
-      /* Erstellen Sie den JSON-Payload
-      const duelid =  { duelId: this.duelId };
-
-
-
-      this.http.get<any>('http://localhost:3000/duel/question')
-        .subscribe(data => {
-        if (data !== null && data !== undefined) {
-          console.log(data);
-          this.question = data.text;
-          this.selectedAnswerId = data.id;
-          if (data !== null) {
-            let num = getRandomNumber();
-
-            if (num == 1) {
-              console.log(data.id)
-
-              this.answer1 = data.correctAnswer;
-              this.answer2 = data.options;
-              this.answer3 = data.options;
-              this.answer4 = data.options;
-            } else {
-              if (num == 2) {
-                console.log(data.id)
-
-                this.answer1 = data.options;
-                this.answer2 = data.correctAnswer;
-                this.answer3 = data.options;
-                this.answer4 = data.options;
-              } else {
-                if (num == 3) {
-                  console.log(data.id)
-
-                  this.answer1 = data.options;
-                  this.answer2 = data.options;
-                  this.answer3 = data.correctAnswer;
-                  this.answer4 = data.options;
-                } else {
-                  console.log(data.id)
-
-                  this.answer1 = data.options;
-                  this.answer2 = data.options;
-                  this.answer3 = data.options;
-                  this.answer4 = data.correctAnswer;
-                }
-              }
-            }
-          }
-        } else {
-          this.question = "Es gibt einen Fehler";
-          console.log('Keine Daten erhalten oder ungültige Antwort.');
-        }
-      });
-
-       */
-
-
     });
 
 
-    /*
-    //TODO: hiermit wirft er immerhin einen fehler params seien undefined
-        this.http.get<any>('http://localhost:3000/duel/question',{params})
-          .subscribe(data => {
-            if (data !== null && data !== undefined) {
-              console.log(this.duelId);
-              this.question = data.text;
-              this.selectedAnswerId = data.id;
-              if (data !== null) {
-                let num = getRandomNumber();
-
-                if (num == 1) {
-                  console.log(data.id)
-
-                  this.answer1 = data.correctAnswer;
-                  this.answer2 = data.options;
-                  this.answer3 = data.options;
-                  this.answer4 = data.options;
-                } else {
-                  if (num == 2) {
-                    console.log(data.id)
-
-                    this.answer1 = data.options;
-                    this.answer2 = data.correctAnswer;
-                    this.answer3 = data.options;
-                    this.answer4 = data.options;
-                  } else {
-                    if (num == 3) {
-                      console.log(data.id)
-
-                      this.answer1 = data.options;
-                      this.answer2 = data.options;
-                      this.answer3 = data.correctAnswer;
-                      this.answer4 = data.options;
-                    } else {
-                      console.log(data.id)
-
-                      this.answer1 = data.options;
-                      this.answer2 = data.options;
-                      this.answer3 = data.options;
-                      this.answer4 = data.correctAnswer;
-                    }
-                  }
-                }
-              }
-            } else {
-              this.question = "Es gibt einen Fehler";
-              console.log('Keine Daten erhalten oder ungültige Antwort.');
-            }
-          });
-
-        /* Erstellen Sie den JSON-Payload
-        const duelid =  { duelId: this.duelId };
-
-
-
-        this.http.get<any>('http://localhost:3000/duel/question')
-          .subscribe(data => {
-          if (data !== null && data !== undefined) {
-            console.log(data);
-            this.question = data.text;
-            this.selectedAnswerId = data.id;
-            if (data !== null) {
-              let num = getRandomNumber();
-
-              if (num == 1) {
-                console.log(data.id)
-
-                this.answer1 = data.correctAnswer;
-                this.answer2 = data.options;
-                this.answer3 = data.options;
-                this.answer4 = data.options;
-              } else {
-                if (num == 2) {
-                  console.log(data.id)
-
-                  this.answer1 = data.options;
-                  this.answer2 = data.correctAnswer;
-                  this.answer3 = data.options;
-                  this.answer4 = data.options;
-                } else {
-                  if (num == 3) {
-                    console.log(data.id)
-
-                    this.answer1 = data.options;
-                    this.answer2 = data.options;
-                    this.answer3 = data.correctAnswer;
-                    this.answer4 = data.options;
-                  } else {
-                    console.log(data.id)
-
-                    this.answer1 = data.options;
-                    this.answer2 = data.options;
-                    this.answer3 = data.options;
-                    this.answer4 = data.correctAnswer;
-                  }
-                }
-              }
-            }
-          } else {
-            this.question = "Es gibt einen Fehler";
-            console.log('Keine Daten erhalten oder ungültige Antwort.');
-          }
-        });
-
-         */
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       this.currentUserId = data.id;
 
@@ -279,7 +117,6 @@ export class DuellComponent implements OnInit {
         userId: this.currentUserId
       };
 
-      // HTTP-Header für die Anfrage
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
@@ -302,6 +139,10 @@ export class DuellComponent implements OnInit {
                 this.route.navigate(['/profil']);
 
               })
+            this.http.post<any>('http://localhost:3000/duel/score',{duelId: this.duelId}).subscribe(data=>{
+             //TODO: Hier noch den Score einbinden
+
+            })
           } else {
             this.http.post<any>('http://localhost:3000/duel/question', body)
               .subscribe(data => {
@@ -316,31 +157,31 @@ export class DuellComponent implements OnInit {
                       console.log(data.id)
 
                       this.answer1 = data.correctAnswer;
-                      this.answer2 = data.options;
-                      this.answer3 = data.options;
-                      this.answer4 = data.options;
+                      this.answer2 = data.options[0];
+                      this.answer3 = data.options[1];
+                      this.answer4 = data.options[2];
                     } else {
                       if (num == 2) {
                         console.log(data.id)
 
-                        this.answer1 = data.options;
+                        this.answer1 = data.options[0];
                         this.answer2 = data.correctAnswer;
-                        this.answer3 = data.options;
-                        this.answer4 = data.options;
+                        this.answer3 = data.options[1];
+                        this.answer4 = data.options[2];
                       } else {
                         if (num == 3) {
                           console.log(data.id)
 
-                          this.answer1 = data.options;
-                          this.answer2 = data.options;
+                          this.answer1 = data.options[0];
+                          this.answer2 = data.options[1];
                           this.answer3 = data.correctAnswer;
-                          this.answer4 = data.options;
+                          this.answer4 = data.options[2];
                         } else {
                           console.log(data.id)
 
-                          this.answer1 = data.options;
-                          this.answer2 = data.options;
-                          this.answer3 = data.options;
+                          this.answer1 = data.options[0];
+                          this.answer2 = data.options[1];
+                          this.answer3 = data.options[2];
                           this.answer4 = data.correctAnswer;
                         }
                       }
