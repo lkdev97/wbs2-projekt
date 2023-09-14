@@ -68,7 +68,7 @@ export class StartseiteComponent implements OnInit{
   duelend(){
     console.log("ende")
     this.http.patch<any>('http://localhost:3000/duel/update',
-      {duelId: "a3327140-d3ea-4e12-a6f2-d6a75cf7838c", questionId: "ques567", answer: "Paris"})
+      {duelId: "08a35f3b-025d-46fb-bbc1-a110b476ec44", questionId: "ques567", answer: "Paris"})
       .subscribe(data =>{
 
       console.log(data)

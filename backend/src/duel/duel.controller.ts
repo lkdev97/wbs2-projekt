@@ -79,4 +79,11 @@ export class DuelController {
   async getScore(@Body() { duelId }) {
     return this.duelService.getDuelScore(duelId);
   }
+
+  @Get('get')
+  @ApiOperation({ summary: 'Get the duel of current user' })
+  @ApiOkResponse({ description: 'Dispaly Duel' })
+  async getDuel(@Req() request) {
+    return this.duelService.getDuelByUserId(request.session.user.id);
+  }
 }
