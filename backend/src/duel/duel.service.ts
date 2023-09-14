@@ -174,6 +174,7 @@ export class DuelService {
   return score;
   }
 
+  //wieso sollte ich mir hier die duelId übergeben lassen wenn im Dto die duelid steht?
   async submitAnswer(
     duelId: string,
     submitAnswerDto: SubmitAnswerDto,
@@ -202,7 +203,7 @@ export class DuelService {
       throw new ConflictException(`User: ${user.id} has already answered Question: ${question.id} in Duel: ${duel.id}`);
     }
   
-    const duelAnswer = this.duelAnswerRepository.create(); 
+    const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this
     duelAnswer.correct = correct;
     duelAnswer.question = question;
     duelAnswer.user = user;
@@ -234,7 +235,8 @@ export class DuelService {
     await this.statisticRepository.save(statistic);
   }
 
-  async updateDuel(id: string) {
+  //async updateDuel(id: string, winnerId: string) {
+    async updateDuel(id: string) {
     const duel = await this.duelRepository.findOne({ where: { id: id }, relations: ['challenger', 'opponent'] });
     if (!duel) {
       throw new NotFoundException(`Duel with ID ${id} not found`);
@@ -245,6 +247,8 @@ export class DuelService {
     }
     const winner = await this.getWinnerByDuelId(duel.id); //@TODO: Test
 
+    //await this.updateStatistic(duel.challenger.id, duel.opponent.id, winnerId); 
+    //await this.updateStatistic(duel.opponent.id, duel.challenger.id, winnerId);
     if(winner != null) {
       await this.updateStatistic(duel.challenger.id, duel.opponent.id, winner.id); 
       await this.updateStatistic(duel.opponent.id, duel.challenger.id, winner.id); 
@@ -281,5 +285,21 @@ export class DuelService {
     duel.answeredQuestions.push(newQuestion.id);
     await this.duelRepository.save(duel);
     return newQuestion;
+  }
+
+  async getDuelByUserId(userId: string) {
+    const duel = await this.duelRepository.findOne({
+      where: [
+        { challenger: { id: userId }, status: DuelStatus.ONGOING },
+        { opponent: { id: userId }, status: DuelStatus.ONGOING },
+      ],
+      relations: ['challenger', 'opponent'],
+    });
+
+    if (!duel) {
+      throw new NotFoundException(`No ONGOING duel for the user with ID: ${userId} found.`);
+    }
+
+    return duel;
   }
 }
