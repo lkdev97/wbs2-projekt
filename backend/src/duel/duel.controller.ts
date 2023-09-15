@@ -33,12 +33,6 @@ export class DuelController {
     if (createDuelDto.challengerId == createDuelDto.opponentId) {
       return 'you cant start a duel vs yourself';
     }
-    if (await this.duelService.hasOngoingDuel(createDuelDto.challengerId)) {
-      return `challenger ${createDuelDto.challengerId} has an ongoing duel`;
-    }
-    if (await this.duelService.hasOngoingDuel(createDuelDto.opponentId)) {
-      return `opponent ${createDuelDto.opponentId} has an ongoing duel`;
-    }
 
     return await this.duelService.createDuel(createDuelDto);
   }
@@ -68,9 +62,9 @@ export class DuelController {
   @ApiBody({ type: SubmitAnswerDto })
   @ApiOkResponse({ description: 'Duel finished' })
   //async finishDuel(@Body() { duelId, winnerId }) {
-    async finishDuel(@Body() { duelId }) {
+    async finishDuel(@Body() { duelId, duelStatus }) {
     //return await this.duelService.updateDuel(duelId, winnerId);
-    return await this.duelService.updateDuel(duelId);
+    return await this.duelService.updateDuel(duelId, duelStatus);
   }
 
   @Post('score')
@@ -85,5 +79,12 @@ export class DuelController {
   @ApiOkResponse({ description: 'Dispaly Duel' })
   async getDuel(@Req() request) {
     return this.duelService.getDuelByUserId(request.session.user.id);
+  }
+
+  @Get('requests')
+  @ApiOperation({ summary: 'Get all pending duel requests of current user' })
+  @ApiOkResponse({ description: 'Dispaly pending duel requests' })
+  async getPendingDuelRequests(@Req() request) {
+    return this.duelService.getPendingDuelRequestsByUserId(request.session.user.id);
   }
 }
