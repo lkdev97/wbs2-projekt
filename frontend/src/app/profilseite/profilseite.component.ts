@@ -172,7 +172,7 @@ export class ProfilseiteComponent implements OnInit {
     console.log("duellstart mit " + this.currentUserId + " und " + playerId);
     this.http.post<any>('http://localhost:3000/duel', {
       challengerId: this.currentUserId,
-      opponentId: this.selectedOpponentId
+      opponentId: this.selectedOpponentId,
     }).subscribe({
       next: (data) => {
         console.log(data);
@@ -181,7 +181,7 @@ export class ProfilseiteComponent implements OnInit {
 
           // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
         } else {
-          this.route.navigate(['/duell']);
+         // this.route.navigate(['/duell']);
 
           console.error('Ungültiger Statuscode:', data.status);
         }
