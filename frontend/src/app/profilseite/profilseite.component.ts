@@ -16,7 +16,11 @@ import {Router} from "@angular/router";
 export class ProfilseiteComponent implements OnInit {
 
   out: string = "";
+  duelOutput:{ challenger: any; id: any ; status: any} []= [];
   out2: string = "";
+  duelId: string = "";
+  statuscheck = false
+  currentUserCheck = false
 
   currentUserId: string = "";
   selectedOpponentId: number | null = null; // Initialisieren Sie die ausgewählte ID mit null
@@ -46,6 +50,7 @@ export class ProfilseiteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.userChecker()
       //Username und ID abrufen und anzeigen
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
         if (data !== null && data !== undefined) {
@@ -76,11 +81,28 @@ export class ProfilseiteComponent implements OnInit {
       });
 
 
+    this.http.get<any>('http://localhost:3000/duel/requests').subscribe({
+      next: (data) => {
+        if (data !== null && data !== undefined) {
+          this.duelOutput = data;
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      },
+      error: (error) => {
+        console.error('HTTP-Fehler:', error);
+      },
+    });
 
 
 
 
-    // Spielerliste abrufen und aktualisieren
+
+
+
+
+
+      // Spielerliste abrufen und aktualisieren
     this.http.get<any>(`http://localhost:3000/users/all`).subscribe(data => {
       if (Array.isArray(data)) {
 
@@ -176,15 +198,7 @@ export class ProfilseiteComponent implements OnInit {
     }).subscribe({
       next: (data) => {
         console.log(data);
-        // Überprüfen Sie den Statuscode
-        if (data.status === 201) {
 
-          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
-        } else {
-         // this.route.navigate(['/duell']);
-
-          console.error('Ungültiger Statuscode:', data.status);
-        }
       },
       error: (error) => {
         console.error('HTTP-Fehler:', error);
@@ -193,6 +207,32 @@ export class ProfilseiteComponent implements OnInit {
   }
 
 
+  duelAnnehmen(index: string) {
+    this.duelId = index;
+    console.log("duelAnnehmen")
+    this.http.patch<any>('http://localhost:3000/duel/update',
+      {duelId: this.duelId, duelStatus: "ONGOING"})
+      .subscribe(data =>{
 
+        this.route.navigate(['/duell']);
+        console.log(data)
+      });
 
+  }
+
+  userChecker(){
+    console.log(this.statuscheck)
+    this.duelOutput.forEach(item => {
+      if (item.challenger === this.currentUserCheck && item.status === this.statuscheck) {
+        this.currentUserCheck   = true
+        this.statuscheck   = true
+      } else {
+        console.error('Fehler: Ein oder beide Felder fehlen.');
+      }
+    });
+    console.log(this.statuscheck)
+
+  }
+
+  protected readonly JSON = JSON;
 }
