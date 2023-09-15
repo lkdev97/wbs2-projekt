@@ -131,7 +131,7 @@ export class DuellComponent implements OnInit {
           if (this.count >= 10) {
             alert("Das spiel ist zuend")
             this.http.patch<any>('http://localhost:3000/duel/update',
-              {duelId: this.duelId, questionId: this.selectedAnswerId, answer: clickedButton})
+              {duelId: this.duelId,duelStatus: "FINISHED" })
               .subscribe(data => {
 
                 console.log(data)

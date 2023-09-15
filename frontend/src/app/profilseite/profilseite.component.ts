@@ -19,8 +19,8 @@ export class ProfilseiteComponent implements OnInit {
   duelOutput:{ challenger: any; id: any ; status: any} []= [];
   out2: string = "";
   duelId: string = "";
+  status: string = "";
   statuscheck = false
-  currentUserCheck = false
 
   currentUserId: string = "";
   selectedOpponentId: number | null = null; // Initialisieren Sie die ausgewählte ID mit null
@@ -50,7 +50,7 @@ export class ProfilseiteComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userChecker()
+
       //Username und ID abrufen und anzeigen
       this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
         if (data !== null && data !== undefined) {
@@ -92,6 +92,12 @@ export class ProfilseiteComponent implements OnInit {
       error: (error) => {
         console.error('HTTP-Fehler:', error);
       },
+    });
+
+    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+        console.log(data);
+
+        this.statuscheck = true;
     });
 
 
@@ -183,6 +189,7 @@ export class ProfilseiteComponent implements OnInit {
         console.error("Fehler beim blockieren der Freundschaftsanfrage.",error);
       }
     });
+
   }
 
 
@@ -220,19 +227,6 @@ export class ProfilseiteComponent implements OnInit {
 
   }
 
-  userChecker(){
-    console.log(this.statuscheck)
-    this.duelOutput.forEach(item => {
-      if (item.challenger === this.currentUserCheck && item.status === this.statuscheck) {
-        this.currentUserCheck   = true
-        this.statuscheck   = true
-      } else {
-        console.error('Fehler: Ein oder beide Felder fehlen.');
-      }
-    });
-    console.log(this.statuscheck)
-
-  }
 
   protected readonly JSON = JSON;
 }
