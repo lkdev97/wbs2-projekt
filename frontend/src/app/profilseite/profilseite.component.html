@@ -10,14 +10,14 @@
           <br>
           <p [ngClass]="out2" class="out">ID:  {{out2}}</p>
         </div>
-        <div class="container" *ngIf="!statuscheck ">
+        <div class="container" *ngIf="!duelcheck ">
           <ul class="list" id="availableQuestions">
             <li *ngFor="let duelId of duelOutput; let i = index" class="question-item">
               <button class="button" (click)="duelAnnehmen(duelId.id)">{{ JSON.stringify(duelId.challenger) }}</button>
             </li>
           </ul>
         </div>
-        <div class="container" *ngIf=" statuscheck">
+        <div class="container" *ngIf=" duelcheck">
           <button class="button" [routerLink]="['/duell']" >Zu deinem Duell</button>
         </div>
       </div>

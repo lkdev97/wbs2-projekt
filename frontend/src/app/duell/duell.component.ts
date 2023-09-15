@@ -18,6 +18,8 @@ export class DuellComponent implements OnInit {
   id: number = 0
   count: number = 0
 
+  wrong: string ="";
+
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
   currentUserId: string = "";
   private test: any;
@@ -30,21 +32,31 @@ export class DuellComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+      this.currentUserId = data.id;
+    });
+
     console.log(this.duelId + " id")
 
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
       console.log(this.duelId + " Die DuellId")
-      const body = {duelId: this.duelId}; // Wert, den Sie als Abfrageparameter senden möchten
+      const body = {duelId: this.duelId}; // hier wird der Body befüllt
+      /*
       const headers = new HttpHeaders({
         'Content-Tpe': 'application/json'
       });
-      //Scheint zu funktionieren es wird standard gemäß in die Datenbank geschrieben
+
+       */
       this.http.post<any>('http://localhost:3000/duel/question', body)
         .subscribe(data => {
           if (data !== null && data !== undefined) {
+            this.wrong = data.options[0].value
+            console.log("Wrong" + this.wrong)
             console.log(this.duelId);
             this.question = data.text;
+
             this.selectedAnswerId = data.id;
             if (data !== null) {
               let num = getRandomNumber();
@@ -53,17 +65,17 @@ export class DuellComponent implements OnInit {
                 console.log(data.id)
 
                 this.answer1 = data.correctAnswer;
-                this.answer2 = data.options;
-                this.answer3 = data.options;
-                this.answer4 = data.options;
+                this.answer2 = data.options[0]._value;
+                this.answer3 = data.options[1].value;
+                this.answer4 = data.options[2].value;
               } else {
                 if (num == 2) {
                   console.log(data.id)
 
-                  this.answer1 = data.options;
+                  this.answer1 = data.options[0].value;
                   this.answer2 = data.correctAnswer;
-                  this.answer3 = data.options;
-                  this.answer4 = data.options;
+                  this.answer3 = data.options[1]._value;
+                  this.answer4 = data.options[2].value;
                 } else {
                   if (num == 3) {
                     console.log(data.id)
@@ -92,10 +104,6 @@ export class DuellComponent implements OnInit {
     });
 
 
-    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-      this.currentUserId = data.id;
-
-    });
 
   }
 
@@ -128,6 +136,9 @@ export class DuellComponent implements OnInit {
           this.count = this.count + 1
           console.log(this.count + "Counter")
 
+
+
+
           if (this.count >= 10) {
             alert("Das spiel ist zuend")
             this.http.patch<any>('http://localhost:3000/duel/update',
@@ -143,10 +154,11 @@ export class DuellComponent implements OnInit {
              //TODO: Hier noch den Score einbinden
 
             })
-          } else {
+          } else { //um die liste neu zu generieren
             this.http.post<any>('http://localhost:3000/duel/question', body)
               .subscribe(data => {
                 if (data !== null && data !== undefined) {
+                  this.wrong = data.options[0].value
                   console.log(this.duelId);
                   this.question = data.text;
                   this.selectedAnswerId = data.id;
@@ -157,17 +169,17 @@ export class DuellComponent implements OnInit {
                       console.log(data.id)
 
                       this.answer1 = data.correctAnswer;
-                      this.answer2 = data.options[0];
-                      this.answer3 = data.options[1];
-                      this.answer4 = data.options[2];
+                      this.answer2 = data.options[0].value;
+                      this.answer3 = data.options[1].value;
+                      this.answer4 = data.options[2].value;
                     } else {
                       if (num == 2) {
                         console.log(data.id)
 
-                        this.answer1 = data.options[0];
+                        this.answer1 = data.options[0].value;
                         this.answer2 = data.correctAnswer;
-                        this.answer3 = data.options[1];
-                        this.answer4 = data.options[2];
+                        this.answer3 = data.options[1]._value;
+                        this.answer4 = data.options[2].value;
                       } else {
                         if (num == 3) {
                           console.log(data.id)

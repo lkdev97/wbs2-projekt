@@ -20,29 +20,7 @@ export class StartseiteComponent implements OnInit{
   }
 
   //TODO: duelstart, duelend, dueldat müssen auf die profilseite gepackt werden
-  duelstart() {
-    console.log("start");
-    this.http.post<any>('http://localhost:3000/duel', {
-      challengerId: "6a9e50ef-7d87-416d-a545-93d0e8eb144e",
-      opponentId: "749e3b00-b5a0-44e3-b627-fdcbfa6c4132"
-    }).subscribe({
-      next: (data) => {
-        console.log(data);
-        // Überprüfen Sie den Statuscode
-        if (data.status === 201) {
-          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
-        } else {
-          console.error('Ungültiger Statuscode:', data.status);
-        }
-      },
-      //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
-      //TODO: Wenn duell eigentlich nicht funktionieren sollte geht er dennoch auf die Duell seite.
-      error: (error) => {
-        this.route.navigate(['/duell']);
-        console.error('HTTP-Fehler:', error);
-      },
-    });
-  }
+
   duelData() {
     console.log("start");
     this.http.get<any>('http://localhost:3000/duel/question', {

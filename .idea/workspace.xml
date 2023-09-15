@@ -9,6 +9,7 @@
       <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,7 +120,7 @@
       <workItem from="1694702409695" duration="562000" />
       <workItem from="1694705896157" duration="1960000" />
       <workItem from="1694710625208" duration="2452000" />
-      <workItem from="1694773472914" duration="9224000" />
+      <workItem from="1694773472914" duration="11318000" />
     </task>
     <task id="LOCAL-00001" summary="Bulma im Frontend für weiterarbeit vorbereitet">
       <created>1691519367119</created>
@@ -459,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694783896224</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="alle funktionen sind meines wissens nach fertig">
+      <created>1694792066229</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1694792066229</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -467,7 +475,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Start und End duel Button auf der Startseite eingebunden (TEST) diese Funktionieren auch solang ich die Ids der Nutzer hardcode. Wird verändert wenn die Freundesliste fertig ist" />
     <MESSAGE value="Erste Admin versuche." />
     <MESSAGE value="Bug Fixes&#10;Duell correctAnswer hinzugefügt mit RandomNumber&#10;Login route auf Startseite &#10;DuellStart route auf duell Seite" />
     <MESSAGE value="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus" />
@@ -492,6 +499,7 @@
     <MESSAGE value="Kleine änderungen in der Amdin, duell und startseite" />
     <MESSAGE value="Änderungen" />
     <MESSAGE value="Duel Kernfunktionen sind fertig" />
-    <option name="LAST_COMMIT_MESSAGE" value="Duel Kernfunktionen sind fertig" />
+    <MESSAGE value="alle funktionen sind meines wissens nach fertig" />
+    <option name="LAST_COMMIT_MESSAGE" value="alle funktionen sind meines wissens nach fertig" />
   </component>
 </project>
