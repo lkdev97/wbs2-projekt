@@ -12,6 +12,7 @@ import { DuelAnswerEntity } from './duelAnswerEntity.entity';
 export enum DuelStatus {
   ONGOING = 'ONGOING',
   FINISHED = 'FINISHED',
+  PENDING = 'PENDING'
 }
 
 @Entity()
@@ -30,12 +31,12 @@ export class DuelEntity {
 
   @ApiProperty({
     description: 'Status of the duel',
-    example: DuelStatus.ONGOING,
+    example: DuelStatus.PENDING,
   })
   @Column({
     type: 'text',
     enum: DuelStatus,
-    default: DuelStatus.ONGOING,
+    default: DuelStatus.PENDING,
   })
   status: DuelStatus;
 
