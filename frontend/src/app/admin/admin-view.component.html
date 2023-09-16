@@ -64,7 +64,13 @@
   <div class="field">
     <label class="label">Antworten überarbeitet (Falsch): </label>
     <div class="control">
-      <input class="input" type="text" [(ngModel)]="QuestionFalseAnswersUpdate" >
+      <input class="input" type="text" [(ngModel)]="editQuestionFalseAnswer1" >
+    </div>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="editQuestionFalseAnswer2" >
+    </div>
+    <div class="control">
+      <input class="input" type="text" [(ngModel)]="editQuestionFalseAnswer3" >
     </div>
   </div>
   <button class="button"  (click)="updateButton()">Bestätigen</button>

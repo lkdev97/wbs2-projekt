@@ -52,8 +52,6 @@ export class DuellComponent implements OnInit {
       this.http.post<any>('http://localhost:3000/duel/question', body)
         .subscribe(data => {
           if (data !== null && data !== undefined) {
-            this.wrong = data.options[0].value
-            console.log("Wrong" + this.wrong)
             console.log(this.duelId);
             this.question = data.text;
 
@@ -65,31 +63,33 @@ export class DuellComponent implements OnInit {
                 console.log(data.id)
 
                 this.answer1 = data.correctAnswer;
-                this.answer2 = data.options[0]._value;
-                this.answer3 = data.options[1].value;
-                this.answer4 = data.options[2].value;
+                this.answer2 = data.options[0];
+                //hier bekomme ich undefined
+                this.answer3 = data.options[1];
+                //hier bekomm ich das o von [object object]
+                this.answer4 = data.options[2];
               } else {
                 if (num == 2) {
                   console.log(data.id)
 
-                  this.answer1 = data.options[0].value;
+                  this.answer1 = data.options[0];
                   this.answer2 = data.correctAnswer;
-                  this.answer3 = data.options[1]._value;
-                  this.answer4 = data.options[2].value;
+                  this.answer3 = data.options[1];
+                  this.answer4 = data.options[2];
                 } else {
                   if (num == 3) {
                     console.log(data.id)
 
-                    this.answer1 = data.options;
-                    this.answer2 = data.options;
+                    this.answer1 = data.options[0];
+                    this.answer2 = data.options[1];
                     this.answer3 = data.correctAnswer;
-                    this.answer4 = data.options;
+                    this.answer4 = data.options[2];
                   } else {
                     console.log(data.id)
 
-                    this.answer1 = data.options;
-                    this.answer2 = data.options;
-                    this.answer3 = data.options;
+                    this.answer1 = data.options[0];
+                    this.answer2 = data.options[1];
+                    this.answer3 = data.options[2];
                     this.answer4 = data.correctAnswer;
                   }
                 }
@@ -158,7 +158,8 @@ export class DuellComponent implements OnInit {
             this.http.post<any>('http://localhost:3000/duel/question', body)
               .subscribe(data => {
                 if (data !== null && data !== undefined) {
-                  this.wrong = data.options[0].value
+                  this.wrong = data.options[0]
+                  console.log(this.wrong)
                   console.log(this.duelId);
                   this.question = data.text;
                   this.selectedAnswerId = data.id;
@@ -169,17 +170,18 @@ export class DuellComponent implements OnInit {
                       console.log(data.id)
 
                       this.answer1 = data.correctAnswer;
-                      this.answer2 = data.options[0].value;
-                      this.answer3 = data.options[1].value;
-                      this.answer4 = data.options[2].value;
+                      this.answer2 = data.options[0];
+
+                      this.answer3 = data.options[1];
+                      this.answer4 = data.options[2];
                     } else {
                       if (num == 2) {
                         console.log(data.id)
 
-                        this.answer1 = data.options[0].value;
+                        this.answer1 = data.options[0];
                         this.answer2 = data.correctAnswer;
-                        this.answer3 = data.options[1]._value;
-                        this.answer4 = data.options[2].value;
+                        this.answer3 = data.options[1];
+                        this.answer4 = data.options[2];
                       } else {
                         if (num == 3) {
                           console.log(data.id)

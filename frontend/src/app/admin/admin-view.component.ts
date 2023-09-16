@@ -15,6 +15,10 @@ export class AdminViewComponent implements OnInit {
   newQuestionFalseAnswer2: string = "";
   newQuestionFalseAnswer3: string = "";
 
+  editQuestionFalseAnswer1: string = "";
+  editQuestionFalseAnswer2: string = "";
+  editQuestionFalseAnswer3: string = "";
+
   newWrongQuestions: any [] =[];
 
 
@@ -28,11 +32,7 @@ export class AdminViewComponent implements OnInit {
   QuestionUpdate: string = "";
   QuestionCorrectAnswerUpdate: string = "";
   QuestionFalseAnswersUpdate: string = "";
-  constructor(private http: HttpClient, private  route: Router) {
-    this.newWrongQuestions.push(this.newQuestionFalseAnswer1);
-    this.newWrongQuestions.push(this.newQuestionFalseAnswer2);
-    this.newWrongQuestions.push(this.newQuestionFalseAnswer3);
-  }
+  constructor(private http: HttpClient, private  route: Router) {  }
 
   ngOnInit(): void {
 
@@ -61,6 +61,12 @@ export class AdminViewComponent implements OnInit {
   }
 
   add(){
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer1)
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer2);
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer3);
+
+    console.log(this.newWrongQuestions)
+
 
     console.log("addAnswer")
     this.http.post<any>('http://localhost:3000/admin/editor/create',
