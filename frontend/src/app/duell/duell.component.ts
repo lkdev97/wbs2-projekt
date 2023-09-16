@@ -39,72 +39,64 @@ export class DuellComponent implements OnInit {
 
     console.log(this.duelId + " id")
 
+
+
+  }
+  duelButton(){
+    this.getDuelId();
+  }
+
+  getDuelId(): void {
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
-      console.log(this.duelId + " Die DuellId")
-      const body = {duelId: this.duelId}; // hier wird der Body befüllt
-      /*
-      const headers = new HttpHeaders({
-        'Content-Tpe': 'application/json'
-      });
-
-       */
-      this.http.post<any>('http://localhost:3000/duel/question', body)
-        .subscribe(data => {
-          if (data !== null && data !== undefined) {
-            console.log(this.duelId);
-            this.question = data.text;
-
-            this.selectedAnswerId = data.id;
-            if (data !== null) {
-              let num = getRandomNumber();
-
-              if (num == 1) {
-                console.log(data.id)
-
-                this.answer1 = data.correctAnswer;
-                this.answer2 = data.options[0];
-                //hier bekomme ich undefined
-                this.answer3 = data.options[1];
-                //hier bekomm ich das o von [object object]
-                this.answer4 = data.options[2];
-              } else {
-                if (num == 2) {
-                  console.log(data.id)
-
-                  this.answer1 = data.options[0];
-                  this.answer2 = data.correctAnswer;
-                  this.answer3 = data.options[1];
-                  this.answer4 = data.options[2];
-                } else {
-                  if (num == 3) {
-                    console.log(data.id)
-
-                    this.answer1 = data.options[0];
-                    this.answer2 = data.options[1];
-                    this.answer3 = data.correctAnswer;
-                    this.answer4 = data.options[2];
-                  } else {
-                    console.log(data.id)
-
-                    this.answer1 = data.options[0];
-                    this.answer2 = data.options[1];
-                    this.answer3 = data.options[2];
-                    this.answer4 = data.correctAnswer;
-                  }
-                }
-              }
-            }
-          } else {
-            this.question = "Es gibt einen Fehler";
-            console.log('Keine Daten erhalten oder ungültige Antwort.');
-          }
-        });
-
+      console.log(this.duelId + " Die DuellId");
+      this.loadQuestionForDuel(this.duelId);
     });
+  }
 
+  // Funktion, um eine Frage für ein Duell zu laden
+  loadQuestionForDuel(duelId: string): void {
+    const body = { duelId: duelId };
+    this.http.post<any>('http://localhost:3000/duel/question', body)
+      .subscribe(data => {
+        if (data !== null && data !== undefined) {
+          console.log(this.duelId);
+          this.question = data.text;
+          this.selectedAnswerId = data.id;
+          if (data !== null) {
+            let num = getRandomNumber();
 
-
+            if (num == 1) {
+              console.log(data.id)
+              this.answer1 = data.options[0];
+              this.answer2 = data.options[1];
+              this.answer3 = data.options[2];
+              this.answer4 = data.options[3];
+            } else if (num == 2) {
+              console.log(data.id)
+              this.answer1 = data.options[0];
+              this.answer2 = data.options[1];
+              this.answer3 = data.options[2];
+              this.answer4 = data.options[3];
+            } else if (num == 3) {
+              console.log(data.id)
+              this.answer1 = data.options[0];
+              this.answer2 = data.options[1];
+              this.answer3 = data.options[2];
+              this.answer4 = data.options[3];
+            } else {
+              console.log(data.id)
+              this.answer1 = data.options[0];
+              this.answer2 = data.options[1];
+              this.answer3 = data.options[2];
+              this.answer4 = data.options[3];
+            }
+          }
+        } else {
+          this.question = "Es gibt einen Fehler";
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      });
   }
 
 
@@ -155,59 +147,7 @@ export class DuellComponent implements OnInit {
 
             })
           } else { //um die liste neu zu generieren
-            this.http.post<any>('http://localhost:3000/duel/question', body)
-              .subscribe(data => {
-                if (data !== null && data !== undefined) {
-                  this.wrong = data.options[0]
-                  console.log(this.wrong)
-                  console.log(this.duelId);
-                  this.question = data.text;
-                  this.selectedAnswerId = data.id;
-                  if (data !== null) {
-                    let num = getRandomNumber();
-
-                    if (num == 1) {
-                      console.log(data.id)
-
-                      this.answer1 = data.correctAnswer;
-                      this.answer2 = data.options[0];
-
-                      this.answer3 = data.options[1];
-                      this.answer4 = data.options[2];
-                    } else {
-                      if (num == 2) {
-                        console.log(data.id)
-
-                        this.answer1 = data.options[0];
-                        this.answer2 = data.correctAnswer;
-                        this.answer3 = data.options[1];
-                        this.answer4 = data.options[2];
-                      } else {
-                        if (num == 3) {
-                          console.log(data.id)
-
-                          this.answer1 = data.options[0];
-                          this.answer2 = data.options[1];
-                          this.answer3 = data.correctAnswer;
-                          this.answer4 = data.options[2];
-                        } else {
-                          console.log(data.id)
-
-                          this.answer1 = data.options[0];
-                          this.answer2 = data.options[1];
-                          this.answer3 = data.options[2];
-                          this.answer4 = data.correctAnswer;
-                        }
-                      }
-                    }
-                  }
-                } else {
-                  this.question = "Es gibt einen Fehler";
-                  console.log('Keine Daten erhalten oder ungültige Antwort.');
-                }
-              });
-
-
+            this.getDuelId();
           }
 
         })
@@ -216,10 +156,6 @@ export class DuellComponent implements OnInit {
     });
 
 
-  }
-
-  reloadPage() {
-    window.location.reload(); // Die Seite neu laden
   }
 
 
