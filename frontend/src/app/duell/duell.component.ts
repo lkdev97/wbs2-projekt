@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker";
 
 @Component({
   selector: 'app-duell',
@@ -8,6 +9,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
+  currentUserId: string ="";
+  challengerId: string = "";
+  oponnentId: string = "";
+  challenger = false;
+  oponnent = false;
+  oponnentQuestion: string = ""
+
+
   duelId: string = "";
   question: string = "";
   answer1: string = "";
@@ -16,12 +25,11 @@ export class DuellComponent implements OnInit {
   answer4: string = "";
   selectedAnswerId: number = 0
   id: number = 0
-  count: number = 0
+  count: number = -1
 
   wrong: string ="";
 
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
-  currentUserId: string = "";
   private test: any;
 
 
@@ -33,20 +41,72 @@ export class DuellComponent implements OnInit {
 
   ngOnInit(): void {
 
+//So damit userChecker als letztes ausgeführt wird
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       this.currentUserId = data.id;
+      console.log("currentUserId ist: " + this.currentUserId);
+
+      this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+        this.challengerId = data.challenger.id;
+        console.log("ChallengerId ist: " + this.challengerId);
+
+        this.oponnentId = data.opponent.id;
+        console.log("OppenentId ist: " + this.oponnentId);
+
+        this.userChecker();
+      });
     });
 
-    console.log(this.duelId + " id")
+
+
+
 
 
 
   }
-  duelButton(){
-    this.getDuelId();
+
+  userChecker(){
+    if (this.currentUserId == this.challengerId){
+      this.challenger = true;
+      this.getDuel();
+    }else {
+      this.count ++
+      console.log(this.count + "counter ")
+      this.oponnent = true
+      this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+        if (data.answeredQuestions.length ==0){
+          console.log("warte ab");
+          alert("gibs nicht ")
+        }else {
+          console.log(data.answeredQuestions + "AnswerdQuestions")
+          this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+            console.log(data.answeredQuestions[this.count]);
+            this.oponnentQuestion = data.answeredQuestions[this.count];
+            console.log("AnswerdQuestions Frage: ")
+            console.log(this.oponnentQuestion)
+
+
+            this.http.get<any>(`http://localhost:3000/question/${this.oponnentQuestion}`).subscribe(data => {
+              console.log("Die Daten der Frage: " );
+              console.log(data);
+              if (data !== null && data !== undefined){
+
+                this.question = data.text;
+                this.answer1 = data.options[0]
+                this.answer2 = data.options[1];
+                this.answer3 = data.options[2];
+                this.answer4 = data.options[3];
+
+              }
+            });
+          });
+        }
+      });
+    }
   }
 
-  getDuelId(): void {
+  getDuel(): void {
+    console.log("TEST DES GET DUEL")
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
       console.log(this.duelId + " Die DuellId");
@@ -101,6 +161,7 @@ export class DuellComponent implements OnInit {
 
 
   answerButton(clickedButton: string) {
+    this.userChecker();
     console.log("answerButtonPressed");
     console.log(clickedButton);
     console.log(this.selectedAnswerId + " test");
@@ -147,7 +208,7 @@ export class DuellComponent implements OnInit {
 
             })
           } else { //um die liste neu zu generieren
-            this.getDuelId();
+//            this.getDuel();
           }
 
         })

@@ -21,12 +21,13 @@ export class StartseiteComponent implements OnInit{
 
   //TODO: duelstart, duelend, dueldat müssen auf die profilseite gepackt werden
 
+  /*
   duelData() {
     console.log("start");
-    this.http.get<any>('http://localhost:3000/duel/question', {
+    this.http.get<any>('http://localhost:3000/duel/question/eddc941b-4e2c-4d34-ae02-d134c9412941', {
     }).subscribe({
       next: (data) => {
-        console.log(data);
+        console.log(data + "bitte");
         // Überprüfen Sie den Statuscode
         if (data.status === 201) {
           // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
@@ -43,13 +44,27 @@ export class StartseiteComponent implements OnInit{
   }
 
 
+   */
+
+  duelData(){
+    this.question= "cffa9cdb-772a-4996-b947-9c4fba9893a2"
+    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+      if (data.answeredQuestions.length ==2){
+        console.log(data.answeredQuestions);
+      }else {
+        console.log("fuck ")
+      }
+
+    });
+  }
   duelend(){
     console.log("ende")
     this.http.patch<any>('http://localhost:3000/duel/update',
-      {duelId: "1807157b-2311-4713-bd30-da00431a3c7f", duelStatus: "FINISHED"})
+      {duelId: "2873b962-5963-4a6e-82b9-411ada8bd1aa", duelStatus: "FINISHED"})
       .subscribe(data =>{
 
       console.log(data)
+
     })
 
   }
