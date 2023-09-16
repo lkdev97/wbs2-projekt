@@ -21,7 +21,8 @@ export class QuestionEntity {
     description: 'The available options for the question',
     example: ['Berlin', 'Paris', 'London', 'Madrid'],
   })
-  @Column('text')
+  //@Column('text')
+  @Column('simple-array')
   options: string[];
 
   @ApiProperty({
