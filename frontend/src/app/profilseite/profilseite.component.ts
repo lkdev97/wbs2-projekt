@@ -147,9 +147,7 @@ export class ProfilseiteComponent implements OnInit {
 
   
   loadPendingFriendshipRequests() {
-    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
     this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
-      console.log("PENEENENENDING");
       if (Array.isArray(data)) {
         this.pendingFriendshipRequests = data;
       } else {
