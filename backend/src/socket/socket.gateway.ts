@@ -4,6 +4,7 @@ import {
   OnGatewayConnection,
   OnGatewayDisconnect,
   SubscribeMessage,
+  OnGatewayInit,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
@@ -11,6 +12,11 @@ import { Server, Socket } from 'socket.io';
 export class SocketGateway {
   @WebSocketServer()
   server: Server;
+
+  constructor() {
+  }
+
+
 
   @SubscribeMessage('statusChange')
   handleStatusChange(client: Socket, data: any) {
@@ -26,5 +32,6 @@ export class SocketGateway {
   handleFriendshipStatusUpdated(payload: { userId: string, friendStatus: string }) {
     this.server.emit('friendshipStatusUpdated', payload);
   }
+
 }
  

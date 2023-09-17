@@ -120,17 +120,11 @@ export class ProfilseiteComponent implements OnInit {
       }
     });
 
-    // Offene Freundschaftsanfragen abrufen
-    this.socket.on('friendRequestSent', (payload: { senderId: string, recipientId: string }) => {
-      this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
-        if (Array.isArray(data)) {
+    this.loadPendingFriendshipRequests();
 
-            this.pendingFriendshipRequests = data;
-            //console.log("offene Freundschaftsanfragen:  "+  this.pendingFriendshipRequests);
-          } else {
-            console.log('Ungültige Antwort bei der Abfrage der offenen Requests.');
-          }
-      });
+    // Setze einen Socket-Listener für das Ereignis 'friendRequestSent'
+    this.socket.on('friendRequestSent', (payload: { senderId: string, recipientId: string }) => {
+      this.loadPendingFriendshipRequests();
     });
 
     //Statistik des Spielers abrufen
@@ -149,6 +143,19 @@ export class ProfilseiteComponent implements OnInit {
       },
     });
 
+  }
+
+  
+  loadPendingFriendshipRequests() {
+    console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+    this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
+      console.log("PENEENENENDING");
+      if (Array.isArray(data)) {
+        this.pendingFriendshipRequests = data;
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der offenen Requests.');
+      }
+    });
   }
 
 
