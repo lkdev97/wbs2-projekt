@@ -16,6 +16,7 @@ export class DuellComponent implements OnInit {
   oponnent = false;
   oponnentQuestion: string = ""
 
+  countQuestion: number = -2;
 
   duelId: string = "";
   question: string = "";
@@ -23,9 +24,9 @@ export class DuellComponent implements OnInit {
   answer2: string = "";
   answer3: string = "";
   answer4: string = "";
-  selectedAnswerId: number = 0
-  id: number = 0
-  count: number = -1
+  selectedAnswerId: number = 0;
+  id: number = 0;
+  count: number = 0;
 
   wrong: string ="";
 
@@ -40,6 +41,12 @@ export class DuellComponent implements OnInit {
 
 
   ngOnInit(): void {
+    console.log(this.count)
+    const storedCount = localStorage.getItem('duellCounter');
+
+    if (storedCount !== null) {
+      this.countQuestion = parseInt(storedCount, 10); // Wenn gespeichert, wiederherstellen
+    }
 
 //So damit userChecker als letztes ausgeführt wird
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
@@ -70,8 +77,9 @@ export class DuellComponent implements OnInit {
       this.challenger = true;
       this.getDuel();
     }else {
-      this.count ++
-      console.log(this.count + "counter ")
+      localStorage.setItem('duellCounter', this.countQuestion.toString())
+      this.countQuestion ++
+      console.log(this.countQuestion + "counter ")
       this.oponnent = true
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
         if (data.answeredQuestions.length ==0){
@@ -80,8 +88,8 @@ export class DuellComponent implements OnInit {
         }else {
           console.log(data.answeredQuestions + "AnswerdQuestions")
           this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
-            console.log(data.answeredQuestions[this.count]);
-            this.oponnentQuestion = data.answeredQuestions[this.count];
+            console.log(data.answeredQuestions[this.countQuestion]);
+            this.oponnentQuestion = data.answeredQuestions[this.countQuestion];
             console.log("AnswerdQuestions Frage: ")
             console.log(this.oponnentQuestion)
 
@@ -89,6 +97,8 @@ export class DuellComponent implements OnInit {
             this.http.get<any>(`http://localhost:3000/question/${this.oponnentQuestion}`).subscribe(data => {
               console.log("Die Daten der Frage: " );
               console.log(data);
+              this.selectedAnswerId = data.id;
+
               if (data !== null && data !== undefined){
 
                 this.question = data.text;

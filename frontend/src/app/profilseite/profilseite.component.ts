@@ -183,6 +183,9 @@ export class ProfilseiteComponent implements OnInit {
     this.http.patch<any>('http://localhost:3000/duel/update',
       {duelId: this.duelId, duelStatus: "ONGOING"})
       .subscribe(data => {
+
+        localStorage.setItem('duellCounter', '-1'); // Setze den Wert im Local Storage auf -1 zurück
+
         this.route.navigate(['/duell']);
       });
   }
