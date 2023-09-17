@@ -102,7 +102,7 @@ export class AuthController implements OnModuleInit {
         online: request.session.user.online,
       }); // @Test
       request.session.user = null;
-      return 'logged out!';
+      return true;
     }
 
     request.session.destroy((err) => {
@@ -110,6 +110,8 @@ export class AuthController implements OnModuleInit {
         console.error('Fehler beim Löschen der Session:', err);
       }
     });
+
+    return false; 
   }
 
   /**
