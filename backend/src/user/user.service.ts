@@ -40,8 +40,17 @@ export class UserService {
     return await this.userRepository.save(user);
   }
 
-  async findAllUsers(): Promise<UserEntity[]> {
-    return await this.userRepository.find();
+  async findAllUsers(id: string): Promise<UserEntity[]> {
+    const allUsers = await this.userRepository.find();
+
+    const usersWithoutPassword = allUsers
+      .filter(user => user.id !== id) 
+      .map(user => {
+        user.removePassword(); 
+        return user;
+      });
+  
+    return usersWithoutPassword;
   }
 
   async deleteUser(id: string): Promise<void> {

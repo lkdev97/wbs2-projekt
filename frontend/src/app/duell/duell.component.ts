@@ -196,6 +196,13 @@ export class DuellComponent implements OnInit {
 
           })
 
+          this.http.post<any>('http://localhost:3000/duel/score', body)
+          .subscribe(data => {
+            console.log("Dateen " + data);
+            console.log("yoy yoyo " + data.opponentScore);
+            console.log("yoy yoyo " + data.challengerScore);
+          })
+
 
       });
 

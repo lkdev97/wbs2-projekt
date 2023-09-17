@@ -17,6 +17,11 @@ import { HeaderComponent } from './header/header.component';
 import {SharedService} from "./shared.service";
 import { AboutusComponent } from './aboutus/aboutus.component';
 
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+
+const socketIoConfig: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
+
+
 
 const appRoutes: Routes = [
   {path: 'startseite', component: StartseiteComponent},
@@ -50,6 +55,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FormsModule,
     HttpClientModule,
+    SocketIoModule.forRoot(socketIoConfig),
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]

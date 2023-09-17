@@ -1,8 +1,6 @@
 import {
   WebSocketGateway,
   WebSocketServer,
-  OnGatewayConnection,
-  OnGatewayDisconnect,
   SubscribeMessage,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
@@ -12,8 +10,22 @@ export class SocketGateway {
   @WebSocketServer()
   server: Server;
 
+
   @SubscribeMessage('statusChange')
   handleStatusChange(client: Socket, data: any) {
-    this.server.emit('statusChange', data);
+    // Überprüfe, ob der Absender der Nachricht nicht der gleiche ist wie der empfangende Client
+    if (client.id !== data.senderClientId) {
+      this.server.emit('statusChange', data);
+    }
   }
+
+  /*@SubscribeMessage('friendRequestSent')
+  handleFriendRequestSent(payload: { senderId: string; recipientId: string }) {
+    this.server.emit('friendRequestSent', payload);
+  }*/
+
+  /*@SubscribeMessage('friendshipStatusUpdated')
+  handleFriendshipStatusUpdated(payload: { userId: string; friendStatus: string }) {
+    this.server.emit('friendshipStatusUpdated', payload);
+  }*/
 }

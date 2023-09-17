@@ -1,6 +1,7 @@
 import {Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import { Socket } from 'ngx-socket-io';
 
 
 @Component({
@@ -42,40 +43,14 @@ export class ProfilseiteComponent implements OnInit {
   constructor(
     private changeDetectorRef: ChangeDetectorRef,
     private http: HttpClient,
-    private route: Router
+    private route: Router,
+    private socket: Socket
   ) {
   }
 
   ngOnInit() {
-    //Die Nutzerdaten über die Route /auth/user abrufen und anzeigen
-    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
-      if (data !== null && data !== undefined) {
-        if (data.role == "ADMIN") {
-          this.route.navigate(['/adminseite'])
-        }
-        console.log(data)
-        this.isUserLoggedIn = true;
-
-        this.out = data.username;
-        this.out2 = data.id;
-        this.currentUserId = data.id;
-        const userId = data.id;
-
-        //Freundesliste des angemeldeten Users abrufen
-        this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
-          if (Array.isArray(data)) {
-
-            this.friendsList = data;
-          } else {
-            console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
-          }
-        });
-
-      } else {
-        console.log('Keine Daten erhalten oder ungültige Antwort.');
-      }
-    });
-
+    // Die Nutzerdaten über die Route /auth/user abrufen und anzeige
+    this.load();
     //gibt alle Pending Duel Request des aktuellen Users auf
     this.http.get<any>('http://localhost:3000/duel/requests').subscribe({
       next: (data) => {
@@ -95,27 +70,22 @@ export class ProfilseiteComponent implements OnInit {
       this.duelcheck = true;
     });
 
+    
     // Spielerliste abrufen und aktualisieren
-    this.http.get<any>(`http://localhost:3000/users/all`).subscribe(data => {
-      if (Array.isArray(data)) {
+    this.loadAllPlayers();
+    this.loadPendingFriendshipRequests();
 
-        this.playersList = data;
-        //console.log("empfangene Spielerliste: "+ data);
-      } else {
-        console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
-      }
+
+    //Sockets
+    this.socket.on('friendRequestSent', (payload: { senderId: string, recipientId: string }) => {
+      this.loadPendingFriendshipRequests();
     });
 
-    // Offene Freundschaftsanfragen abrufen
-    this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
-      if (Array.isArray(data)) {
-
-        this.pendingFriendshipRequests = data;
-        //console.log("offene Freundschaftsanfragen:  "+  this.pendingFriendshipRequests);
-      } else {
-        console.log('Ungültige Antwort bei der Abfrage der offenen Requests.');
-      }
+    this.socket.on('friendshipStatusUpdated', (payload: { userId: string, friendStatus: string }) => {
+        this.load();
+        this.loadPendingFriendshipRequests();
     });
+
 
     //Statistik des Spielers abrufen
     this.http.get<any>('http://localhost:3000/statistics').subscribe({
@@ -133,6 +103,74 @@ export class ProfilseiteComponent implements OnInit {
       },
     });
 
+  }
+
+  load() {
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe((data) => {
+      if (data !== null && data !== undefined) {
+        if (data.role == 'ADMIN') {
+          this.route.navigate(['/adminseite']);
+        }
+        console.log(data);
+        this.isUserLoggedIn = true;
+        this.out = data.username;
+        this.out2 = data.id;
+        this.currentUserId = data.id;
+        this.listFriends(this.currentUserId);
+        const userId = data.id;
+
+        // Freundesliste des angemeldeten Benutzers abrufen
+
+        // Auf das 'statusChange'-Ereignis vom WebSocket-Server hören und die Freundesliste aktualisieren
+        this.socket.on('statusChange', (statusChangeData: any) => {
+          // Statusänderung empfangen, überprüfen, ob sie für die Freundesliste relevant ist
+          if (this.friendsList.some((friend) => friend.id === statusChangeData.id)) {
+            // Statusänderung betrifft einen Freund
+            const updatedFriendsList = [...this.friendsList]; // Dupliziere die Freundesliste
+            const friendIndex = updatedFriendsList.findIndex((friend) => friend.id === statusChangeData.id);
+            updatedFriendsList[friendIndex].online = statusChangeData.online;
+            this.friendsList = updatedFriendsList; // Aktualisiere die Freundesliste
+          }
+          this.loadAllPlayers();
+        });
+      } else {
+        console.log('Keine Daten erhalten oder ungültige Antwort.');
+      }
+    });
+  }
+
+  loadAllPlayers() {
+    this.http.get<any>(`http://localhost:3000/users/all`).subscribe(data => {
+      if (Array.isArray(data)) {
+
+        this.playersList = data;
+        //console.log("empfangene Spielerliste: "+ data);
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der Spielerliste.');
+      }
+    });
+  }
+
+  listFriends(userId: string) {
+    this.http
+    .get<any>(`http://localhost:3000/friendship/list-friends/${userId}`)
+    .subscribe((data) => {
+      if (Array.isArray(data)) {
+        this.friendsList = data;
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
+      }
+    });
+  }
+  
+  loadPendingFriendshipRequests() {
+    this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
+      if (Array.isArray(data)) {
+        this.pendingFriendshipRequests = data;
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der offenen Requests.');
+      }
+    });
   }
 
 
@@ -155,7 +193,6 @@ export class ProfilseiteComponent implements OnInit {
   acceptFriendship(userId: number) {
     this.http.patch('http://localhost:3000/friendship/update', {userId: userId, friendStatus: 'ACCEPTED'}).subscribe({
       next: () => {
-
         //console.log("Freund erfolgreich hinzugefügt.")
         this.changeDetectorRef.detectChanges();
 
@@ -168,6 +205,7 @@ export class ProfilseiteComponent implements OnInit {
   }
 
   rejectOrBlockFriendship(userId: number) {
+
     this.http.patch('http://localhost:3000/friendship/update', {userId: userId, friendStatus: 'BLOCKED'}).subscribe({
       next: () => {
 

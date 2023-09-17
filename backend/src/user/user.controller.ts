@@ -35,8 +35,9 @@ export class UserController {
   @Get('all')
   @ApiOperation({ summary: 'Get all users' })
   @ApiOkResponse({ description: 'Successfully returned all users' })
-  getAllUsers() {
-    return this.userService.findAllUsers();
+  getAllUsers(@Req() request) {
+    if(request.session.user) return this.userService.findAllUsers(request.session.user.id)
+    else return this.userService.findAllUsers(undefined)
   }
 
   @Get(':id')

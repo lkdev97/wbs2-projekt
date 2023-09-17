@@ -56,4 +56,8 @@ export class UserEntity {
   @ApiProperty({ description: 'List of admin roles if user is an admin' })
   @OneToMany(() => AdminEntity, (admin) => admin.user)
   admin: AdminEntity[];
+  
+  removePassword(): void {
+    this.password = undefined;
+  }
 }
