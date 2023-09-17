@@ -51,7 +51,8 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully sent a friend request' })
   async addFriend(@Body() { friendId }: { friendId: string }, @Req() request) {
     const userId = request.session.user.id;
-    this.websocketGateway.handleFriendRequestSent({ senderId: userId, recipientId: friendId });
+    //this.websocketGateway.handleFriendRequestSent({ senderId: userId, recipientId: friendId });
+    this.websocketGateway.server.emit('friendRequestSent');
     return await this.friendshipService.addFriendRequest(userId, friendId);
   }
 
@@ -62,7 +63,7 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully updated the friendship status' })
   async updateFriendStatus(@Body() { userId, friendStatus }, @Req() request) {
     const friendId = request.session.user.id;
-    this.websocketGateway.handleFriendshipStatusUpdated({ userId, friendStatus });
+    this.websocketGateway.server.emit('friendshipStatusUpdated');
     return this.friendshipService.updateFriendStatus(
       userId,
       friendId,

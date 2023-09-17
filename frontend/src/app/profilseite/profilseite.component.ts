@@ -49,40 +49,8 @@ export class ProfilseiteComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Die Nutzerdaten über die Route /auth/user abrufen und anzeigen
-    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe((data) => {
-      if (data !== null && data !== undefined) {
-        if (data.role == 'ADMIN') {
-          this.route.navigate(['/adminseite']);
-        }
-        console.log(data);
-        this.isUserLoggedIn = true;
-        this.out = data.username;
-        this.out2 = data.id;
-        this.currentUserId = data.id;
-        const userId = data.id;
-
-        // Freundesliste des angemeldeten Benutzers abrufen
-        this.listFriends(userId);
-
-        // Auf das 'statusChange'-Ereignis vom WebSocket-Server hören und die Freundesliste aktualisieren
-        this.socket.on('statusChange', (statusChangeData: any) => {
-          // Statusänderung empfangen, überprüfen, ob sie für die Freundesliste relevant ist
-          if (this.friendsList.some((friend) => friend.id === statusChangeData.id)) {
-            // Statusänderung betrifft einen Freund
-            const updatedFriendsList = [...this.friendsList]; // Dupliziere die Freundesliste
-            const friendIndex = updatedFriendsList.findIndex((friend) => friend.id === statusChangeData.id);
-            updatedFriendsList[friendIndex].online = statusChangeData.online;
-            this.friendsList = updatedFriendsList; // Aktualisiere die Freundesliste
-          }
-          this.loadAllPlayers();
-        });
-      } else {
-        console.log('Keine Daten erhalten oder ungültige Antwort.');
-      }
-    });
-
-
+    // Die Nutzerdaten über die Route /auth/user abrufen und anzeige
+    this.load();
     //gibt alle Pending Duel Request des aktuellen Users auf
     this.http.get<any>('http://localhost:3000/duel/requests').subscribe({
       next: (data) => {
@@ -105,20 +73,17 @@ export class ProfilseiteComponent implements OnInit {
     
     // Spielerliste abrufen und aktualisieren
     this.loadAllPlayers();
-
     this.loadPendingFriendshipRequests();
 
+
+    //Sockets
     this.socket.on('friendRequestSent', (payload: { senderId: string, recipientId: string }) => {
       this.loadPendingFriendshipRequests();
     });
 
     this.socket.on('friendshipStatusUpdated', (payload: { userId: string, friendStatus: string }) => {
-      this.listFriends(this.currentUserId);
-      if (payload.userId) {
-        this.listFriends(payload.userId);
-      }
-
-      this.loadPendingFriendshipRequests();
+        this.load();
+        this.loadPendingFriendshipRequests();
     });
 
 
@@ -138,6 +103,40 @@ export class ProfilseiteComponent implements OnInit {
       },
     });
 
+  }
+
+  load() {
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe((data) => {
+      if (data !== null && data !== undefined) {
+        if (data.role == 'ADMIN') {
+          this.route.navigate(['/adminseite']);
+        }
+        console.log(data);
+        this.isUserLoggedIn = true;
+        this.out = data.username;
+        this.out2 = data.id;
+        this.currentUserId = data.id;
+        this.listFriends(this.currentUserId);
+        const userId = data.id;
+
+        // Freundesliste des angemeldeten Benutzers abrufen
+
+        // Auf das 'statusChange'-Ereignis vom WebSocket-Server hören und die Freundesliste aktualisieren
+        this.socket.on('statusChange', (statusChangeData: any) => {
+          // Statusänderung empfangen, überprüfen, ob sie für die Freundesliste relevant ist
+          if (this.friendsList.some((friend) => friend.id === statusChangeData.id)) {
+            // Statusänderung betrifft einen Freund
+            const updatedFriendsList = [...this.friendsList]; // Dupliziere die Freundesliste
+            const friendIndex = updatedFriendsList.findIndex((friend) => friend.id === statusChangeData.id);
+            updatedFriendsList[friendIndex].online = statusChangeData.online;
+            this.friendsList = updatedFriendsList; // Aktualisiere die Freundesliste
+          }
+          this.loadAllPlayers();
+        });
+      } else {
+        console.log('Keine Daten erhalten oder ungültige Antwort.');
+      }
+    });
   }
 
   loadAllPlayers() {
