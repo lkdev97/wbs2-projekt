@@ -68,3 +68,9 @@ body{
   border: none;
   color: white;
 }
+
+.whiteColor{
+  font-size: x-large;
+  padding-left: 2%;
+  color: whitesmoke;
+}

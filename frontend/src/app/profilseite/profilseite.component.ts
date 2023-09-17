@@ -49,6 +49,7 @@ export class ProfilseiteComponent implements OnInit {
   }
 
   ngOnInit() {
+
     // Die Nutzerdaten über die Route /auth/user abrufen und anzeige
     this.load();
     //gibt alle Pending Duel Request des aktuellen Users auf
@@ -70,7 +71,7 @@ export class ProfilseiteComponent implements OnInit {
       this.duelcheck = true;
     });
 
-    
+
     // Spielerliste abrufen und aktualisieren
     this.loadAllPlayers();
     this.loadPendingFriendshipRequests();
@@ -162,7 +163,7 @@ export class ProfilseiteComponent implements OnInit {
       }
     });
   }
-  
+
   loadPendingFriendshipRequests() {
     this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {
       if (Array.isArray(data)) {
@@ -245,6 +246,8 @@ export class ProfilseiteComponent implements OnInit {
   reloadPage() {
     window.location.reload(); // Die Seite neu laden
   }
+
+
 
   protected readonly JSON = JSON;
 }
