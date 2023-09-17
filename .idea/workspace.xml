@@ -7,10 +7,6 @@
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +16,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="dev(di)" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,23 +38,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev(di)",
-    "last_opened_file_path": "C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editing.templates",
-    "ts.external.directory.path": "C:\\Users\\dimas\\WebstormProjects\\wbs2-projekt\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Stefan__Frontend__Funktion&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="npm.start">
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/backend/package.json" />
@@ -123,13 +119,6 @@
       <workItem from="1694710625208" duration="2452000" />
       <workItem from="1694773472914" duration="11601000" />
       <workItem from="1694854684600" duration="10407000" />
-    </task>
-    <task id="LOCAL-00010" summary="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele.">
-      <created>1693422582195</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1693422582195</updated>
     </task>
     <task id="LOCAL-00011" summary="Backend und Frontend funktioniert zusammen">
       <created>1693485216964</created>
@@ -467,7 +456,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694929121357</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt">
+      <created>1694969016377</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1694969016377</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +471,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ABOUT US seite angelegt und mit der Readme versehen" />
     <MESSAGE value="Bug fix für das About Us auf der startseite.component.html" />
     <MESSAGE value="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt." />
     <MESSAGE value="Register angepasst" />
@@ -500,6 +495,7 @@
     <MESSAGE value="Adminseite ein letztes mal bearbeitet" />
     <MESSAGE value="Nav Leiste gefixxed. Verschwindet nicht mehr beim Neuladen der seite." />
     <MESSAGE value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
+    <MESSAGE value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
   </component>
 </project>
