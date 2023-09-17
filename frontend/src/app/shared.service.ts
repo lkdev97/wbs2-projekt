@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 export class SharedService {
   constructor(private router: Router) {}
 
-  isLoggedIn = false;
+  isLoggedIn: boolean = false;
   isConfirmationPopupVisible: boolean = false;
 
 

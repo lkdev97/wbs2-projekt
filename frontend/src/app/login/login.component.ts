@@ -27,10 +27,12 @@ export class LoginComponent {
       this.http.post<any>('http://localhost:3000/auth/login',
         {username: this.username, password: this.userPassword}).subscribe({
         next: (data) => {
+          //this.sharedService.isLoggedIn = true;
+          this.showLogoutNProfileBtns();
           this.username = data.username;
 
-          this.sharedService.isLoggedIn = true;
-          this.showLogoutNProfileBtns();
+
+
 
         },
         error: (error) => {
