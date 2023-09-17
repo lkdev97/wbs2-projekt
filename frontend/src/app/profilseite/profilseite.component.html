@@ -129,14 +129,17 @@
         <th>Gegner</th>
         <th>Spiele gegen Gegner</th>
         <th>Siege gegen Gegner</th>
+
       </tr>
-      <tr *ngFor="let game of statistics">
-        <td>{{ game.id }}</td>
-        <td>{{ game.totalGamesAgainstOpponent }}</td>
-        <td>{{ game.winsAgainstOpponent }}</td>
+      <tr *ngFor="let opponent of statisticsArray">
+        <td>{{ opponent.opponent.username }}</td>
+        <td>{{ opponent.totalGamesAgainstOpponent }}</td>
+        <td>{{ opponent.winsAgainstOpponent }}</td>
       </tr>
     </table>
   </div>
 </section>
+
+
 
 

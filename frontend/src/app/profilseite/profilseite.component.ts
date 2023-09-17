@@ -19,15 +19,19 @@ export class ProfilseiteComponent implements OnInit {
   duelcheck = false
   selectedOpponentId: number | null = null;
 
+  statisticsArray: {
+    opponent: any;
+    username: any; totalGamesAgainstOpponent: any; winsAgainstOpponent: any; }[] = [];
 
-  // Arrays für Daten
+
+
+    // Arrays für Daten
   playersList: any = [];
 
   friendsList: any[] = [];
 
   pendingFriendshipRequests: any = [];
 
-  statistics: any = [];
 
   duelOutput: { challenger: any; id: any; status: any } [] = [];
 
@@ -107,16 +111,21 @@ export class ProfilseiteComponent implements OnInit {
     });
 
     //Statistik des Spielers abrufen
-    this.http.get<any>(`http://localhost:3000/statistics`).subscribe(data => {
-      if (Array.isArray(data)) {
-
-        this.statistics = data;
-        //console.log(this.statistics);
-        //console.log("empfangene Statistik: " + data);
-      } else {
-        console.log('Ungültige Antwort bei der Abfrage der Statistik.');
-      }
+    this.http.get<any>('http://localhost:3000/statistics').subscribe({
+      next: (data) => {
+        if (data !== null && data !== undefined) {
+          console.log(data)
+          this.statisticsArray = [data];
+          console.log(this.statisticsArray)
+        } else {
+          console.log('Keine Daten erhalten oder ungültige Antwort.');
+        }
+      },
+      error: (error) => {
+        console.error('HTTP-Fehler:', error);
+      },
     });
+
 
   }
 

@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,13 +120,6 @@
       <workItem from="1694710625208" duration="2452000" />
       <workItem from="1694773472914" duration="11601000" />
       <workItem from="1694854684600" duration="10407000" />
-    </task>
-    <task id="LOCAL-00005" summary="Login started. TODO: Glas effect on Login form">
-      <created>1691576210499</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1691576210499</updated>
     </task>
     <task id="LOCAL-00006" summary="Login started. TODO: Glas effect on Login form and Register finish">
       <created>1691576402624</created>
@@ -467,7 +459,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694909302781</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind.">
+      <created>1694914196480</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1694914196480</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +474,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Admin seite Fragen werden geladen und erster Ansatz zum hinzufügen neuer Fragen" />
     <MESSAGE value="Fragen Hinzufügen klappt per Button" />
     <MESSAGE value="Benachrichtigungen für den Admin erstellt (für das löschen hinzufügen und ändern der Questions" />
     <MESSAGE value="Admin ansicht. Automatisches eintragen der Ids für das löschen und updaten der Fragen. Sowie css überarbeitet (für die Admin seite)" />
@@ -500,6 +498,7 @@
     <MESSAGE value="Angefangen code aufzuräumen" />
     <MESSAGE value="Duell bekommen schonmal beide die gleichen Fragen" />
     <MESSAGE value="Nutzer können Fragen beantworten und nach dem Neuladen bleibt die Zahl unverändert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Nutzer können Fragen beantworten und nach dem Neuladen bleibt die Zahl unverändert" />
+    <MESSAGE value="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind." />
   </component>
 </project>

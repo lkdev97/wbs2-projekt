@@ -9,7 +9,7 @@ import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/se
   styleUrls: ['./duell.component.css']
 })
 export class DuellComponent implements OnInit {
-  currentUserId: string ="";
+  currentUserId: string = "";
   challengerId: string = "";
   oponnentId: string = "";
   challenger = false;
@@ -28,7 +28,7 @@ export class DuellComponent implements OnInit {
   id: number = 0;
   count: number = 0;
 
-  wrong: string ="";
+  wrong: string = "";
 
   selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
   private test: any;
@@ -65,26 +65,23 @@ export class DuellComponent implements OnInit {
     });
 
 
-
-
-
-
-
   }
 
-  userChecker(){
-    if (this.currentUserId == this.challengerId){
+  userChecker() {
+    if (this.currentUserId == this.challengerId) {
       this.getDuel();
-    }else {
+    } else {
       localStorage.setItem('duellCounter', this.countQuestion.toString())
-      this.countQuestion ++
+      this.countQuestion++
       console.log(this.countQuestion + "counter ")
       this.oponnent = true
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
-        if (data.answeredQuestions.length ==0){
+        if (data.answeredQuestions.length == 0) {
           console.log("warte ab");
-          alert("gibs nicht ")
-        }else {
+          alert("Bitte warte bis dein Gegner seine Frage beantwortet hat")
+          this.reloadPageInterval(10)
+
+        } else {
           console.log(data.answeredQuestions + "AnswerdQuestions")
           this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
             console.log(data.answeredQuestions[this.countQuestion]);
@@ -94,18 +91,17 @@ export class DuellComponent implements OnInit {
 
 
             this.http.get<any>(`http://localhost:3000/question/${this.oponnentQuestion}`).subscribe(data => {
-              console.log("Die Daten der Frage: " );
+              console.log("Die Daten der Frage: ");
               console.log(data);
               this.selectedAnswerId = data.id;
 
-              if (data !== null && data !== undefined){
+              if (data !== null && data !== undefined) {
 
                 this.question = data.text;
                 this.answer1 = data.options[0]
                 this.answer2 = data.options[1];
                 this.answer3 = data.options[2];
                 this.answer4 = data.options[3];
-
               }
             });
           });
@@ -125,7 +121,7 @@ export class DuellComponent implements OnInit {
 
   // Funktion, um eine Frage für ein Duell zu laden
   loadQuestionForDuel(duelId: string): void {
-    const body = { duelId: duelId };
+    const body = {duelId: duelId};
     this.http.post<any>('http://localhost:3000/duel/question', body)
       .subscribe(data => {
         if (data !== null && data !== undefined) {
@@ -172,7 +168,7 @@ export class DuellComponent implements OnInit {
   answerButton(clickedButton: string) {
     this.userChecker();
 
-    if (this.currentUserId == this.challengerId){
+    if (this.currentUserId == this.challengerId) {
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
 
         this.duelId = data.id;
@@ -193,7 +189,7 @@ export class DuellComponent implements OnInit {
 
         this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
           .subscribe(data => {
-            this.count ++
+            this.count++
             console.log("COUNTER FÜR DIE ANTWORTEN" + this.count)
             if (this.count >= 10) {
               this.challenger = true;
@@ -206,7 +202,7 @@ export class DuellComponent implements OnInit {
 
       });
 
-    }else {
+    } else {
       console.log("EEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLLSSSSSSSSSSSSSSSSSSSEEEEEEEE")
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
 
@@ -228,16 +224,14 @@ export class DuellComponent implements OnInit {
 
         this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
           .subscribe(data => {
-            this.count ++
+            this.count++
             console.log(this.count + "Counter")
-
-
 
 
             if (this.count >= 10) {
               alert("Das spiel ist zuend")
               this.http.patch<any>('http://localhost:3000/duel/update',
-                {duelId: this.duelId,duelStatus: "FINISHED" })
+                {duelId: this.duelId, duelStatus: "FINISHED"})
                 .subscribe(data => {
 
                   console.log(data)
@@ -245,7 +239,7 @@ export class DuellComponent implements OnInit {
                   this.route.navigate(['/profil']);
 
                 })
-              this.http.post<any>('http://localhost:3000/duel/score',{duelId: this.duelId}).subscribe(data=>{
+              this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
                 //TODO: Hier noch den Score einbinden
 
               })
@@ -260,62 +254,13 @@ export class DuellComponent implements OnInit {
     }
 
 
-/*
-    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
-
-      this.duelId = data.id;
-      const payload = {
-        SubmitAnswerDto: {
-          duelId: this.duelId,
-          questionId: this.selectedAnswerId,
-          answer: clickedButton
-        },
-        userId: this.currentUserId
-      };
-
-      const headers = new HttpHeaders({
-        'Content-Type': 'application/json'
-      });
-
-      const body = {duelId: this.duelId}; // Wert, den Sie als Abfrageparameter senden möchten
-
-      this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
-        .subscribe(data => {
-          console.log(this.count + "Counter")
-
-
-
-
-          if (this.count >= 10) {
-            alert("Das spiel ist zuend")
-            this.http.patch<any>('http://localhost:3000/duel/update',
-              {duelId: this.duelId,duelStatus: "FINISHED" })
-              .subscribe(data => {
-
-                console.log(data)
-                console.log("spiel beendet")
-                this.route.navigate(['/profil']);
-
-              })
-            this.http.post<any>('http://localhost:3000/duel/score',{duelId: this.duelId}).subscribe(data=>{
-             //TODO: Hier noch den Score einbinden
-
-            })
-          } else { //um die liste neu zu generieren
-//            this.getDuel();
-          }
-
-        })
-
-
-    });
-
-
- */
-
   }
 
-
+  reloadPageInterval(intervalInSeconds: number): void {
+    setInterval(() => {
+      window.location.reload();
+    }, intervalInSeconds * 1000); // Das Intervall wird in Millisekunden angegeben, daher * 1000
+  }
 }
 
 /**
