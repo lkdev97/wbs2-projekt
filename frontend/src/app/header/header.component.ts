@@ -47,10 +47,7 @@ export class HeaderComponent implements OnInit{
             console.log('Erfolgreich ausgeloggt');
             this.isUserLoggedIn = false
             },
-          (error) => {
-            console.error('Fehler bei der Umleitung', error);
-          }
-        );
+          );
       },
       error: (error) => {
         console.error('Fehler beim Ausloggen im Backend', error);

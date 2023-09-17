@@ -13,7 +13,11 @@
         <div class="container" *ngIf="!duelcheck ">
           <ul class="list" id="availableQuestions">
             <li *ngFor="let duelId of duelOutput; let i = index" class="question-item">
-              <button class="button" (click)="duelAnnehmen(duelId.id)">{{ JSON.stringify(duelId.challenger) }}</button>
+              <button class="button" (click)="duelAnnehmen(duelId.id)">
+                <!--{{ JSON.stringify(duelId.challenger) }} -->
+                {{JSON.stringify(duelId.challenger.username)}}
+                fordert Sie zu einem Duell heraus!
+              </button>
             </li>
           </ul>
         </div>
