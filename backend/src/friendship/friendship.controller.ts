@@ -17,12 +17,14 @@ import {
   ApiParam,
   ApiTags,
 } from '@nestjs/swagger';
+import { SocketGateway } from 'src/socket/socket.gateway';
 
 @Controller('friendship')
 @UseGuards(AuthGuard)
 @ApiTags('Friendship')
 export class FriendshipController {
-  constructor(private readonly friendshipService: FriendshipService) {}
+  constructor(private readonly friendshipService: FriendshipService,
+    private readonly websocketGateway: SocketGateway) {}
 
   @Get()
   @ApiOperation({ summary: 'List all online friends of the current user' })
@@ -49,6 +51,7 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully sent a friend request' })
   async addFriend(@Body() { friendId }: { friendId: string }, @Req() request) {
     const userId = request.session.user.id;
+    this.websocketGateway.handleFriendRequestSent({ senderId: userId, recipientId: friendId });
     return await this.friendshipService.addFriendRequest(userId, friendId);
   }
 
@@ -59,6 +62,7 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully updated the friendship status' })
   async updateFriendStatus(@Body() { userId, friendStatus }, @Req() request) {
     const friendId = request.session.user.id;
+    this.websocketGateway.handleFriendshipStatusUpdated({ userId, friendStatus });
     return this.friendshipService.updateFriendStatus(
       userId,
       friendId,

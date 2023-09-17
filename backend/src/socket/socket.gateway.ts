@@ -16,4 +16,15 @@ export class SocketGateway {
   handleStatusChange(client: Socket, data: any) {
     this.server.emit('statusChange', data);
   }
+
+  @SubscribeMessage('friendRequestSent')
+  handleFriendRequestSent(payload: { senderId: string, recipientId: string }) {
+    this.server.emit('friendRequestSent', payload);
+  }
+
+  @SubscribeMessage('friendshipStatusUpdated')
+  handleFriendshipStatusUpdated(payload: { userId: string, friendStatus: string }) {
+    this.server.emit('friendshipStatusUpdated', payload);
+  }
 }
+ 

@@ -13,7 +13,7 @@ import { QuestionEntity } from '../question/entities/questionEntity.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('duel')
-@UseGuards(AuthGuard) //
+//@UseGuards(AuthGuard) //
 @ApiTags('Duel')
 export class DuelController {
   constructor(private readonly duelService: DuelService) {}
