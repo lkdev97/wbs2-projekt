@@ -13,10 +13,9 @@ export class AdminService {
     @InjectRepository(QuestionEntity)
     private questionRepository: Repository<QuestionEntity>,
   ) {}
-  // Hier sollten Sie Dependency Injection für die Datenbank verwenden.
+
 
   async createQuestion(createQuestionDto: CreateQuestionDto) {
-    //const existingQuestion = await this.findById(createQuestionDto.id);
     return await this.questionRepository.save(
       this.questionRepository.create(createQuestionDto),
     );

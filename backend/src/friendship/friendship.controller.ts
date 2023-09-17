@@ -51,7 +51,6 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully sent a friend request' })
   async addFriend(@Body() { friendId }: { friendId: string }, @Req() request) {
     const userId = request.session.user.id;
-    //this.websocketGateway.handleFriendRequestSent({ senderId: userId, recipientId: friendId });
     this.websocketGateway.server.emit('friendRequestSent');
     return await this.friendshipService.addFriendRequest(userId, friendId);
   }

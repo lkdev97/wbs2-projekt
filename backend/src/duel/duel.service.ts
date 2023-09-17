@@ -215,7 +215,7 @@ export class DuelService {
       throw new ConflictException(`User: ${user.id} has already answered Question: ${question.id} in Duel: ${duel.id}`);
     }
   
-    const duelAnswer = this.duelAnswerRepository.create(); //@TODO: Create DTO for this
+    const duelAnswer = this.duelAnswerRepository.create(); 
     duelAnswer.correct = correct;
     duelAnswer.question = question;
     duelAnswer.user = user;
@@ -247,7 +247,6 @@ export class DuelService {
     await this.statisticRepository.save(statistic);
   }
 
-  //async updateDuel(id: string, winnerId: string) {
     async updateDuel(id: string, newStatus: DuelStatus) {
     const duel = await this.duelRepository.findOne({ where: { id: id }, relations: ['challenger', 'opponent'] });
     if (!duel) {
@@ -261,8 +260,6 @@ export class DuelService {
     if(newStatus == DuelStatus.FINISHED) {
       const winner = await this.getWinnerByDuelId(duel.id); //@TODO: Test
 
-      //await this.updateStatistic(duel.challenger.id, duel.opponent.id, winnerId); 
-      //await this.updateStatistic(duel.opponent.id, duel.challenger.id, winnerId);
       if(winner != null) {
         await this.updateStatistic(duel.challenger.id, duel.opponent.id, winner.id); 
         await this.updateStatistic(duel.opponent.id, duel.challenger.id, winner.id); 

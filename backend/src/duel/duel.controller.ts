@@ -13,7 +13,7 @@ import { QuestionEntity } from '../question/entities/questionEntity.entity';
 import { AuthGuard } from 'src/auth/auth.guard';
 
 @Controller('duel')
-//@UseGuards(AuthGuard) //
+@UseGuards(AuthGuard) //
 @ApiTags('Duel')
 export class DuelController {
   constructor(private readonly duelService: DuelService) {}
@@ -61,9 +61,7 @@ export class DuelController {
   @ApiOperation({ summary: 'Finish the duel' })
   @ApiBody({ type: SubmitAnswerDto })
   @ApiOkResponse({ description: 'Duel finished' })
-  //async finishDuel(@Body() { duelId, winnerId }) {
     async finishDuel(@Body() { duelId, duelStatus }) {
-    //return await this.duelService.updateDuel(duelId, winnerId);
     return await this.duelService.updateDuel(duelId, duelStatus);
   }
 

@@ -60,7 +60,6 @@ export class UserService {
     }
   }
 
-  //@TODO
   async findByUsername(username: string): Promise<UserEntity | null> {
     const user = await this.userRepository.findOne({
       where: { username: username },
@@ -73,13 +72,13 @@ export class UserService {
     return user.role;
   }
 
-  //@deprecated: rm
+
   async setUserOnlineById(id: string) {
     const user = await this.userRepository.findOne({ where: { id: id } });
     user.online = true;
     await this.userRepository.save(user);
   }
-  //@deprecated: rm
+
   async setUserOfflineById(id: string) {
     const user = await this.userRepository.findOne({ where: { id: id } });
     user.online = false;
