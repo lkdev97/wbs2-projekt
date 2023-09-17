@@ -49,7 +49,6 @@ export class ProfilseiteComponent implements OnInit {
   }
 
   ngOnInit() {
-
     // Die Nutzerdaten über die Route /auth/user abrufen und anzeige
     this.load();
     //gibt alle Pending Duel Request des aktuellen Users auf

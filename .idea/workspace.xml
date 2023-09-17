@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
     </list>
@@ -124,13 +120,6 @@
       <workItem from="1694710625208" duration="2452000" />
       <workItem from="1694773472914" duration="11601000" />
       <workItem from="1694854684600" duration="10407000" />
-    </task>
-    <task id="LOCAL-00010" summary="Profilseite Hinzugefügt auf dieser werden Freunde angezeigt als auch die Gespielten Spiele.">
-      <created>1693422582195</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1693422582195</updated>
     </task>
     <task id="LOCAL-00011" summary="Backend und Frontend funktioniert zusammen">
       <created>1693485216964</created>
@@ -468,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694929121357</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt">
+      <created>1694969016377</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1694969016377</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -476,7 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ABOUT US seite angelegt und mit der Readme versehen" />
     <MESSAGE value="Bug fix für das About Us auf der startseite.component.html" />
     <MESSAGE value="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt." />
     <MESSAGE value="Register angepasst" />
@@ -501,6 +496,7 @@
     <MESSAGE value="Adminseite ein letztes mal bearbeitet" />
     <MESSAGE value="Nav Leiste gefixxed. Verschwindet nicht mehr beim Neuladen der seite." />
     <MESSAGE value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
+    <MESSAGE value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
   </component>
 </project>

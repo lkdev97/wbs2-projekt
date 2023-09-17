@@ -43,6 +43,7 @@ export class DuellComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     console.log(this.count)
     //storedCount wird verwendet damit der Opponent auch nach dem neuladen der Seite die gleiche Frage bekommt
     const storedCount = localStorage.getItem('duellCounter');
@@ -216,8 +217,6 @@ export class DuellComponent implements OnInit {
           this.http.post<any>('http://localhost:3000/duel/score', body)
           .subscribe(data => {
             console.log("Dateen " + data);
-            console.log("yoy yoyo " + data.opponentScore);
-            console.log("yoy yoyo " + data.challengerScore);
           })
 
 
@@ -245,19 +244,37 @@ export class DuellComponent implements OnInit {
 
         this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
           .subscribe(data => {
-            this.count++
-            console.log(this.count + "Counter")
+            console.log("counter vorher" + this.count);
 
+            // Zuerst den aktuellen Wert von 'count' aus localStorage abrufen
+            const storedCount = localStorage.getItem('count');
+
+            if (storedCount !== null) {
+              // Wenn ein Wert in localStorage gefunden wird, diesen Wert verwenden
+              this.count = parseInt(storedCount, 10);
+            } else {
+              // Wenn kein Wert in localStorage vorhanden ist, auf 1 setzen
+              this.count = 0;
+            }
+
+            // Jetzt, nachdem der Wert wiederhergestellt wurde, um eins erhöhen
+            this.count++;
+
+            // Dann den aktualisierten Wert in localStorage speichern
+            localStorage.setItem('count', this.count.toString());
+
+            console.log(this.count + "Counter");
+            console.log(storedCount + "StoredCounter");
 
             if (this.count >= 10) {
-              alert("Das spiel ist zuend")
+              alert("Das Spiel ist zu Ende")
               this.http.patch<any>('http://localhost:3000/duel/update',
                 {duelId: this.duelId, duelStatus: "FINISHED"})
                 .subscribe(data => {
+                  localStorage.clear();
 
-
-
-                })
+                  // Weitere Verarbeitung nach dem Spielende
+                });
 
             } this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
               this.finished = true
@@ -274,6 +291,7 @@ export class DuellComponent implements OnInit {
       });
 
     }
+
 
 
 
