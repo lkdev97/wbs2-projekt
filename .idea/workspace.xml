@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="Kleine Bugfixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,7 +465,7 @@
       <option name="project" value="LOCAL" />
       <updated>1694929121357</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -475,7 +473,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="ABOUT US seite angelegt und mit der Readme versehen" />
     <MESSAGE value="Bug fix für das About Us auf der startseite.component.html" />
     <MESSAGE value="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt." />
     <MESSAGE value="Register angepasst" />
@@ -500,6 +497,7 @@
     <MESSAGE value="Adminseite ein letztes mal bearbeitet" />
     <MESSAGE value="Nav Leiste gefixxed. Verschwindet nicht mehr beim Neuladen der seite." />
     <MESSAGE value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
+    <MESSAGE value="Kleine Bugfixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kleine Bugfixes" />
   </component>
 </project>

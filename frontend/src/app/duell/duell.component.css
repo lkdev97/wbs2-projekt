@@ -73,9 +73,8 @@ body{
   font-size: x-large;
   padding-left: 2%;
   color: whitesmoke;
+  align-content: center;
+
 }
 
-.results, .resultsOpponent, .DisplayChallenger, .DisplayOpponent {
 
-  margin-top: 2cm;
-}

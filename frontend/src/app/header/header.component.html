@@ -1,4 +1,5 @@
 <header>
+
   <button class="homeButton" *ngIf="isUserLoggedIn" [routerLink]="['/startseite'] ">Home</button>
   <button class="profileButton" *ngIf="isUserLoggedIn" [routerLink]="['/profil']">Profil</button>
   <button class="logoutButton" *ngIf="isUserLoggedIn" (click)="showConfirmationPopup()">Logout</button>
@@ -9,5 +10,6 @@
       <button class="button" (click)="cancelLogout()">Abbrechen</button>
     </div>
   </div>
+
 </header>
 
