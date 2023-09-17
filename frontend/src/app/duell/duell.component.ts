@@ -74,7 +74,6 @@ export class DuellComponent implements OnInit {
 
   userChecker(){
     if (this.currentUserId == this.challengerId){
-      this.challenger = true;
       this.getDuel();
     }else {
       localStorage.setItem('duellCounter', this.countQuestion.toString())
@@ -172,10 +171,96 @@ export class DuellComponent implements OnInit {
 
   answerButton(clickedButton: string) {
     this.userChecker();
-    console.log("answerButtonPressed");
-    console.log(clickedButton);
-    console.log(this.selectedAnswerId + " test");
 
+    if (this.currentUserId == this.challengerId){
+      this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+
+        this.duelId = data.id;
+        const payload = {
+          SubmitAnswerDto: {
+            duelId: this.duelId,
+            questionId: this.selectedAnswerId,
+            answer: clickedButton
+          },
+          userId: this.currentUserId
+        };
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json'
+        });
+
+        const body = {duelId: this.duelId}; // Wert, den Sie als Abfrageparameter senden möchten
+
+        this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
+          .subscribe(data => {
+            this.count ++
+            console.log("COUNTER FÜR DIE ANTWORTEN" + this.count)
+            if (this.count >= 10) {
+              this.challenger = true;
+              alert("Das spiel ist zuend")
+            }
+
+
+          })
+
+
+      });
+
+    }else {
+      console.log("EEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLLSSSSSSSSSSSSSSSSSSSEEEEEEEE")
+      this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
+
+        this.duelId = data.id;
+        const payload = {
+          SubmitAnswerDto: {
+            duelId: this.duelId,
+            questionId: this.selectedAnswerId,
+            answer: clickedButton
+          },
+          userId: this.currentUserId
+        };
+
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json'
+        });
+
+        const body = {duelId: this.duelId}; // Wert, den Sie als Abfrageparameter senden möchten
+
+        this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
+          .subscribe(data => {
+            this.count ++
+            console.log(this.count + "Counter")
+
+
+
+
+            if (this.count >= 10) {
+              alert("Das spiel ist zuend")
+              this.http.patch<any>('http://localhost:3000/duel/update',
+                {duelId: this.duelId,duelStatus: "FINISHED" })
+                .subscribe(data => {
+
+                  console.log(data)
+                  console.log("spiel beendet")
+                  this.route.navigate(['/profil']);
+
+                })
+              this.http.post<any>('http://localhost:3000/duel/score',{duelId: this.duelId}).subscribe(data=>{
+                //TODO: Hier noch den Score einbinden
+
+              })
+            } else { //um die liste neu zu generieren
+            }
+
+          })
+
+
+      });
+
+    }
+
+
+/*
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
 
       this.duelId = data.id;
@@ -196,7 +281,6 @@ export class DuellComponent implements OnInit {
 
       this.http.patch<any>(`http://localhost:3000/duel/answer`, payload, {headers})
         .subscribe(data => {
-          this.count = this.count + 1
           console.log(this.count + "Counter")
 
 
@@ -226,6 +310,8 @@ export class DuellComponent implements OnInit {
 
     });
 
+
+ */
 
   }
 

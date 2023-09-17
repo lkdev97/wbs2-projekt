@@ -183,13 +183,14 @@ export class ProfilseiteComponent implements OnInit {
     this.http.patch<any>('http://localhost:3000/duel/update',
       {duelId: this.duelId, duelStatus: "ONGOING"})
       .subscribe(data => {
-
+        alert("Du hast die Duellanfrage angenommen. Dein gegner beginnt")
         localStorage.setItem('duellCounter', '-1'); // Setze den Wert im Local Storage auf -1 zurück
-
-        this.route.navigate(['/duell']);
+        this.reloadPage();
       });
   }
 
-
+  reloadPage() {
+    window.location.reload(); // Die Seite neu laden
+  }
   protected readonly JSON = JSON;
 }
