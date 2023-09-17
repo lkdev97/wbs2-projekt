@@ -14,10 +14,12 @@ export class AdminViewComponent implements OnInit {
   newQuestionFalseAnswer1: string = "";
   newQuestionFalseAnswer2: string = "";
   newQuestionFalseAnswer3: string = "";
+  newQuestionFalseAnswer4: string = "";
 
   editQuestionFalseAnswer1: string = "";
   editQuestionFalseAnswer2: string = "";
   editQuestionFalseAnswer3: string = "";
+  editQuestionFalseAnswer4: string = "";
 
   newWrongQuestions: any [] =[];
 
@@ -64,6 +66,7 @@ export class AdminViewComponent implements OnInit {
     this.newWrongQuestions.push(this.newQuestionFalseAnswer1)
     this.newWrongQuestions.push(this.newQuestionFalseAnswer2);
     this.newWrongQuestions.push(this.newQuestionFalseAnswer3);
+    this.newWrongQuestions.push(this.newQuestionFalseAnswer4);
 
     console.log(this.newWrongQuestions)
 
