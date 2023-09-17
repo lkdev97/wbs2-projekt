@@ -203,7 +203,6 @@ export class DuellComponent implements OnInit {
             }
             this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
               this.finished = true
-              console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
               console.log(data)
               this.results = data.challengerScore
               this.resultsOpponent = data.opponentScore
@@ -223,7 +222,6 @@ export class DuellComponent implements OnInit {
       });
 
     } else {
-      console.log("EEEEEEEEEEEEEEEEEEEEEEELLLLLLLLLLLLLLLLLLLLLLLLLSSSSSSSSSSSSSSSSSSSEEEEEEEE")
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
 
         this.duelId = data.id;
@@ -278,7 +276,6 @@ export class DuellComponent implements OnInit {
 
             } this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
               this.finished = true
-              console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
               console.log(data)
               this.results = data.challengerScore
               this.resultsOpponent = data.opponentScore

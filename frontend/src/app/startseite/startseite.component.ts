@@ -14,32 +14,6 @@ export class StartseiteComponent implements OnInit{
 
   constructor(private route: Router, private http: HttpClient) {  }
 
-  //TODO: DUELDATA kann entfernt werden da eigentlich nichtmehr gebraucht. Gut zum Testen
-
-  duelData(){
-    this.question= "cffa9cdb-772a-4996-b947-9c4fba9893a2"
-    this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
-      if (data.answeredQuestions.length ==2){
-        console.log(data.answeredQuestions);
-      }else {
-        console.log("NICHTs")
-      }
-
-    });
-  }
-
-  //TODO: DUELENDE kann entfernt werden da eigentlich nichtmehr gebraucht. Gut zum Testen
-  duelend(){
-    console.log("ende")
-    this.http.patch<any>('http://localhost:3000/duel/update',
-      {duelId: "bae7335a-d7f5-4f61-a9ac-5cabe34da56a", duelStatus: "FINISHED"})
-      .subscribe(data =>{
-
-    })
-
-  }
-
-
   ngOnInit() {
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       if (data !== null&& data != undefined) {
