@@ -15,6 +15,7 @@ export class DuellComponent implements OnInit {
   oponnent = false;
   oponnentQuestion: string = ""
   finished = false;
+  inputFieldsDisabled = false;
 
   countQuestion: number = -2;
 
@@ -25,6 +26,9 @@ export class DuellComponent implements OnInit {
   answer3: string = "";
   answer4: string = "";
   results: string = "";
+
+  DisplayChallenger: string = ""
+  DisplayOpponent: string = ""
   resultsOpponent: string = "";
   selectedAnswerId: number = 0;
   id: number = 0;
@@ -54,9 +58,11 @@ export class DuellComponent implements OnInit {
 
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
         this.challengerId = data.challenger.id;
+        this.DisplayChallenger = data.challenger.username
         console.log("ChallengerId ist: " + this.challengerId);
 
-        this.oponnentId = data.opponent.id;
+        this.oponnentId = data.opponent.id
+        this.DisplayOpponent = data.opponent.username
         console.log("OppenentId ist: " + this.oponnentId);
 
         this.userChecker();
@@ -75,11 +81,14 @@ export class DuellComponent implements OnInit {
       console.log(this.countQuestion + "counter ")
       this.oponnent = true
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
-        if (data.answeredQuestions.length == 0) {
+        if (data.answeredQuestions.length == 1 || data.answeredQuestions.length == 0) {
           alert("Bitte warte bis dein Gegner seine Frage beantwortet hat")
-          this.reloadPageInterval(10)
-
-        } else {
+          this.reloadPageInterval(15)
+        }else if(this.countQuestion <= 9 && data.answeredQuestions.length == this.countQuestion + 1){
+          this.inputFieldsDisabled = true;
+          this.reloadPageInterval(15)
+        }else{
+          this.inputFieldsDisabled = false;
           console.log(data.answeredQuestions + "AnswerdQuestions")
           this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
             console.log(data.answeredQuestions[this.countQuestion]);
@@ -189,9 +198,17 @@ export class DuellComponent implements OnInit {
             this.count++
             console.log("COUNTER FÜR DIE ANTWORTEN" + this.count)
             if (this.count >= 10) {
-              this.challenger = true;
               alert("Das spiel ist zuend")
             }
+            this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
+              this.finished = true
+              console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
+              console.log(data)
+              this.results = data.challengerScore
+              this.resultsOpponent = data.opponentScore
+
+            })
+
 
 
           })
@@ -238,19 +255,18 @@ export class DuellComponent implements OnInit {
                 {duelId: this.duelId, duelStatus: "FINISHED"})
                 .subscribe(data => {
 
-                  this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
-                    this.finished = true
-                    console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
-                    console.log(data)
-                    this.results = data.challengerScore
-                    this.resultsOpponent = data.opponentScore
 
-                  })
 
                 })
 
-            } else { //um die liste neu zu generieren
-            }
+            } this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
+              this.finished = true
+              console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
+              console.log(data)
+              this.results = data.challengerScore
+              this.resultsOpponent = data.opponentScore
+
+            })
 
           })
 
@@ -258,6 +274,7 @@ export class DuellComponent implements OnInit {
       });
 
     }
+
 
 
   }
