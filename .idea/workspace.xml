@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/admin/admin-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/header/header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/profilseite/profilseite.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/shared.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/startseite/startseite.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -118,13 +130,6 @@
       <workItem from="1694710625208" duration="2452000" />
       <workItem from="1694773472914" duration="11601000" />
       <workItem from="1694854684600" duration="10407000" />
-    </task>
-    <task id="LOCAL-00007" summary="Glasseffekt auf register.component.html und login.component.html fertig gemacht. TODO: verlinkungen auf die einzelenen seiten per Router Link">
-      <created>1692164296386</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1692164296386</updated>
     </task>
     <task id="LOCAL-00008" summary="Duell Komponente hinzugefügt">
       <option name="closed" value="true" />
@@ -464,7 +469,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694916661034</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Adminseite ein letztes mal bearbeitet">
+      <created>1694916951230</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1694916951230</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +484,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Benachrichtigungen für den Admin erstellt (für das löschen hinzufügen und ändern der Questions" />
     <MESSAGE value="Admin ansicht. Automatisches eintragen der Ids für das löschen und updaten der Fragen. Sowie css überarbeitet (für die Admin seite)" />
     <MESSAGE value="Kleiner Bugfix. Amdin seite ist somit meines Wissens nach komplett fertig und bedarf keiner weitern bearbeitung" />
     <MESSAGE value="ABOUT US seite angelegt und mit der Readme versehen" />
@@ -497,6 +508,7 @@
     <MESSAGE value="Nutzer können Fragen beantworten und nach dem Neuladen bleibt die Zahl unverändert" />
     <MESSAGE value="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind." />
     <MESSAGE value="Statistic auf der Porfilseite erledigt" />
-    <option name="LAST_COMMIT_MESSAGE" value="Statistic auf der Porfilseite erledigt" />
+    <MESSAGE value="Adminseite ein letztes mal bearbeitet" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adminseite ein letztes mal bearbeitet" />
   </component>
 </project>

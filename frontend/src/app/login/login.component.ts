@@ -1,4 +1,4 @@
-import {Component,ChangeDetectorRef} from '@angular/core';
+import {Component, ChangeDetectorRef} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {SharedService} from "../shared.service";
 import {Router} from "@angular/router";
@@ -10,20 +10,16 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
 
+  isUserLoggedIn: boolean = false;
 
 
   constructor(
     private http: HttpClient,
-
     public sharedService: SharedService,
-
     private changeDetectorRef: ChangeDetectorRef,
-
     private route: Router
-  ) {  }
-
-
-
+  ) {
+  }
 
 
   username: string = "";
@@ -74,12 +70,9 @@ export class LoginComponent {
           console.log(data.username)
           console.log(data);
 
-
-
-
-            this.sharedService.isLoggedIn = true;
-            console.log(this.sharedService.isLoggedIn);
-            this.showLogoutNProfileBtns();
+          this.sharedService.isLoggedIn = true;
+          console.log(this.sharedService.isLoggedIn);
+          this.showLogoutNProfileBtns();
 
 
           // Überprüfen Sie den Statuscode
@@ -91,7 +84,6 @@ export class LoginComponent {
         },
         //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
         error: (error) => {
-
 
 
           this.route.navigate(['/startseite']);
@@ -114,7 +106,7 @@ export class LoginComponent {
     }
   }
 
-  showLogoutNProfileBtns(){
+  showLogoutNProfileBtns() {
     this.sharedService.isLoggedIn = true;
     console.log(this.sharedService.isLoggedIn);
     this.changeDetectorRef.detectChanges();

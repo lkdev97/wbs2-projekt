@@ -1,4 +1,4 @@
-import {Component,ChangeDetectorRef} from '@angular/core';
+import {Component, ChangeDetectorRef, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {SharedService} from "../shared.service";
 import {HttpClient} from "@angular/common/http";
@@ -8,8 +8,8 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnInit{
+  isUserLoggedIn: boolean = false;
   //isConfirmationPopupVisible: boolean = false;
 
   constructor(
@@ -19,6 +19,16 @@ export class HeaderComponent {
     private http: HttpClient
   ) {}
 
+  ngOnInit(): void {
+    this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
+      if (data !== null&& data != undefined) {
+        console.log(data);
+        this.isUserLoggedIn = true;
+      } else {
+        console.log('kein Nutzer Angemeldet.');
+      }
+    });
+  }
 
   // Funktion zum Anzeigen der Bestätigung
   showConfirmationPopup() {
@@ -27,8 +37,6 @@ export class HeaderComponent {
 
   // Funktion zum Ausloggen
   logout() {
-
-
     this.http.get(`http://localhost:3000/auth/logout`).subscribe({
       next: () => {
         this.sharedService.isConfirmationPopupVisible = false;
@@ -37,7 +45,8 @@ export class HeaderComponent {
             this.sharedService.isLoggedIn = false;
             this.changeDetectorRef.detectChanges();
             console.log('Erfolgreich ausgeloggt');
-          },
+            this.isUserLoggedIn = false
+            },
           (error) => {
             console.error('Fehler bei der Umleitung', error);
           }
@@ -53,4 +62,9 @@ export class HeaderComponent {
   cancelLogout() {
     this.sharedService.isConfirmationPopupVisible = false;
   }
+  reloadPage() {
+    window.location.reload(); // Die Seite neu laden
+  }
+
+
 }

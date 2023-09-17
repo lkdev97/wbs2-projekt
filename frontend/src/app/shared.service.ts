@@ -13,35 +13,6 @@ export class SharedService {
   isConfirmationPopupVisible: boolean = false;
 
 
-  getToProfile(){
-    if (!this.isConfirmationPopupVisible) {
-      this.router.navigate(['/profil']).then(
-        () => {
-          console.log('auf der Profilseite angekommen');
-        },
-        (error) => {
-          console.error('Fehler bei der Umleitung', error);
-        }
-      );
-    }
-  }
-
-  getHome(){
-    this.router.navigate(['/startseite']).then(
-      () => {
-        console.log('zuhause angekommen');
-      },
-      (error) => {
-        console.error('Fehler bei der Umleitung', error);
-      }
-    );
-  }
-
-
-
-
-
-
 
 
 }

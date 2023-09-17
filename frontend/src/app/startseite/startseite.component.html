@@ -16,9 +16,7 @@
     <div class="columns">
       <div class="column linksRechts">
         <h1 class="main">QUIZDUELL</h1>
-        <button class="button"><a class="linkText" [routerLink]="['/login']"
-
-        >JOIN NOW</a></button>
+        <button class="button"><a class="linkText" [routerLink]="['/login']">JOIN NOW</a></button>
 
       </div>
     </div>
@@ -26,10 +24,10 @@
     <div class="columns">
       <div class="column leftDown">
         <div class="hightSection" *ngIf="isUserLoggedIn">
-          <h1 class="whiteColorLeft"> <a class="linkText" [routerLink]="['/profil']">My Account</a> </h1>
+          <h1 class="whiteColorLeft"><a class="linkText" [routerLink]="['/profil']">My Account</a></h1>
         </div>
         <div class="hightSection" *ngIf="!isUserLoggedIn">
-          <h1 class="whiteColorLeft"> <a class="linkText" [routerLink]="['/login']">My Account</a> </h1>
+          <h1 class="whiteColorLeft"><a class="linkText" [routerLink]="['/login']">My Account</a></h1>
         </div>
       </div>
       <div class="arrow">
@@ -39,7 +37,7 @@
       </div>
       <div class="column rightDown">
         <div class="hightSection">
-          <h1 class="whiteColorRight"> <a class="linkText" [routerLink]="['/aboutus']">About Us</a> </h1>
+          <h1 class="whiteColorRight"><a class="linkText" [routerLink]="['/aboutus']">About Us</a></h1>
         </div>
       </div>
     </div>
@@ -59,7 +57,7 @@
     <div class="columns">
       <div class="column linksRechts">
         <h1 class="main">QUIZDUELL</h1>
-        <button class="button"><a class="linkText" [routerLink]="['/profil']" >PLAY NOW</a></button>
+        <button class="button"><a class="linkText" [routerLink]="['/profil']">PLAY NOW</a></button>
         <button class="button" (click)="duelend()">Duel End Test</button>
         <button class="button" (click)="duelData()">Duel Data</button>
 
@@ -69,13 +67,7 @@
     <div class="columns">
       <div class="column leftDown">
         <div class="hightSection">
-          <h1 class="whiteColorLeft">
-            <a class="linkText"
-               *ngIf="sharedService.isLoggedIn"
-               (click)="sharedService.getToProfile()">
-              My Account
-            </a>
-          </h1>
+          <h1 class="whiteColorLeft"><a class="linkText" [routerLink]="['/profil']">Profil</a></h1>
         </div>
       </div>
       <div class="arrow">
@@ -85,7 +77,7 @@
       </div>
       <div class="column rightDown">
         <div class="hightSection">
-          <h1 class="whiteColorRight"> <a class="linkText" [routerLink]="['/aboutus']">About Us</a> </h1>
+          <h1 class="whiteColorRight"><a class="linkText" [routerLink]="['/aboutus']">About Us</a></h1>
         </div>
       </div>
     </div>
@@ -100,7 +92,7 @@
         <h1 class="blackColorLeft">HOW TO PLAY ?</h1>
       </div>
     </div>
-    <h1>Hier kommt noch ein Bild rein</h1>
+    <h1></h1>
   </div>
 </section>
 

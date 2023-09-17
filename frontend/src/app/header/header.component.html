@@ -1,28 +1,7 @@
 <header>
-  <button
-    class="homeButton"
-    *ngIf="sharedService.isLoggedIn"
-    (click)="sharedService.getHome()"
-
-  >
-    Home
-  </button>
-  <button
-    class="profileButton"
-    *ngIf="sharedService.isLoggedIn"
-    (click)="sharedService.getToProfile()"
-
-  >
-    Profil
-  </button>
-  <button
-    class="logoutButton"
-    *ngIf="sharedService.isLoggedIn"
-    (click)="showConfirmationPopup()"
-
-  >
-    Logout
-  </button>
+  <button class="homeButton" *ngIf="isUserLoggedIn" [routerLink]="['/startseite'] ">Home</button>
+  <button class="profileButton" *ngIf="isUserLoggedIn" [routerLink]="['/profil']">Profil</button>
+  <button class="logoutButton" *ngIf="isUserLoggedIn" (click)="showConfirmationPopup()">Logout</button>
   <div class="confirmationPopup" [ngClass]="{ 'show': sharedService.isConfirmationPopupVisible }">
     <div class="popupContent">
       <p>Wollen Sie sich wirklich ausloggen?</p>

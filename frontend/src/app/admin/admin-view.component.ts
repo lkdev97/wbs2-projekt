@@ -9,6 +9,8 @@ import {Router} from "@angular/router";
 })
 export class AdminViewComponent implements OnInit {
 
+  isUserLoggedIn: boolean = false;
+
   newQuestion: string = "";
   newQuestionCorrectAnswer: string = "";
   newQuestionFalseAnswer1: string = "";
@@ -42,6 +44,7 @@ export class AdminViewComponent implements OnInit {
     this.http.get<any>('http://localhost:3000/admin/editor').subscribe({
       next: (data) => {
         if (data !== null && data !== undefined) {
+          this.isUserLoggedIn = true;
           this.adminOutput = data;
         } else {
           console.log('Keine Daten erhalten oder ungültige Antwort.');

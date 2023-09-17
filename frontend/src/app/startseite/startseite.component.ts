@@ -13,7 +13,7 @@ export class StartseiteComponent implements OnInit{
   question: string =""
   isUserLoggedIn: boolean = false; // Hier wird der Anmeldestatus gespeichert
 
-  constructor(private route: Router,public sharedService: SharedService, private http: HttpClient) {  }
+  constructor(private route: Router, private http: HttpClient) {  }
 
   buttonClicked(){
     this.route.navigate(['/login'])

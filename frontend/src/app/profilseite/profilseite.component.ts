@@ -12,6 +12,9 @@ import {Router} from "@angular/router";
 export class ProfilseiteComponent implements OnInit {
   //Variablen
   out: string = "";
+  isUserLoggedIn: boolean = false;
+  adminLoggedIn: boolean = false;
+
   out2: string = "";
   duelId: string = "";
   status: string = "";
@@ -21,11 +24,11 @@ export class ProfilseiteComponent implements OnInit {
 
   statisticsArray: {
     opponent: any;
-    username: any; totalGamesAgainstOpponent: any; winsAgainstOpponent: any; }[] = [];
+    username: any; totalGamesAgainstOpponent: any; winsAgainstOpponent: any;
+  }[] = [];
 
 
-
-    // Arrays für Daten
+  // Arrays für Daten
   playersList: any = [];
 
   friendsList: any[] = [];
@@ -45,9 +48,16 @@ export class ProfilseiteComponent implements OnInit {
 
   ngOnInit() {
 
+
     //Die Nutzerdaten über die Route /auth/user abrufen und anzeigen
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       if (data !== null && data !== undefined) {
+        if (data.role == "ADMIN") {
+          this.route.navigate(['/adminseite'])
+        }
+        console.log(data)
+        this.isUserLoggedIn = true;
+
         this.out = data.username;
         this.out2 = data.id;
         this.currentUserId = data.id;
@@ -201,5 +211,6 @@ export class ProfilseiteComponent implements OnInit {
   reloadPage() {
     window.location.reload(); // Die Seite neu laden
   }
+
   protected readonly JSON = JSON;
 }

@@ -1,3 +1,9 @@
+<div *ngIf="results">
+  <div class="div1 question" *ngIf="results" [ngClass]="results">Challenger Score: {{results}}</div>
+  <div class="div1 question" *ngIf="results" [ngClass]="results">Opponent Score: {{results}}</div>
+  <button [routerLink]="['/profil']" class="button ">Zum Profil</button>
+
+</div>
 <div class="duell-container">
   <div class="duel view">
     <div class="contentView" *ngIf="!challenger">
@@ -15,6 +21,7 @@
       <div class="div5 answer" [ngClass]="answer4">
         <button (click)="answerButton(answer4)" class="button antwort">{{answer4}}</button>
       </div>
+
     </div>
   </div>
   <div class="contentView" *ngIf="challenger">
@@ -22,4 +29,6 @@
     <p [routerLink]="['/profil']">Zum Profil</p>
   </div>
 </div>
+
+
 

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {compareSegments} from "@angular/compiler-cli/src/ngtsc/sourcemaps/src/segment_marker";
 
 @Component({
   selector: 'app-duell',
@@ -15,6 +14,7 @@ export class DuellComponent implements OnInit {
   challenger = false;
   oponnent = false;
   oponnentQuestion: string = ""
+  finished = false;
 
   countQuestion: number = -2;
 
@@ -24,6 +24,8 @@ export class DuellComponent implements OnInit {
   answer2: string = "";
   answer3: string = "";
   answer4: string = "";
+  results: string = "";
+  resultsOpponent: string = "";
   selectedAnswerId: number = 0;
   id: number = 0;
   count: number = 0;
@@ -234,15 +236,17 @@ export class DuellComponent implements OnInit {
                 {duelId: this.duelId, duelStatus: "FINISHED"})
                 .subscribe(data => {
 
-                  console.log(data)
-                  console.log("spiel beendet")
-                  this.route.navigate(['/profil']);
+                  this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
+                    this.finished = true
+                    console.log("REEEEEEEEEEEEEESSSSSSSSSSSSSSUUUUUUUULLLLLLLTSSSSSS")
+                    console.log(data)
+                    this.results = data.challengerScore
+                    this.resultsOpponent = data.opponentScore
+
+                  })
 
                 })
-              this.http.post<any>('http://localhost:3000/duel/score', {duelId: this.duelId}).subscribe(data => {
-                //TODO: Hier noch den Score einbinden
 
-              })
             } else { //um die liste neu zu generieren
             }
 
