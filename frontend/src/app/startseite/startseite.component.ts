@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
-import {SharedService} from "../shared.service";
+import { Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 
 @Component({
@@ -15,36 +14,7 @@ export class StartseiteComponent implements OnInit{
 
   constructor(private route: Router, private http: HttpClient) {  }
 
-  buttonClicked(){
-    this.route.navigate(['/login'])
-  }
-
-  //TODO: duelstart, duelend, dueldat müssen auf die profilseite gepackt werden
-
-  /*
-  duelData() {
-    console.log("start");
-    this.http.get<any>('http://localhost:3000/duel/question/eddc941b-4e2c-4d34-ae02-d134c9412941', {
-    }).subscribe({
-      next: (data) => {
-        console.log(data + "bitte");
-        // Überprüfen Sie den Statuscode
-        if (data.status === 201) {
-          // Der Statuscode ist 201 (Created), navigieren Sie zur '/duel'-Route
-        } else {
-          console.error('Ungültiger Statuscode:', data.status);
-        }
-      },
-      //TODO: Fixxen warum wir in den Error fall kommen egal bei welcher Anfrage (geht trotzdem an die Datenbank durch)
-      error: (error) => {
-
-        console.error('HTTP-Fehler:', error);
-      },
-    });
-  }
-
-
-   */
+  //TODO: DUELDATA kann entfernt werden da eigentlich nichtmehr gebraucht. Gut zum Testen
 
   duelData(){
     this.question= "cffa9cdb-772a-4996-b947-9c4fba9893a2"
@@ -52,11 +22,13 @@ export class StartseiteComponent implements OnInit{
       if (data.answeredQuestions.length ==2){
         console.log(data.answeredQuestions);
       }else {
-        console.log("fuck ")
+        console.log("NICHTs")
       }
 
     });
   }
+
+  //TODO: DUELENDE kann entfernt werden da eigentlich nichtmehr gebraucht. Gut zum Testen
   duelend(){
     console.log("ende")
     this.http.patch<any>('http://localhost:3000/duel/update',

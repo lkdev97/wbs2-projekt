@@ -30,10 +30,6 @@ export class DuellComponent implements OnInit {
   id: number = 0;
   count: number = 0;
 
-  wrong: string = "";
-
-  selectedQuestion: { id: number; text: string; } = {id: 0, text: ''};
-  private test: any;
 
 
   constructor(private http: HttpClient, private route: Router
@@ -44,13 +40,14 @@ export class DuellComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.count)
+    //storedCount wird verwendet damit der Opponent auch nach dem neuladen der Seite die gleiche Frage bekommt
     const storedCount = localStorage.getItem('duellCounter');
 
     if (storedCount !== null) {
       this.countQuestion = parseInt(storedCount, 10); // Wenn gespeichert, wiederherstellen
     }
 
-//So damit userChecker als letztes ausgeführt wird
+//Muss so ausgeführt werden damit userChecker als letztes ausgeführt wird
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       this.currentUserId = data.id;
       console.log("currentUserId ist: " + this.currentUserId);
@@ -79,7 +76,6 @@ export class DuellComponent implements OnInit {
       this.oponnent = true
       this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
         if (data.answeredQuestions.length == 0) {
-          console.log("warte ab");
           alert("Bitte warte bis dein Gegner seine Frage beantwortet hat")
           this.reloadPageInterval(10)
 
@@ -113,7 +109,6 @@ export class DuellComponent implements OnInit {
   }
 
   getDuel(): void {
-    console.log("TEST DES GET DUEL")
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelId = data.id;
       console.log(this.duelId + " Die DuellId");

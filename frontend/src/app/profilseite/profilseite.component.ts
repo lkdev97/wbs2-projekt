@@ -47,8 +47,6 @@ export class ProfilseiteComponent implements OnInit {
   }
 
   ngOnInit() {
-
-
     //Die Nutzerdaten über die Route /auth/user abrufen und anzeigen
     this.http.get<any>(`http://localhost:3000/auth/user`).subscribe(data => {
       if (data !== null && data !== undefined) {
@@ -62,15 +60,12 @@ export class ProfilseiteComponent implements OnInit {
         this.out2 = data.id;
         this.currentUserId = data.id;
         const userId = data.id;
-        //console.log("userId vor dem Renderig der Freundesliste: "+userId);
 
         //Freundesliste des angemeldeten Users abrufen
         this.http.get<any>(`http://localhost:3000/friendship/list-friends/${userId}`).subscribe(data => {
           if (Array.isArray(data)) {
 
             this.friendsList = data;
-            //console.log(this.friendsList);
-            //console.log("empfangene Freundesliste: " + data);
           } else {
             console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
           }
@@ -81,6 +76,7 @@ export class ProfilseiteComponent implements OnInit {
       }
     });
 
+    //gibt alle Pending Duel Request des aktuellen Users auf
     this.http.get<any>('http://localhost:3000/duel/requests').subscribe({
       next: (data) => {
         if (data !== null && data !== undefined) {
@@ -94,6 +90,7 @@ export class ProfilseiteComponent implements OnInit {
       },
     });
 
+    //Gibt das duel des aktuellen Users aus
     this.http.get<any>(`http://localhost:3000/duel/get`).subscribe(data => {
       this.duelcheck = true;
     });
@@ -135,7 +132,6 @@ export class ProfilseiteComponent implements OnInit {
         console.error('HTTP-Fehler:', error);
       },
     });
-
 
   }
 

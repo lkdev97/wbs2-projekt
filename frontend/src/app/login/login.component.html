@@ -30,7 +30,9 @@
             </div>
             <p [ngClass]="out" class="out">{{out}}</p>
 
-             <a class="linkText" ><button class="button"  (click)="buttonClickedAccept();showLogoutNProfileBtns() " >JOIN</button></a>
+            <a class="linkText">
+              <button class="button" (click)="buttonClickedAccept();showLogoutNProfileBtns() ">JOIN</button>
+            </a>
             <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
             <button class="button" [routerLink]="['/startseite'] ">ABORT</button>
           </div>
