@@ -63,15 +63,7 @@ export class ProfilseiteComponent implements OnInit {
         const userId = data.id;
 
         // Freundesliste des angemeldeten Benutzers abrufen
-        this.http
-          .get<any>(`http://localhost:3000/friendship/list-friends/${userId}`)
-          .subscribe((data) => {
-            if (Array.isArray(data)) {
-              this.friendsList = data;
-            } else {
-              console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
-            }
-          });
+        this.listFriends(userId);
 
         // Auf das 'statusChange'-Ereignis vom WebSocket-Server hören und die Freundesliste aktualisieren
         this.socket.on('statusChange', (statusChangeData: any) => {
@@ -127,6 +119,15 @@ export class ProfilseiteComponent implements OnInit {
       this.loadPendingFriendshipRequests();
     });
 
+    this.socket.on('friendshipStatusUpdated', (payload: { userId: string, friendStatus: string }) => {
+      // Hier kannst du die Benutzeroberfläche aktualisieren, um die Änderungen anzuzeigen
+      console.log("ayooo");
+      //this.changeDetectorRef.detectChanges();
+      this.listFriends(payload.userId);
+
+      this.loadPendingFriendshipRequests();
+    });
+
     //Statistik des Spielers abrufen
     this.http.get<any>('http://localhost:3000/statistics').subscribe({
       next: (data) => {
@@ -145,6 +146,17 @@ export class ProfilseiteComponent implements OnInit {
 
   }
 
+  listFriends(userId: string) {
+    this.http
+    .get<any>(`http://localhost:3000/friendship/list-friends/${userId}`)
+    .subscribe((data) => {
+      if (Array.isArray(data)) {
+        this.friendsList = data;
+      } else {
+        console.log('Ungültige Antwort bei der Abfrage der Freundesliste.');
+      }
+    });
+  }
   
   loadPendingFriendshipRequests() {
     this.http.get<any>(`http://localhost:3000/friendship/requests`).subscribe(data => {

@@ -62,7 +62,7 @@ export class FriendshipController {
   @ApiOkResponse({ description: 'Successfully updated the friendship status' })
   async updateFriendStatus(@Body() { userId, friendStatus }, @Req() request) {
     const friendId = request.session.user.id;
-    //this.websocketGateway.handleFriendshipStatusUpdated({ userId, friendStatus });
+    this.websocketGateway.handleFriendshipStatusUpdated({ userId, friendStatus });
     return this.friendshipService.updateFriendStatus(
       userId,
       friendId,
