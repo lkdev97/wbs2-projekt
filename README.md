@@ -1,5 +1,3 @@
-# wbs2-projekt
-=======
 # WBS2-Projekt
 
 IT2000 Webbasierte Systeme 2
