@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 10px;
+  border: 2px solid #de5612;
+  border-radius: 5px;
+  width: 75%;
+  height: 75%;
+  overflow-y: auto;
+}
+
+.list li {
+  display: flex; /* Neu: Fügt Flexbox hinzu */
+  justify-content: center; /* Neu: Zentriert horizontal */
+  align-items: center; /* Neu: Zentriert vertikal */
+  padding: 8px 0;
+  border: 2px solid #de5612;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.question-item{
+  text-align: center;
+  color: white;
+}
+label{
+  color: white;
+}
+
+.updateQuestionsBTN{
+  background-color: transparent;
+  border: transparent;
+  color: white;
+}
+
+.addQuestion{
+  padding-top: 5px;
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+.updateQuestions{
+  padding-top: 5px;
+  width: 50%;
+  margin: auto;
+  display: block;
+}
+
+.addQuestionBtn{
+margin-left: 10%;
+}

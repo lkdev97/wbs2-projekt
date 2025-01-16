@@ -1,0 +1,48 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: #272727;
+  border: #de5612 solid 0.125rem;
+  position: relative;
+}
+
+.games-table {
+  width: 80%;
+  border-collapse: collapse;
+  border: 2px solid #de5612;
+  position: relative;
+  margin-top: 50px;
+}
+
+.games-table th, .games-table td {
+  border: 1px solid #de5612;
+  padding: 8px;
+  text-align: center;
+}
+
+.games-table th {
+  background-color: #de5612;
+  color: white;
+}
+
+.container h2 {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #de5612;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}

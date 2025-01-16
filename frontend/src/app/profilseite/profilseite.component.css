@@ -1,0 +1,135 @@
+.container{
+  padding: 0.74rem;
+}
+
+.whiteColorLeft{
+  font-size: x-large;
+  padding-left: 2%;
+  color: whitesmoke;
+  border-left: #de5612 solid 0.125rem;
+}
+
+.whiteColorRight{
+  font-size: x-large;
+  padding-right: 2%;
+  text-align: right;
+  color: whitesmoke;
+  border-right: #de5612 solid 0.125rem;
+}
+
+.blackColorLeft{
+  font-size: x-large;
+  padding-left: 1%;
+  color: #272727;
+  border-left: #de5612 solid 0.125rem;
+}
+
+.leftUp{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
+.left{
+  padding-left: 0;
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
+.leftDown{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-top: 15%;
+  padding-bottom: 5%;
+}
+
+.rightDown{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-top: 15%;
+  padding-bottom: 5%;
+}
+
+.rightUp{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
+.linksRechts{
+  text-align: center;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  border-right: solid 0.125rem rgba(105,105,105, 0.5) ;
+}
+
+#beigeBackground{
+  background-color: #cfc3b4;
+  margin: 0 ;
+  padding: 0.625rem 0.5rem;
+  height: 30rem;
+}
+
+.linkText{
+  color: white;
+}
+
+.historyTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #de5612;
+  position: relative;
+  margin-top: 50px;
+}
+
+.historyTable th, .games-table td {
+  border: 1px solid #de5612;
+  padding: 8px;
+  text-align: center;
+}
+
+.historyTable th {
+  background-color: #de5612;
+  color: white;
+}
+
+.historyTable td {
+  border: #de5612 solid 0.031rem;
+  text-align: center;
+}
+
+.playersList, .friendsList, requestList {
+  background-color: #272727;
+  border: #de5612 solid 0.125rem;
+  text-align: center;
+}
+
+.playersList table, .friendsList table, .requestList table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.playersList th, .playersList td, .friendsList th, .friendsList td, .requestList th, .requestList td, h2 {
+  border: #de5612 solid 0.125rem;
+  color: #de5612;
+  padding: 8px;
+  text-align: center;
+}
+
+.playersList th, .friendsList th, .requestList th {
+  background-color: #393939;
+}
+
+.playersList tr:nth-child(even), .friendsList tr:nth-child(even), .requestList tr:nth-child(even) {
+  background-color: #393939;
+}
+
+.playersList tr:nth-child(odd), .friendsList tr:nth-child(odd), .requestList tr:nth-child(odd) {
+  background-color: #272727;
+}
+
+.out, .out2 {
+  color: #de5612;
+
+}

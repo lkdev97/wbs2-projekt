@@ -1,0 +1,149 @@
+<div class="container">
+  <section>
+    <div class="columns">
+      <div class="column leftUp">
+        <div class="hightSection">
+          <h1 class="whiteColorLeft">My Account</h1>
+          <p [ngClass]="out" class="out">Spielername:  {{out}}</p>
+          <br>
+          <br>
+          <br>
+          <p [ngClass]="out2" class="out">ID:  {{out2}}</p>
+        </div>
+        <div class="container" *ngIf="!duelcheck ">
+          <ul class="list" id="availableQuestions">
+            <li *ngFor="let duelId of duelOutput; let i = index" class="question-item">
+              <button class="button" (click)="duelAnnehmen(duelId.id)">
+                <!--{{ JSON.stringify(duelId.challenger) }} -->
+                {{JSON.stringify(duelId.challenger.username)}}
+                fordert Sie zu einem Duell heraus!
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div class="container" *ngIf=" duelcheck">
+          <button class="button" [routerLink]="['/duell']" >Zu deinem Duell</button>
+        </div>
+      </div>
+      <div class="column rightUp">
+        <div class="requestList">
+        <h2>Pending Friendship Requests</h2>
+        <table class="requestListTable">
+          <thead>
+          <tr>
+            <th>Name des Spielers</th>
+            <th>Freundschaftsstatus</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let request of pendingFriendshipRequests">
+            <td>{{ request.username }}</td>
+            <td>
+              <button (click)="acceptFriendship(request.id)">Annehmen</button>
+              <button (click)="rejectOrBlockFriendship(request.id)">Ablehnen</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+    </div>
+
+    <div class="columns">
+
+      <div class="column leftDown">
+        <div class="playersList">
+          <h2>Spielerliste</h2>
+          <table class="playersListTable">
+            <thead>
+            <tr>
+              <th>Spielername</th>
+              <th>Status</th>
+              <th>Aktionen</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let player of playersList">
+              <td>{{ player.username }}</td>
+              <td>
+
+              <span [ngClass]="{'online': player.online, 'offline': !player.online}">
+              {{ player.online ? 'Online' : 'Offline' }}
+            </span>
+              </td>
+              <td>
+
+                <button class="addFriend" (click)="addToFriendslist(player.id)">Freund hinzufügen</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div class="column rightDown">
+        <div class="friendsList">
+          <h2>Freundesliste</h2>
+          <table class="friendsListTable">
+            <thead>
+            <tr>
+              <th>Spielername</th>
+              <th>Status</th>
+              <th>Aktionen</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let friend of friendsList">
+              <td>{{ friend.username }}</td>
+              <td>
+
+              <span [ngClass]="{'online': friend.online, 'offline': !friend.online}">
+              {{ friend.online ? 'Online' : 'Offline' }}
+            </span>
+              </td>
+              <td>
+
+                <button class="deleteFriend" (click)="rejectOrBlockFriendship(friend.id)" >Freund entfernen</button>
+
+                <button class="startDuel"  (click)="duelstart(friend.id)" >Spiel starten</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+
+<section id='beigeBackground'>
+  <div class='container'>
+    <div class="columns">
+      <div class="column">
+        <h1 class="blackColorLeft">History</h1>
+      </div>
+    </div>
+    <table class="historyTable">
+      <tr>
+        <th>Gegner</th>
+        <th>Spiele gegen Gegner</th>
+        <th>Siege gegen Gegner</th>
+
+      </tr>
+      <tr *ngFor="let opponent of statisticsArray">
+        <td>{{ opponent.opponent.username }}</td>
+        <td>{{ opponent.totalGamesAgainstOpponent }}</td>
+        <td>{{ opponent.winsAgainstOpponent }}</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+
+
+

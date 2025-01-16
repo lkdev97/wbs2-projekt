@@ -1,0 +1,49 @@
+<section>
+  <div class='container'>
+    <div class="columns">
+      <div class="column leftUp">
+
+        <h1 class="whiteColorLeft">REGISTER</h1>
+
+      </div>
+      <div class="column rightUp">
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column linksRechts">
+        <div class="glass">
+          <div class="field">
+            <label class="label is-medium">Register</label>
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" [(ngModel)]="username" type="text" placeholder="Username">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" [(ngModel)]="userPassword" type="password" placeholder="Password">
+            </div>
+            <p [ngClass]="out" class="out">{{out}}</p>
+
+            <a class="linkText" ><button class="button"  (click)="buttonClickedAccept()" >JOIN</button></a>
+            <!-- HIer kommt eine NGIF rein um die Inputs zu testen -->
+            <button class="button" [routerLink]="['/startseite'] ">ABORT</button>
+          </div>
+          <div class="field">
+            <p>Bereits ein Konto?</p>
+            <p><a class="linkText" [routerLink]="['/login']">HIER LANG!</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column leftUp">
+
+      </div>
+      <div class="column rightUp">
+      </div>
+    </div>
+  </div>
+
+</section>

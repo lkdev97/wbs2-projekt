@@ -1,0 +1,40 @@
+<div class = "changingResults" *ngIf="results">
+
+  <div class="div1 question" *ngIf="results" [ngClass]="results">Punkte Herausforderer: {{results}}</div>
+  <div class="div1 question" *ngIf="results" [ngClass]="resultsOpponent">Punkte Gegner: {{resultsOpponent}}</div>
+  <!--<button [routerLink]="['/profil']" class="button ">Zum Profil</button>-->
+
+</div>
+
+<div>
+  <h2 class="whiteColor" [ngClass]="DisplayChallenger">Der Herausforderer: {{DisplayChallenger}} </h2>
+  <h2 class="whiteColor" [ngClass]="DisplayOpponent">Der Gegner: {{DisplayOpponent}} </h2>
+</div>
+
+
+
+<div class="duell-container" >
+  <div class="duel view">
+    <div class="contentView" *ngIf="!challenger">
+      <div class="div1 question" [ngClass]="question">{{question}}</div>
+      <div class="div2 answer" [ngClass]="answer1">
+        <button (click)="answerButton(answer1)" class="button antwort" [disabled]="inputFieldsDisabled">{{answer1}}</button>
+      </div>
+      <div class="div3 answer" [ngClass]="answer2">
+        <button (click)="answerButton(answer2)" class="button antwort" [disabled]="inputFieldsDisabled">{{answer2}}</button>
+      </div>
+      <!-- Fügen Sie die Frage-ID in den anderen Buttons hinzu -->
+      <div class="div4 answer" [ngClass]="answer3">
+        <button (click)="answerButton(answer3)" class="button antwort" [disabled]="inputFieldsDisabled">{{answer3}}</button>
+      </div>
+      <div class="div5 answer" [ngClass]="answer4">
+        <button (click)="answerButton(answer4)" class="button antwort" [disabled]="inputFieldsDisabled">{{answer4}}</button>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+

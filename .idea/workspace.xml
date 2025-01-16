@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/duell/duell.component.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="dev(di)" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2SSoUOOviMcqTjVE07DAKl6ILEV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Stefan__Frontend__Funktion&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/plaxi/Desktop/Desktop/01.THM/04. Semester/05. WBS2/Angular2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\plaxi\\Desktop\\Desktop\\01.THM\\04. Semester\\wbs2-projekt\\frontend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/backend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="watch" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="watch" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.watch" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.watch" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6120d118-06fb-4a8f-b9b8-de267f35e341" name="Changes" comment="" />
+      <created>1689149358494</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689149358494</updated>
+      <workItem from="1689149359612" duration="308000" />
+      <workItem from="1691489876542" duration="6290000" />
+      <workItem from="1691565222432" duration="10381000" />
+      <workItem from="1692003629335" duration="492000" />
+      <workItem from="1692162603401" duration="5377000" />
+      <workItem from="1693234029708" duration="7080000" />
+      <workItem from="1693731958169" duration="6045000" />
+      <workItem from="1693840484086" duration="963000" />
+      <workItem from="1693928189814" duration="4557000" />
+      <workItem from="1693932820533" duration="1089000" />
+      <workItem from="1693934007369" duration="23000" />
+      <workItem from="1693995053902" duration="5464000" />
+      <workItem from="1694106067232" duration="13062000" />
+      <workItem from="1694530398111" duration="1460000" />
+      <workItem from="1694584933535" duration="2152000" />
+      <workItem from="1694587202654" duration="1676000" />
+      <workItem from="1694680262275" duration="1704000" />
+      <workItem from="1694683521018" duration="1447000" />
+      <workItem from="1694685165903" duration="4510000" />
+      <workItem from="1694700265424" duration="2077000" />
+      <workItem from="1694702409695" duration="562000" />
+      <workItem from="1694705896157" duration="1960000" />
+      <workItem from="1694710625208" duration="2452000" />
+      <workItem from="1694773472914" duration="11601000" />
+      <workItem from="1694854684600" duration="10407000" />
+    </task>
+    <task id="LOCAL-00011" summary="Backend und Frontend funktioniert zusammen">
+      <created>1693485216964</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1693485216964</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Fehler beim Anzeigen der Register seite gefunden und behoben">
+      <created>1693734794950</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1693734794950</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Nutzer Anlegen funktioniert. TODO: Login Formular ändern und http request umschreiben">
+      <created>1693736433446</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1693736433446</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Register und Login wird im Netzwerk mit einem Validen Statuscode wiedergegeben. Register gibt dem Nutzer auch einen Datenbank eintrag.">
+      <created>1693737201587</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1693737201587</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Login Onlinestatuts wird in der Datenbank verändert">
+      <created>1693737635882</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693737635886</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Login Onlinestatuts wird in der Datenbank verändert">
+      <created>1693738088074</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693738088074</updated>
+    </task>
+    <task id="LOCAL-00017" summary="neustes Backend in den Branch gezogen">
+      <created>1693927349057</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1693927349057</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Duell und Logout angefangen. Logout funktioniert und duell gibt es noch fragen bei der Fragen darstellung">
+      <created>1693930035714</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1693930035714</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Startseite loggedin and loggedout status hinzugefügt.">
+      <created>1693932242681</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1693932242681</updated>
+    </task>
+    <task id="LOCAL-00020" summary="My Account an den Login Status gekoppelt sodass der Nutzer die Login seite oder Profilseite sieht je nach status">
+      <created>1693932699076</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1693932699076</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Webseiten Aussehen ein wenig verändert. Meinungen gerne erwünscht">
+      <created>1693933763113</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1693933763113</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Start und End duel Button auf der Startseite eingebunden (TEST) diese Funktionieren auch solang ich die Ids der Nutzer hardcode. Wird verändert wenn die Freundesliste fertig ist">
+      <created>1693996690884</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1693996690884</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Erste Admin versuche.">
+      <created>1694001229279</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1694001229279</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Bug Fixes&#10;Duell correctAnswer hinzugefügt mit RandomNumber&#10;Login route auf Startseite &#10;DuellStart route auf duell Seite">
+      <created>1694110939689</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1694110939689</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus">
+      <created>1694112905943</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1694112905943</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Erste Ansätze für das Antworten Senden erstellt. Fragen zur Route duel/answer. Diese gibt immer einen 500er aus">
+      <created>1694189248690</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1694189248690</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Admin seite Fragen werden geladen und erster Ansatz zum hinzufügen neuer Fragen">
+      <created>1694191783565</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1694191783565</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Fragen Hinzufügen klappt per Button">
+      <created>1694192414567</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1694192414567</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Benachrichtigungen für den Admin erstellt (für das löschen hinzufügen und ändern der Questions">
+      <created>1694514521753</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1694514521753</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Admin ansicht. Automatisches eintragen der Ids für das löschen und updaten der Fragen. Sowie css überarbeitet (für die Admin seite)">
+      <created>1694518401939</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1694518401939</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Kleiner Bugfix. Amdin seite ist somit meines Wissens nach komplett fertig und bedarf keiner weitern bearbeitung">
+      <created>1694518730465</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1694518730465</updated>
+    </task>
+    <task id="LOCAL-00032" summary="ABOUT US seite angelegt und mit der Readme versehen">
+      <created>1694529498389</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1694529498389</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Bug fix für das About Us auf der startseite.component.html">
+      <created>1694530672414</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1694530672414</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt.">
+      <created>1694586100487</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1694586100487</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Register angepasst">
+      <created>1694586763460</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1694586763460</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt.">
+      <created>1694588228010</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1694588228010</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Duellstart über die Profilseite funktioniert (mit kleinen Fehlern) &#10;TODO: Umleitung auf die duellseite">
+      <created>1694681583062</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1694681583062</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Umleitung zur Duellseite funktioniert">
+      <created>1694681706261</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1694681706261</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Umleitung zur Duellseite funktioniert">
+      <created>1694690065155</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1694690065155</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Duel Versuche kp">
+      <created>1694707694114</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1694707694114</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Param Problem">
+      <created>1694711582039</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1694711582039</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Question get to post geändert">
+      <created>1694730491777</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1694730491777</updated>
+    </task>
+    <task id="LOCAL-00043" summary="DuelStart scheint zu funktionieren">
+      <created>1694730656441</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1694730656441</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Auf Fragen Antworten geht. Duell synchron machen fehlt und Duell nach 10 fragen beenden fehlt">
+      <created>1694732303484</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1694732303484</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Nach 10 Fragen wird das Duell automatisch geschlossen weiterleitung zurück auf das Profil geht aber noch nicht">
+      <created>1694733167304</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1694733167304</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Kleine änderungen in der Amdin, duell und startseite">
+      <created>1694735036290</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1694735036290</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Änderungen">
+      <created>1694775971078</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1694775971079</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Duel Kernfunktionen sind fertig">
+      <created>1694783896224</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1694783896224</updated>
+    </task>
+    <task id="LOCAL-00049" summary="alle funktionen sind meines wissens nach fertig">
+      <created>1694792066229</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1694792066229</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Angefangen code aufzuräumen">
+      <created>1694801180175</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1694801180175</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Angefangen code aufzuräumen">
+      <created>1694891797038</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1694891797038</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Duell bekommen schonmal beide die gleichen Fragen">
+      <created>1694904698266</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1694904698266</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Nutzer können Fragen beantworten und nach dem Neuladen bleibt die Zahl unverändert">
+      <created>1694909302781</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1694909302781</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind.">
+      <created>1694914196480</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1694914196480</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Statistic auf der Porfilseite erledigt">
+      <created>1694916661034</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1694916661034</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Adminseite ein letztes mal bearbeitet">
+      <created>1694916951230</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1694916951230</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Nav Leiste gefixxed. Verschwindet nicht mehr beim Neuladen der seite.">
+      <created>1694926656167</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1694926656167</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt">
+      <created>1694929121357</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1694929121357</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt">
+      <created>1694969016377</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1694969016377</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Bug fix für das About Us auf der startseite.component.html" />
+    <MESSAGE value="Duell fragen absenden verändert sodass jede Anntwort einen Button erhält und dann diese Antwort abschickt." />
+    <MESSAGE value="Register angepasst" />
+    <MESSAGE value="Bug im Amdin gefunden. Fragen die nicht in der Datenbank exsitieren werden angezeigt." />
+    <MESSAGE value="Duellstart über die Profilseite funktioniert (mit kleinen Fehlern) &#10;TODO: Umleitung auf die duellseite" />
+    <MESSAGE value="Umleitung zur Duellseite funktioniert" />
+    <MESSAGE value="Duel Versuche kp" />
+    <MESSAGE value="Param Problem" />
+    <MESSAGE value="Question get to post geändert" />
+    <MESSAGE value="DuelStart scheint zu funktionieren" />
+    <MESSAGE value="Auf Fragen Antworten geht. Duell synchron machen fehlt und Duell nach 10 fragen beenden fehlt" />
+    <MESSAGE value="Nach 10 Fragen wird das Duell automatisch geschlossen weiterleitung zurück auf das Profil geht aber noch nicht" />
+    <MESSAGE value="Kleine änderungen in der Amdin, duell und startseite" />
+    <MESSAGE value="Änderungen" />
+    <MESSAGE value="Duel Kernfunktionen sind fertig" />
+    <MESSAGE value="alle funktionen sind meines wissens nach fertig" />
+    <MESSAGE value="Angefangen code aufzuräumen" />
+    <MESSAGE value="Duell bekommen schonmal beide die gleichen Fragen" />
+    <MESSAGE value="Nutzer können Fragen beantworten und nach dem Neuladen bleibt die Zahl unverändert" />
+    <MESSAGE value="Fragen sind auf 10 Limitiert und das Duell wird beendet sobald diese 10 Fragen erreicht sind." />
+    <MESSAGE value="Statistic auf der Porfilseite erledigt" />
+    <MESSAGE value="Adminseite ein letztes mal bearbeitet" />
+    <MESSAGE value="Nav Leiste gefixxed. Verschwindet nicht mehr beim Neuladen der seite." />
+    <MESSAGE value="Code &quot;aufgeräumt&quot; unnötige funktionen console.log und kommentare entfernt" />
+    <MESSAGE value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Nutzer Antwort blockiert wenn der Herrausforderer an der Selben frage ist wie man selbst um bugs zu verhindern zusätzlich das neuladen der seite eingefügt" />
+  </component>
+</project>

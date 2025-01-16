@@ -1,0 +1,55 @@
+<section>
+  <div class='container'>
+    <div class="columns">
+      <div class="column leftUp">
+
+        <h1 class="whiteColorLeft">LOGIN</h1>
+
+      </div>
+      <div class="column rightUp">
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column linksRechts">
+        <div class="glass">
+          <div class="field">
+            <label class="label is-medium">Login</label>
+          </div>
+          <div class="field">
+            <label class="label">Username</label>
+            <div class="control">
+              <input class="input" type="text" [(ngModel)]="username" name="username" placeholder="Username">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Password</label>
+            <div class="control">
+              <input class="input" type="password" [(ngModel)]="userPassword" name="userPassword"
+                     placeholder="Password">
+            </div>
+            <p [ngClass]="out" class="out">{{out}}</p>
+
+            <a class="linkText">
+              <button class="button" (click)="buttonClickedAccept() ">JOIN</button>
+            </a>
+            <button class="button" [routerLink]="['/startseite'] ">ABORT</button>
+          </div>
+          <div class="field">
+            <p>Noch kein Konto?</p>
+            <p><a class="linkText" [routerLink]="['/register']">HIER LANG!</a></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="columns">
+      <div class="column leftUp">
+
+      </div>
+      <div class="column rightUp">
+      </div>
+    </div>
+  </div>
+
+</section>

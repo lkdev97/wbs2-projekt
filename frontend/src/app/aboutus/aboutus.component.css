@@ -1,0 +1,42 @@
+.container{
+  padding: 0.74rem;
+}
+
+.leftUp{
+  padding-left: 5%;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-bottom: 15%;
+  padding-top: 5%;
+
+
+
+}
+.rightUp{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-top: 5%;
+
+
+}
+.whiteColorLeft{
+  font-size: x-large;
+  padding-left: 2%;
+  color: whitesmoke;
+
+}
+
+h1{
+  color: white;
+  font-size: x-large;
+  font-weight: bold;
+}
+h2{
+  margin-top: 5%;
+  font-weight: bold;
+  font-size: large;
+  color: white;
+}
+
+p{
+  color: white;
+}

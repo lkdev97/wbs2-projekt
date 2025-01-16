@@ -1,0 +1,165 @@
+/*
+Die CSS-Datei für die Startseite
+ */
+
+/* .container wird verwendet um auf der Linken und Rechten seite einen Rand von 0.75rem bzw. 12px zu erzeugen */
+.container{
+  padding: 0.74rem;
+}
+
+/* .main ist die Hauptüberschrift der Seite hier der Schriftzug Quizduell */
+.main {
+  color: whitesmoke;
+  font-size: xx-large;
+}
+
+/*
+.button spricht den Button unter der Überschrift Quizduell an. dieser hat eine Weiße Hintergrund Farbe und eine Opacity
+ von 0.5 bzw 50% und mit border none wird der Rahmen entfernt.
+ */
+
+.button{
+  background-color: rgba(255,255,255, 0.5);
+  color: whitesmoke;
+  border: none;
+
+}
+
+/*
+.arrow sind drei Elemente auf der Webseite die zusammen einen Pfeil Bilden um den Nutzer auf das Scrollen aufmerksam zu
+machen. Die position Absolut ist Notwendig um die Pfeile übereinander darstellen zu können und durch den text-algin:
+center befehl wird es mittig gsetzt. Mithilfe von rotate(0deg) sorgen wir für eine drehung von 0 Grad und mit
+cursor: pointer verändern wir den Mauszeuger bei einem Hover.
+
+ */
+.arrow {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  transform: rotate(0deg);
+  cursor: pointer;
+  padding-top: 20%;
+}
+
+.arrow span {
+  display: block;
+  width: 1.5vw;
+  height: 1.5vw;
+  border-bottom: 5px solid #de5612;
+  border-right: 5px solid #de5612;
+  transform: rotate(45deg);
+  margin: -10px;
+
+}
+
+/*
+.whiteColorLeft sorgt dafür das die Schriften die auf der Linken Seite der Webseite stehen weiß sind und auf der Linken
+Seite eine Border bzw. einen Orangen Strich haben der sie von dem Webseite zusätzlich abhebt.
+ */
+.whiteColorLeft{
+  font-size: x-large;
+  padding-left: 2%;
+  color: whitesmoke;
+  border-left: #de5612 solid 0.125rem;
+
+}
+
+/*
+.whiteColorRight ist das selbe wie whiteColorLeft es hat nur zusätzlich die Text-Align und ein padding erhalten um die
+optische gleichheit zu erhalten
+ */
+.whiteColorRight{
+  font-size: x-large;
+  padding-right: 2%;
+  text-align: right;
+  color: whitesmoke;
+  border-right: #de5612 solid 0.125rem;
+
+}
+
+/*
+.blackColorLeft ist das selbe wie whiteColorLeft nur auf einem hellen Hintergrund wodurch die Schriftfabe schwarz ist
+ */
+.blackColorLeft{
+  font-size: x-large;
+  padding-left: 1%;
+  color: #272727;
+  border-left: #de5612 solid 0.125rem;
+
+}
+
+
+/*
+Hier fassen wir jetzt leftUp, leftDown, left, rightUp, rightDown, LinksRechts zusammen. Diese sind ie Container die zur aufteilung
+der Webseite verwendet werden. Diese ist auf dem dunkeln Hintergrund in drei Reihen mit folgender Rythmik aufgeteilt
+(2 | 1 | 2) Das bedeutet es ist leftUp rightUp die jeweils die linien in der Mitte, links und Rechts bilden. Darauf
+folgt LinksRechts dieses ist ein Collum das in der Mitte einen Schriftzug hat und links und Rechts eine graue Border.
+Darauf folgt das gleiche wie Left und right up nur für unten.
+ */
+.leftUp{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-bottom: 15%;
+  padding-top: 5%;
+  border-right: #de5612 solid 0.125rem;
+
+}
+
+.left{
+  padding-left: 0;
+  padding-bottom: 15%;
+  padding-top: 5%;
+}
+
+.leftDown{
+  padding-left: 0;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  padding-top: 15%;
+  padding-bottom: 5%;
+  border-right: #de5612 solid 0.125rem;
+
+
+
+}
+.rightDown{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-top: 15%;
+  padding-bottom: 5%;
+  border-left: #de5612 solid 0.125rem;
+
+
+}
+.rightUp{
+  padding-right: 0;
+  border-right:  solid 0.125rem rgba(105,105,105, 0.5);
+  padding-bottom: 15%;
+  padding-top: 5%;
+  border-left: #de5612 solid 0.125rem;
+
+
+}
+
+.linksRechts{
+  text-align: center;
+  border-left: solid 0.125rem rgba(105,105,105, 0.5) ;
+  border-right: solid 0.125rem rgba(105,105,105, 0.5) ;
+
+}
+
+/*
+verändert die hitergrundfarbe eines Berreiches
+ */
+#beigeBackground{
+  background-color: #cfc3b4;
+  margin: 0 ;
+  padding: 0.625rem 0.5rem;
+}
+
+/* .LinkText wird genutzt um einem Href text von Blau zu weiß zu färben. */
+.linkText{
+  color: white;
+}
+
